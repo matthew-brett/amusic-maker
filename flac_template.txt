@@ -1,0 +1,22 @@
+{fname}:
+    folder_name: 
+    img_fname: 
+    album: Mass in B Minor
+    albumartist: The Sixteen
+    albumartistsort: Sixteen, The
+    artist: Johann Sebastian Bach
+    artists: Johann Sebastian Bach
+    artistsort: Bach, Johann Sebastian
+    composer: Johann Sebastian Bach
+    conductor: Harry Christophers
+    title: BWV 232 Kyrie / Chorus - Kyrie eleison
+    soloists:
+     - Catherine Dubosc
+    discnumber: 1
+    disctotal: 1
+    tracknumber: 1
+    tracktotal: 2
+    originaldate: 1994-04-01
+    originalyear: 1994
+    period: Baroque
+    style: Choral
