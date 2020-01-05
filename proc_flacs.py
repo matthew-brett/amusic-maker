@@ -53,8 +53,10 @@ def proc_config_entry(in_fname, entry, out_dir):
             value = [str(value)]
         song.tags[key.upper()] = value
     song.save()
-    img = Image.open(img_fname)
-    img.save(op.join(full_out_dir, 'Folder.jpg'))
+    out_img_fname = op.join(full_out_dir, 'Folder.jpg')
+    if not op.exists(out_img_fname):
+        img = Image.open(img_fname)
+        img.save(out_img_fname)
 
 
 key = 'berliozfunebre1-cr.flac'

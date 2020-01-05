@@ -17,7 +17,7 @@ berliozfunebre1-cr.flac:
     disctotal: 1
     tracknumber: 1
     tracktotal: 2
-    period: Classical
+    period: Romantic
     style: Symphony
 
 
@@ -40,7 +40,7 @@ berliozfunebre2-cr.flac:
     disctotal: 1
     tracknumber: 2
     tracktotal: 2
-    period: Classical
+    period: Romantic
     style: Symphony
 
 
@@ -63,7 +63,7 @@ brahmvc1-cr.flac:
     tracknumber: 1
     tracktotal: 2
     originalyear: 1961
-    period: Classical
+    period: Romantic
     style: Concerto
 
 
@@ -86,168 +86,163 @@ brahmvc2-cr.flac:
     tracknumber: 2
     tracktotal: 2
     originalyear: 1961
-    period: Classical
+    period: Romantic
     style: Concerto
 
 
 bruksy9_1-cr.flac:
-    folder_name: 
-    img_fname: 
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
+    folder_name: bruckner_symphony_9
+    img_fname: jpegs/bruckner_sy9
+    album: Symphony 9 (original version)
+    albumartist: Anton Bruckner
+    albumartistsort: Bruckner, Anton
+    artist: Anton Bruckner
+    artists: Anton Bruckner
+    artistsort: Bruckner, Anton
+    composer: Anton Bruckner
+    conductor: Jascha Horenstein
+    title: Bruckner 9th Symphony: Feierlich, misterioso
     soloists:
-     - Catherine Dubosc
+     - Pro Music Symphony, Vienna
     discnumber: 1
     disctotal: 1
     tracknumber: 1
     tracktotal: 2
-    originaldate: 1994-04-01
-    originalyear: 1994
-    period: Baroque
-    style: Choral
+    originalyear: 1971
+    period: Romantic
+    style: Symphony
 
 
 bruksy9_2-cr.flac:
-    folder_name: 
-    img_fname: 
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
+    folder_name: bruckner_symphony_9
+    img_fname: jpegs/bruckner_sy9
+    album: Symphony 9 (original version)
+    albumartist: Anton Bruckner
+    albumartistsort: Bruckner, Anton
+    artist: Anton Bruckner
+    artists: Anton Bruckner
+    artistsort: Bruckner, Anton
+    composer: Anton Bruckner
+    conductor: Jascha Horenstein
+    title: Bruckner 9th Symphony: Scherzo; Adagio
     soloists:
-     - Catherine Dubosc
+     - Pro Music Symphony, Vienna
     discnumber: 1
     disctotal: 1
-    tracknumber: 1
+    tracknumber: 2
     tracktotal: 2
-    originaldate: 1994-04-01
-    originalyear: 1994
-    period: Baroque
-    style: Choral
+    originalyear: 1971
+    period: Romantic
+    style: Symphony
 
 
 chopin_fortep1-cr.flac:
-    folder_name: 
-    img_fname: 
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
+    folder_name: chopin_fortepiano
+    img_fname: jpegs/chopin_forte.jpg
+    album: Ernst Gröschel plays original fortepianos
+    albumartist: Frederic Chopin
+    albumartistsort: Chopin, Frederic
+    artist: Frederic Chopin
+    artists:
+     - Frederic Chopin
+     - Franz Schubert
+    artistsort: Chopin, Frederic
+    composer: Frederic Chopin
+    title: Ernst Gröschel fortepianos: Chopin Impromptu 66; Etudes Op 10/1,4,5; Op 26/6; Waltzes op 70/1-3; Ecossaises op 72/3,4,5; Ballada op 38; Prelude in A posth; Ecossaises op 72/3,4,5; Ballada op 38; Prelude in A posth.
     soloists:
-     - Catherine Dubosc
+     - Ernst Gröschel
     discnumber: 1
     disctotal: 1
     tracknumber: 1
     tracktotal: 2
-    originaldate: 1994-04-01
-    originalyear: 1994
-    period: Baroque
-    style: Choral
+    originalyear: 1968
+    period: Classical
+    style: Solo piano
 
 
 chopin_fortep2-cr.flac:
-    folder_name: 
-    img_fname: 
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
+    folder_name: chopin_fortepiano
+    img_fname: jpegs/chopin_forte.jpg
+    album: Ernst Gröschel plays original fortepianos
+    albumartist: Frederic Chopin
+    albumartistsort: Chopin, Frederic
+    artist: Frederic Chopin
+    artists:
+     - Frederic Chopin
+     - Franz Schubert
+    artistsort: Chopin, Frederic
+    composer: Frederic Chopin
+    title: Ernst Gröschel fortepianos: Schubert Sonata A minor op 143; Impromptu op 142/4
     soloists:
-     - Catherine Dubosc
+     - Ernst Gröschel
     discnumber: 1
     disctotal: 1
-    tracknumber: 1
+    tracknumber: 2
     tracktotal: 2
-    originaldate: 1994-04-01
-    originalyear: 1994
-    period: Baroque
-    style: Choral
+    originalyear: 1968
+    period: Classical
+    style: Solo piano
 
 
 debussyp1-cr.flac:
-    folder_name: 
-    img_fname: 
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
+    folder_name: debussy_piano_works
+    img_fname: jpegs/debussy_piano.jpg
+    album: Piano Works
+    albumartist: Claude Debussy
+    albumartistsort: Debussy, Claude
+    artist: Claude Debussy
+    artists: Claude Debussy
+    artistsort: Debussy, Claude
+    composer: Claude Debussy
+    title: Debussy Piano Works: Jardins Sous La Pluie; Deux Arabesques/1,2; La Plus Que Lente; L'Isle Joyeuse
     soloists:
-     - Catherine Dubosc
+     - Peter Frankl
     discnumber: 1
     disctotal: 1
     tracknumber: 1
     tracktotal: 2
-    originaldate: 1994-04-01
-    originalyear: 1994
-    period: Baroque
-    style: Choral
+    originalyear: 1969
+    period: Impressionist
+    style: Solo piano
 
 
 debussyp2-cr.flac:
-    folder_name: 
-    img_fname: 
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
+    folder_name: debussy_piano_works
+    img_fname: jpegs/debussy_piano.jpg
+    album: Piano Works
+    albumartist: Claude Debussy
+    albumartistsort: Debussy, Claude
+    artist: Claude Debussy
+    artists: Claude Debussy
+    artistsort: Debussy, Claude
+    composer: Claude Debussy
+    title: Debussy Piano Works: Claire de Lune; CHILDRENS CORNER SUITE: Dr Gradus ad Parnassum; Jumbo's Lullaby; Serenade of the Doll; The Snow is Dancing; The Little Shepherd; Golliwog's Cake-walk
     soloists:
-     - Catherine Dubosc
+     - Peter Frankl
     discnumber: 1
     disctotal: 1
-    tracknumber: 1
+    tracknumber: 2
     tracktotal: 2
-    originaldate: 1994-04-01
-    originalyear: 1994
-    period: Baroque
-    style: Choral
+    originalyear: 1969
+    period: Impressionist
+    style: Solo piano
 
 
 dido_older_1-cr.flac:
-    folder_name: 
-    img_fname: 
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
+    folder_name: dido_aeneas
+    img_fname: jpegs/dido_older
+    album: Dido & Aeneas
+    albumartist: Henry Purcell
+    albumartistsort: Purcell, Henry
+    artist: Henry Purcell
+    artists: Henry Purcell
+    artistsort: Purcell, Henry
+    composer: Henry Purcell
+    conductor: Anthony Lewis
+    title: Dido & Aeneas: 
     soloists:
-     - Catherine Dubosc
+     - The St Anthony Singers
+     - English Chamber Orchestra
     discnumber: 1
     disctotal: 1
     tracknumber: 1
