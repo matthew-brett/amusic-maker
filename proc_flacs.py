@@ -30,6 +30,7 @@ def proc_config_entry(in_fname, entry, out_dir):
         os.makedirs(full_out_dir)
     fname = folder_name
     img_fname = entry.pop('img_fname')
+    assert op.exists(img_fname)
     full = def_config.copy()
     full.update(entry)
     disc_total = full.get('disctotal')
@@ -59,7 +60,13 @@ def proc_config_entry(in_fname, entry, out_dir):
         img.save(out_img_fname)
 
 
-key = 'berliozfunebre1-cr.flac'
-entry = config[key]
-
-
+def main():
+    out_dir = op.join('..', 'music')
+    waiting = True
+    for key, entry in config.items():
+        if waiting:
+            if key == 'lvbmissa1-cr.flac':
+                waiting = False
+            else:
+                continue
+        proc_config_entry(key, entry, out_dir)
