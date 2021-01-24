@@ -9,6 +9,7 @@ from PIL import Image
 
 import taglib
 
+
 with open('flac_config.yml', 'rt') as fobj:
     config = yaml.load(fobj)
 
@@ -20,6 +21,14 @@ def_config = {
     'releasetype': 'album',
     'script': 'Latn'
 }
+
+
+def resize_img(img, target_res=1024):
+    if max(img.size) <= target_res:
+        return img
+    ratio = target_res / max(img.size)
+    new_size = tuple(int(d * ratio) for d in img.size)
+    return img.resize(new_size, Image.LANCZOS)
 
 
 def proc_config_entry(in_fname, entry, out_dir):
@@ -57,6 +66,7 @@ def proc_config_entry(in_fname, entry, out_dir):
     out_img_fname = op.join(full_out_dir, 'Folder.jpg')
     if not op.exists(out_img_fname):
         img = Image.open(img_fname)
+        img = resize_img(img, 1024)
         img.save(out_img_fname)
 
 
