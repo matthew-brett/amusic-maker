@@ -1,4 +1,9 @@
-berliozfunebre1-cr.flac:
+settings:
+  wav_paths:
+    - wavs
+  out_path: amusic
+
+berliozfunebre1-cr.:
     folder_name: berlioz_funebre
     img_fname: jpegs/berlioz_funebre.jpg
     album: Symphonie Funèbre et Triomphale Op 15
@@ -21,7 +26,7 @@ berliozfunebre1-cr.flac:
     style: Symphony
 
 
-berliozfunebre2-cr.flac:
+berliozfunebre2-cr.wav:
     folder_name: berlioz_funebre
     img_fname: jpegs/berlioz_funebre.jpg
     album: Symphonie Funèbre et Triomphale Op 15
@@ -44,7 +49,7 @@ berliozfunebre2-cr.flac:
     style: Symphony
 
 
-brahmvc1-cr.flac:
+brahmvc1-cr.wav:
     folder_name: brahms_violin_concerto
     img_fname: jpegs/brahmsvc.jpg
     album: Brahms Violin Concerto
@@ -67,7 +72,7 @@ brahmvc1-cr.flac:
     style: Concerto
 
 
-brahmvc2-cr.flac:
+brahmvc2-cr.wav:
     folder_name: brahms_violin_concerto
     img_fname: jpegs/brahmsvc.jpg
     album: Brahms Violin Concerto
@@ -90,7 +95,7 @@ brahmvc2-cr.flac:
     style: Concerto
 
 
-bruksy9_1-cr.flac:
+bruksy9_1-cr.wav:
     folder_name: bruckner_symphony_9
     img_fname: jpegs/bruckner_sy9.jpg
     album: Symphony 9 (original version)
@@ -113,7 +118,7 @@ bruksy9_1-cr.flac:
     style: Symphony
 
 
-bruksy9_2-cr.flac:
+bruksy9_2-cr.wav:
     folder_name: bruckner_symphony_9
     img_fname: jpegs/bruckner_sy9.jpg
     album: Symphony 9 (original version)
@@ -136,7 +141,7 @@ bruksy9_2-cr.flac:
     style: Symphony
 
 
-chopin_fortep1-cr.flac:
+chopin_fortep1-cr.wav:
     folder_name: chopin_fortepiano
     img_fname: jpegs/chopin_forte.jpg
     album: Ernst Gröschel plays original fortepianos
@@ -160,7 +165,7 @@ chopin_fortep1-cr.flac:
     style: Solo keyboard
 
 
-chopin_fortep2-cr.flac:
+chopin_fortep2-cr.wav:
     folder_name: chopin_fortepiano
     img_fname: jpegs/chopin_forte.jpg
     album: Ernst Gröschel plays original fortepianos
@@ -184,7 +189,7 @@ chopin_fortep2-cr.flac:
     style: Solo keyboard
 
 
-debussyp1-cr.flac:
+debussyp1-cr.wav:
     folder_name: debussy_piano_works
     img_fname: jpegs/debussy_piano.jpg
     album: Piano Works
@@ -206,7 +211,7 @@ debussyp1-cr.flac:
     style: Solo keyboard
 
 
-debussyp2-cr.flac:
+debussyp2-cr.wav:
     folder_name: debussy_piano_works
     img_fname: jpegs/debussy_piano.jpg
     album: Piano Works
@@ -228,7 +233,7 @@ debussyp2-cr.flac:
     style: Solo keyboard
 
 
-dido_older_1-cr.flac:
+dido_older_1-cr.wav:
     folder_name: dido_aeneas_1962
     img_fname: jpegs/dido_older.jpg
     album: Dido & Aeneas
@@ -252,7 +257,7 @@ dido_older_1-cr.flac:
     style: Choral
 
 
-dido_older_2-cr.flac:
+dido_older_2-cr.wav:
     folder_name: dido_aeneas_1962
     img_fname: jpegs/dido_older.jpg
     album: Dido & Aeneas
@@ -276,7 +281,7 @@ dido_older_2-cr.flac:
     style: Choral
 
 
-early_english_keybord_1_2-cr.flac:
+early_english_keybord_1_2-cr.wav:
     folder_name: early_english_keyboard
     img_fname: jpegs/early_english_keyboard.jpg
     album: Early English Keyboard Music
@@ -304,7 +309,7 @@ early_english_keybord_1_2-cr.flac:
     style: Solo keyboard
 
 
-early_english_keyboard_2-cr.flac:
+early_english_keyboard_2-cr.wav:
     folder_name: early_english_keyboard
     img_fname: jpegs/early_english_keyboard.jpg
     album: Early English Keyboard Music
@@ -334,7 +339,7 @@ early_english_keyboard_2-cr.flac:
     style: Solo keyboard
 
 
-elgar_sy1_1-cr.flac:
+elgar_sy1_1-cr.wav:
     folder_name: elgar_symphony_1
     img_fname: jpegs/elgar_sy1.jpg
     album: Symphony No 1 in A flat major
@@ -357,7 +362,7 @@ elgar_sy1_1-cr.flac:
     style: Choral
 
 
-elgar_sy1_2-cr.flac:
+elgar_sy1_2-cr.wav:
     folder_name: elgar_symphony_1
     img_fname: jpegs/elgar_sy1.jpg
     album: Symphony No 1 in A flat major
@@ -380,7 +385,7 @@ elgar_sy1_2-cr.flac:
     style: Choral
 
 
-haydn_solemnis_1-cr.flac:
+haydn_solemnis_1-cr.wav:
     folder_name: haydn_solemnis
     img_fname: jpegs/haydn_solemnis.jpg
     album: Missa Solemnis
@@ -408,7 +413,7 @@ haydn_solemnis_1-cr.flac:
     style: Choral
 
 
-haydn_solemnis_2-cr.flac:
+haydn_solemnis_2-cr.wav:
     folder_name: haydn_solemnis
     img_fname: jpegs/haydn_solemnis.jpg
     album: Missa Solemnis
@@ -436,7 +441,7 @@ haydn_solemnis_2-cr.flac:
     style: Choral
 
 
-haydnq71_1-cr.flac:
+haydnq71_1-cr.wav:
     folder_name: haydn_quartets_71_74
     img_fname: jpegs/haydn_quartets_71_74.jpg
     album: String Quartets op. 71 & 74
@@ -457,7 +462,7 @@ haydnq71_1-cr.flac:
     period: Classical
     style: Chamber
 
-haydnq71_2-cr.flac:
+haydnq71_2-cr.wav:
     folder_name: haydn_quartets_71_74
     img_fname: jpegs/haydn_quartets_71_74.jpg
     album: String Quartets op. 71 & 74
@@ -478,7 +483,7 @@ haydnq71_2-cr.flac:
     period: Classical
     style: Chamber
 
-haydnq7174_71_3-cr.flac:
+haydnq7174_71_3-cr.wav:
     folder_name: haydn_quartets_71_74
     img_fname: jpegs/haydn_quartets_71_74.jpg
     album: String Quartets op. 71 & 74
@@ -499,7 +504,7 @@ haydnq7174_71_3-cr.flac:
     period: Classical
     style: Chamber
 
-haydnq7174_74_1-cr.flac:
+haydnq7174_74_1-cr.wav:
     folder_name: haydn_quartets_71_74
     img_fname: jpegs/haydn_quartets_71_74.jpg
     album: String Quartets op. 71 & 74
@@ -520,7 +525,7 @@ haydnq7174_74_1-cr.flac:
     period: Classical
     style: Chamber
 
-haydnq74_23_1-cr.flac:
+haydnq74_23_1-cr.wav:
     folder_name: haydn_quartets_71_74
     img_fname: jpegs/haydn_quartets_71_74.jpg
     album: String Quartets op. 71 & 74
@@ -541,7 +546,7 @@ haydnq74_23_1-cr.flac:
     period: Classical
     style: Chamber
 
-haydnq74_23_2-cr.flac:
+haydnq74_23_2-cr.wav:
     folder_name: haydn_quartets_71_74
     img_fname: jpegs/haydn_quartets_71_74.jpg
     album: String Quartets op. 71 & 74
@@ -563,7 +568,7 @@ haydnq74_23_2-cr.flac:
     style: Chamber
 
 
-lvbmissa1-cr.flac:
+lvbmissa1-cr.wav:
     folder_name: beethoven_missa_solemnis
     img_fname: jpegs/beethoven_missa_solemnis.jpg
     album: Beethoven Missa Solemnis
@@ -591,7 +596,7 @@ lvbmissa1-cr.flac:
     style: Choral
 
 
-lvbmissa2-cr.flac:
+lvbmissa2-cr.wav:
     folder_name: beethoven_missa_solemnis
     img_fname: jpegs/beethoven_missa_solemnis.jpg
     album: Beethoven Missa Solemnis
@@ -619,7 +624,7 @@ lvbmissa2-cr.flac:
     style: Choral
 
 
-lvbmissa3-cr.flac:
+lvbmissa3-cr.wav:
     folder_name: beethoven_missa_solemnis
     img_fname: jpegs/beethoven_missa_solemnis.jpg
     album: Beethoven Missa Solemnis
@@ -647,7 +652,7 @@ lvbmissa3-cr.flac:
     style: Choral
 
 
-lvbmissa4-cr.flac:
+lvbmissa4-cr.wav:
     folder_name: beethoven_missa_solemnis
     img_fname: jpegs/beethoven_missa_solemnis.jpg
     album: Beethoven Missa Solemnis
@@ -675,7 +680,7 @@ lvbmissa4-cr.flac:
     style: Choral
 
 
-mouss_pictures_1-cr.flac:
+mouss_pictures_1-cr.wav:
     folder_name: 
     img_fname: 
     album: Mass in B Minor
@@ -699,7 +704,7 @@ mouss_pictures_1-cr.flac:
     style: Choral
 
 
-mouss_pictures_2-cr.flac:
+mouss_pictures_2-cr.wav:
     folder_name: 
     img_fname: 
     album: Mass in B Minor
@@ -723,7 +728,7 @@ mouss_pictures_2-cr.flac:
     style: Choral
 
 
-mozsuk1-cr.flac:
+mozsuk1-cr.wav:
     folder_name: 
     img_fname: 
     album: Mass in B Minor
@@ -747,7 +752,7 @@ mozsuk1-cr.flac:
     style: Choral
 
 
-mozsuk2-cr.flac:
+mozsuk2-cr.wav:
     folder_name: 
     img_fname: 
     album: Mass in B Minor
@@ -771,7 +776,7 @@ mozsuk2-cr.flac:
     style: Choral
 
 
-orfeo1-cr.flac:
+orfeo1-cr.wav:
     folder_name: 
     img_fname: 
     album: Mass in B Minor
@@ -795,7 +800,7 @@ orfeo1-cr.flac:
     style: Choral
 
 
-orfeo2-cr.flac:
+orfeo2-cr.wav:
     folder_name: 
     img_fname: 
     album: Mass in B Minor
@@ -819,7 +824,7 @@ orfeo2-cr.flac:
     style: Choral
 
 
-palestrine_mont_11-cr.flac:
+palestrine_mont_11-cr.wav:
     folder_name: 
     img_fname: 
     album: Mass in B Minor
@@ -843,7 +848,7 @@ palestrine_mont_11-cr.flac:
     style: Choral
 
 
-palestrine_mont_2-cr.flac:
+palestrine_mont_2-cr.wav:
     folder_name: 
     img_fname: 
     album: Mass in B Minor
@@ -867,7 +872,7 @@ palestrine_mont_2-cr.flac:
     style: Choral
 
 
-rachp3_v2_1-cr.flac:
+rachp3_v2_1-cr.wav:
     folder_name: 
     img_fname: 
     album: Mass in B Minor
@@ -891,7 +896,7 @@ rachp3_v2_1-cr.flac:
     style: Choral
 
 
-rachp3_v3_2-cr.flac:
+rachp3_v3_2-cr.wav:
     folder_name: 
     img_fname: 
     album: Mass in B Minor
@@ -915,7 +920,7 @@ rachp3_v3_2-cr.flac:
     style: Choral
 
 
-shutz_motets_1-cr.flac:
+shutz_motets_1-cr.wav:
     folder_name: 
     img_fname: 
     album: Mass in B Minor
@@ -939,7 +944,7 @@ shutz_motets_1-cr.flac:
     style: Choral
 
 
-shutz_motets_2-cr.flac:
+shutz_motets_2-cr.wav:
     folder_name: 
     img_fname: 
     album: Mass in B Minor
@@ -963,7 +968,7 @@ shutz_motets_2-cr.flac:
     style: Choral
 
 
-telemann_vorclassik_1-cr.flac:
+telemann_vorclassik_1-cr.wav:
     folder_name: 
     img_fname: 
     album: Mass in B Minor
@@ -987,7 +992,7 @@ telemann_vorclassik_1-cr.flac:
     style: Choral
 
 
-telemann_vorclassik_2-cr.flac:
+telemann_vorclassik_2-cr.wav:
     folder_name: 
     img_fname: 
     album: Mass in B Minor
@@ -1011,7 +1016,7 @@ telemann_vorclassik_2-cr.flac:
     style: Choral
 
 
-toscwag1-cr.flac:
+toscwag1-cr.wav:
     folder_name: 
     img_fname: 
     album: Mass in B Minor
@@ -1035,7 +1040,7 @@ toscwag1-cr.flac:
     style: Choral
 
 
-toscwag2-cr.flac:
+toscwag2-cr.wav:
     folder_name: 
     img_fname: 
     album: Mass in B Minor
@@ -1059,7 +1064,7 @@ toscwag2-cr.flac:
     style: Choral
 
 
-walton_belsh1-cr.flac:
+walton_belsh1-cr.wav:
     folder_name: 
     img_fname: 
     album: Mass in B Minor
@@ -1083,7 +1088,7 @@ walton_belsh1-cr.flac:
     style: Choral
 
 
-walton_belsh2-cr.flac:
+walton_belsh2-cr.wav:
     folder_name: 
     img_fname: 
     album: Mass in B Minor
@@ -1107,7 +1112,7 @@ walton_belsh2-cr.flac:
     style: Choral
 
 
-young3-cr.flac:
+young3-cr.wav:
     folder_name: 
     img_fname: 
     album: Mass in B Minor
@@ -1131,7 +1136,7 @@ young3-cr.flac:
     style: Choral
 
 
-ypg_again2_1-cr.flac:
+ypg_again2_1-cr.wav:
     folder_name: 
     img_fname: 
     album: Mass in B Minor
