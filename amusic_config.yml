@@ -2,7 +2,7 @@ settings:
     wav_paths:
     - wavs
     out_path: amusic
-berliozfunebre1-cr.:
+berliozfunebre1-cr.wav:
     folder_name: berlioz_funebre
     img_fname: jpegs/berlioz_funebre.jpg
     album: Symphonie Funèbre et Triomphale Op 15

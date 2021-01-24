@@ -5,8 +5,10 @@ import os.path as op
 import shutil
 import datetime
 from copy import deepcopy
+import json
 from argparse import ArgumentParser, RawDescriptionHelpFormatter
 
+import requests
 import yaml
 from PIL import Image
 
@@ -14,6 +16,10 @@ import taglib
 
 HERE = op.dirname(__file__)
 CONFIG_FNAME = op.join(HERE, 'amusic_config.yml')
+
+MBZ_URL_FMT = (
+    'https://musicbrainz.org/ws/2/release/{release_id}?inc=artist-credits+labels+discids&fmt=json'
+)
 
 
 def_track_config = {
@@ -137,12 +143,24 @@ def write_config(config, config_fname=CONFIG_FNAME):
                   sort_keys=False)
 
 
+def fill_track(track, mb_release_id):
+    response = requests.get(MBZ_URL_FMT.format(release_id=mb_release_id))
+    info = json.loads(response.text)
+    track['album'] = info['title']
+    return info
+
+
+FUNEBRE_ID = '77441f5e-fb98-42e6-b73d-ed7e8507f855'
+
+
 def get_parser():
     parser = ArgumentParser(description=__doc__,  # Usage from docstring
                             formatter_class=RawDescriptionHelpFormatter)
     parser.add_argument('action',
                         help='one of "default-config", "mb-config", "build"')
     parser.add_argument('first_arg', nargs='?',
+                        help='Argument, meaning depends on "action"')
+    parser.add_argument('second_arg', nargs='?',
                         help='Argument, meaning depends on "action"')
     return parser
 
@@ -156,6 +174,14 @@ def main():
         if args.first_arg is None:
             raise RuntimeError('Need track filename')
         config[args.first_arg] = DEFAULT_TRACK_CONFIG
+        write_config(config, CONFIG_FNAME)
+        return 0
+    if args.action == 'mb-config':
+        if args.first_arg is None:
+            raise RuntimeError('Need track filename')
+        if args.second_arg is None:
+            raise RuntimeError('Need release id')
+        fill_track(config[args.first_arg], args.second_arg)
         write_config(config, CONFIG_FNAME)
         return 0
     else:
