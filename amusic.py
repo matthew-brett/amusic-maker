@@ -1,4 +1,6 @@
-""" Process flacs """
+#!/usr/bin/env python
+""" Process WAV files into Android music folder
+"""
 
 import os
 import os.path as op
@@ -143,14 +145,74 @@ def write_config(config, config_fname=CONFIG_FNAME):
                   sort_keys=False)
 
 
-def fill_track(track, mb_release_id):
+
+class MBInfo:
+
+    def __init__(self, in_dict):
+        self._in_dict = in_dict
+        self._credits = self._in_dict.get(
+            'artist-credit', [])
+        self._artists = [d['artist'] for d in self._credits
+                         if 'artist' in d]
+
+    def as_config(self):
+        d = self._in_dict
+        return {
+            'album': d.get('title')
+        }
+
+    def get_artists(self, **kwargs):
+        return [a for a in self._artists
+                if all((k in a and a[k] == v) for k, v in kwargs.items())]
+
+    @property
+    def persons(self):
+        return self.get_artists(type='Person')
+
+    @property
+    def composers(self):
+        return self.get_artists(type='Person',
+                                disambiguation='composer')
+
+    def _single(self, seq):
+        if len(seq) == 0:
+            return None
+        assert len(seq) == 1
+        return seq[0]
+
+    @property
+    def composer(self):
+        return self._single(self.composers)
+
+    @property
+    def conductors(self):
+        return [p for p in self.persons
+                if 'conductor' in p['disambiguation'].lower()]
+
+    @property
+    def conductor(self):
+        return self._single(self.conductors)
+
+    @property
+    def orchestras(self):
+        return self.get_artists(type='Orchestra')
+
+    @property
+    def orchestra(self):
+        return self._single(self.orchestras)
+
+    @property
+    def choirs(self):
+        return self.get_artists(type='Choir')
+
+    @property
+    def choir(self):
+        return self._single(self.choirs)
+
+
+def get_mb_release(mb_release_id):
     response = requests.get(MBZ_URL_FMT.format(release_id=mb_release_id))
-    info = json.loads(response.text)
-    track['album'] = info['title']
-    return info
-
-
-FUNEBRE_ID = '77441f5e-fb98-42e6-b73d-ed7e8507f855'
+    return json.loads(response.text)
 
 
 def get_parser():
@@ -181,7 +243,9 @@ def main():
             raise RuntimeError('Need track filename')
         if args.second_arg is None:
             raise RuntimeError('Need release id')
-        fill_track(config[args.first_arg], args.second_arg)
+        info = get_mb_release(args.second_arg)
+        mbi = MBInfo(info)
+        config[args.first_arg].update(mbi.as_config())
         write_config(config, CONFIG_FNAME)
         return 0
     else:
