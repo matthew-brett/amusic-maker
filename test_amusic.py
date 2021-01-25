@@ -1,7 +1,9 @@
 """ Tests for amusic module / script
 """
 
-from amusic import get_mb_release, MBInfo
+from datetime import date as Date
+
+from amusic import get_mb_release, MBInfo, strip_nones
 
 FUNEBRE_ID = '77441f5e-fb98-42e6-b73d-ed7e8507f855'
 
@@ -89,6 +91,29 @@ FUNEBRE_INFO = \
   'artwork': False}}
 
 
+def test_strip_nones():
+    assert strip_nones(1) == 1
+    assert strip_nones(None) is None
+    assert strip_nones([1, 2, 3]) == [1, 2, 3]
+    assert strip_nones([1, None, 3]) == [1, 3]
+    assert strip_nones([None, None, None]) is None
+    assert strip_nones({'a': 1, 'b': 2}) == {'a': 1, 'b': 2}
+    assert strip_nones({'a': None, 'b': 2}) == {'b': 2}
+    assert strip_nones({'a': None, 'b': None}) is None
+    assert strip_nones({'a': 1, 'b': [1, 2]}) == {'a': 1, 'b': [1, 2]}
+    assert strip_nones({'a': 1, 'b': [1, None]}) == {'a': 1, 'b': [1]}
+    assert strip_nones({'a': 1, 'b': [None, None]}) == {'a': 1}
+    assert strip_nones({'a': 1, 'b': {'c': 3}}) == {'a': 1, 'b': {'c': 3}}
+    assert strip_nones({'a': 1, 'b': {'c': None}}) == {'a': 1}
+    assert strip_nones([1, [2, 3]]) == [1, [2, 3]]
+    assert strip_nones([1, [2, None]]) == [1, [2]]
+    assert strip_nones([1, [None, None]]) == [1]
+    assert strip_nones([1, (2, None)]) == [1, (2,)]
+    assert strip_nones([1, (None, None)]) == [1]
+    assert strip_nones([1, (None, None)]) == [1]
+    assert strip_nones((1, (None, None))) == (1,)
+
+
 def test_mb_track_info():
     # Check info hasn't changed.  If it has, we have to 
     # change the tests
@@ -115,3 +140,5 @@ def test_mbinfo():
     assert len(choirs) == 1
     assert choirs[0]['name'] == 'London Symphony Chorus'
     assert mbi.choir == choirs[0]
+    assert mbi.date == Date(1985, 12, 3)
+    assert mbi.year == 1985

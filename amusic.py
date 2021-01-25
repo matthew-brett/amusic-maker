@@ -5,7 +5,7 @@
 import os
 import os.path as op
 import shutil
-import datetime
+from datetime import date as Date, datetime as DTM
 from copy import deepcopy
 import json
 from argparse import ArgumentParser, RawDescriptionHelpFormatter
@@ -20,7 +20,12 @@ HERE = op.dirname(__file__)
 CONFIG_FNAME = op.join(HERE, 'amusic_config.yml')
 
 MBZ_URL_FMT = (
-    'https://musicbrainz.org/ws/2/release/{release_id}?inc=artist-credits+labels+discids&fmt=json'
+    'https://musicbrainz.org/ws/2/release/'
+    '{release_id}?inc='
+    # 'genres+'
+    'artist-credits+labels+discids'
+    # '+work-rels+work-level-rels'
+    '&fmt=json'
 )
 
 
@@ -50,7 +55,7 @@ DEFAULT_TRACK_CONFIG = {
     'disctotal': 1,
     'tracknumber': 1,
     'tracktotal': 2,
-    'originaldate': datetime.date(1994, 4, 1),
+    'originaldate': Date(1994, 4, 1),
     'originalyear': 1994,
     'period': 'Baroque',
     'style': 'Choral'}
@@ -145,6 +150,19 @@ def write_config(config, config_fname=CONFIG_FNAME):
                   sort_keys=False)
 
 
+def strip_nones(val):
+    """ Remove None and empty values from dictionary / sequence
+    """
+    if isinstance(val, dict):
+        out = {k: s for k, v in val.items()
+               if (s := strip_nones(v)) is not None}
+    elif isinstance(val, (list, tuple)):
+        out = val.__class__(
+            s for v in val if (s := strip_nones(v)) is not None)
+    else:
+        return val
+    return out if len(out) else None
+
 
 class MBInfo:
 
@@ -157,9 +175,31 @@ class MBInfo:
 
     def as_config(self):
         d = self._in_dict
-        return {
-            'album': d.get('title')
-        }
+        composer = self.composer
+        return strip_nones({
+            'album': d.get('title'),
+            'albumartist': composer.get('name'),
+            'albumartistsort': composer.get('sort-name'),
+            'composer': composer.get('name'),
+            'conductor': self.conductor.get('name'),
+            'title': d.get('title'),
+            'originaldate': self.date,
+            'originalyear': self.year,
+        })
+
+    @property
+    def date(self):
+        d = self._in_dict.get('date')
+        if d in (None, ''):
+            return d
+        return DTM.strptime(d, '%Y-%m-%d').date()
+
+    @property
+    def year(self):
+        d = self.date
+        if d is None:
+            return None
+        return d.year
 
     def get_artists(self, **kwargs):
         return [a for a in self._artists
@@ -171,18 +211,18 @@ class MBInfo:
 
     @property
     def composers(self):
-        return self.get_artists(type='Person',
-                                disambiguation='composer')
+        return [p for p in self.persons
+                if 'composer' in p['disambiguation'].lower()]
 
-    def _single(self, seq):
+    def _single(self, seq, default=None):
         if len(seq) == 0:
-            return None
+            return default
         assert len(seq) == 1
         return seq[0]
 
     @property
     def composer(self):
-        return self._single(self.composers)
+        return self._single(self.composers, {})
 
     @property
     def conductors(self):
@@ -191,7 +231,7 @@ class MBInfo:
 
     @property
     def conductor(self):
-        return self._single(self.conductors)
+        return self._single(self.conductors, {})
 
     @property
     def orchestras(self):
@@ -199,7 +239,7 @@ class MBInfo:
 
     @property
     def orchestra(self):
-        return self._single(self.orchestras)
+        return self._single(self.orchestras, {})
 
     @property
     def choirs(self):
@@ -207,10 +247,11 @@ class MBInfo:
 
     @property
     def choir(self):
-        return self._single(self.choirs)
+        return self._single(self.choirs, {})
 
 
 def get_mb_release(mb_release_id):
+    # https://musicbrainz.org/doc/MusicBrainz_API
     response = requests.get(MBZ_URL_FMT.format(release_id=mb_release_id))
     return json.loads(response.text)
 
