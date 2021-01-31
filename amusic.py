@@ -7,7 +7,8 @@ import os.path as op
 from datetime import date as Date, datetime as DTM
 from copy import deepcopy
 import json
-from subprocess import check_call
+from hashlib import md5
+from subprocess import check_call, check_output
 from argparse import ArgumentParser, RawDescriptionHelpFormatter
 
 import requests
@@ -17,7 +18,11 @@ from PIL import Image
 import taglib
 
 HERE = op.dirname(__file__)
+
+
 CONFIG_BASENAME = 'amusic_config.yml'
+HASH_EXT = '.md5'
+
 
 MBZ_URL_FMT = (
     'https://musicbrainz.org/ws/2/release/'
@@ -29,7 +34,7 @@ MBZ_URL_FMT = (
 )
 
 
-def_track_config = {
+DEF_TRACK_CONFIG = {
     'media': 'Vinyl',
     'source': 'Vinyl (Lossless)',
     'releasestatus': 'official',
@@ -112,22 +117,8 @@ def find_file(fbase, paths):
                        op.pathsep.join(search_paths))
 
 
-def convert_file(in_fname, out_fname):
-    check_call(['sox', in_fname, '-C', '320', out_fname])
-
-
-def build_one(fbase, config, settings, clobber=False):
-    in_fname = find_file(fbase, settings['wav_paths'])
-    entry = config.copy()
-    folder_name = entry.pop('folder_name')
-    full_out_dir = op.join(settings['out_path'], folder_name)
-    if not op.isdir(full_out_dir):
-        os.makedirs(full_out_dir)
-    fname = folder_name
-    in_img_fname = entry.pop('img_fname')
-    img_fname = find_file(in_img_fname, settings['img_paths'])
-    assert op.exists(img_fname)
-    full = def_track_config.copy()
+def out_fbase_for(fname, entry):
+    full = DEF_TRACK_CONFIG.copy()
     full.update(entry)
     disc_total = full.get('disctotal')
     if disc_total:
@@ -138,11 +129,75 @@ def build_one(fbase, config, settings, clobber=False):
     if 'tracktotal' in full:
         full['totaltracks'] = full['tracktotal']
     track_no = full['tracknumber']
-    fname = f'{fname}_side{track_no:02d}.mp3'
-    full_out_fname = op.join(full_out_dir, fname)
+    return f'{fname}_side{track_no:02d}.mp3'
+
+
+def hash_fname_for(fname):
+    return fname + HASH_EXT
+
+
+def clear_hashes(path):
+    for dirpath, dirnames, filenames in os.walk(path):
+        for fn in filenames:
+            if op.splitext(fn)[1] == HASH_EXT:
+                os.unlink(op.join(dirpath, fn))
+
+
+def stored_hash_for(fname):
+    hash_fname = hash_fname_for(fname)
+    if not op.isfile(hash_fname):
+        return None
+    with open(hash_fname, 'rt') as fobj:
+        return fobj.read().strip()
+
+
+def calc_hash(s):
+    return md5(s.encode('latin1')).hexdigest()
+
+
+def exp_hash_for(in_fname, entry):
+    if (in_hash:= stored_hash_for(in_fname)) is None:
+        return None
+    exp_src = in_hash + calc_hash(json.dumps(entry))
+    return calc_hash(exp_src)
+
+
+def write_hash_for_fname(in_fname):
+    md5sum = check_output(['md5', '-q', in_fname],
+                          text=True)
+    write_hash_for(md5sum, in_fname)
+    return md5sum
+
+
+def write_hash_for(hash_str, out_fname):
+    hash_fname = hash_fname_for(out_fname)
+    with open(hash_fname, 'wt') as fobj:
+        fobj.write(hash_str)
+
+
+def convert_file(in_fname, out_fname):
+    if stored_hash_for(in_fname) is None:
+        write_hash_for_fname(in_fname)
+    check_call(['sox', in_fname, '-C', '320', out_fname])
+
+
+def same_hash_for(in_fname, out_fname, entry):
+    if (exp_hash:= exp_hash_for(in_fname, entry)) is None:
+        return False
+    if (out_hash:= stored_hash_for(out_fname)) is None:
+        return False
+    return out_hash == exp_hash
+
+
+def write_song(in_fname, full_out_fname, entry,
+               clobber=False):
+    if same_hash_for(in_fname, full_out_fname, entry):
+        return
     if op.exists(full_out_fname) and not clobber:
         raise RuntimeError(f'File {full_out_fname} exists')
     convert_file(in_fname, full_out_fname)
+    exp_hash = exp_hash_for(in_fname, entry)
+    write_hash_for(exp_hash, full_out_fname)
     song = taglib.File(full_out_fname)
     # All the rest are tags
     for key, value in entry.items():
@@ -150,12 +205,38 @@ def build_one(fbase, config, settings, clobber=False):
             value = [str(value)]
         song.tags[key.upper()] = value
     song.save()
+
+
+def write_image(img_fname, full_out_dir,
+               clobber=False):
     out_img_fname = op.join(full_out_dir, 'Folder.jpg')
+    if (img_hash := stored_hash_for(img_fname)) == None:
+        img_hash = write_hash_for_fname(img_fname)
+    out_hash = stored_hash_for(out_img_fname)
+    if img_hash == out_hash:
+        return
     if op.exists(out_img_fname) and not clobber:
         raise RuntimeError(f'File {out_img_fname} exists')
     img = Image.open(img_fname)
     img = resize_img(img, 1024)
     img.save(out_img_fname)
+    write_hash_for(img_hash, out_img_fname)
+
+
+def build_one(fbase, config, settings, clobber=False):
+    in_fname = find_file(fbase, settings['wav_paths'])
+    entry = config.copy()
+    folder_name = entry.pop('folder_name')
+    full_out_dir = op.join(settings['out_path'], folder_name)
+    if not op.isdir(full_out_dir):
+        os.makedirs(full_out_dir)
+    in_img_fname = entry.pop('img_fname')
+    img_fname = find_file(in_img_fname, settings['img_paths'])
+    assert op.exists(img_fname)
+    out_fbase = out_fbase_for(folder_name, entry)
+    full_out_fname = op.join(full_out_dir, out_fbase)
+    write_song(in_fname, full_out_fname, entry, clobber)
+    write_image(img_fname, full_out_dir, clobber)
 
 
 def write_config(config, config_fname):
@@ -285,6 +366,8 @@ def get_parser():
     parser.add_argument('--config-path',
                         default=op.join(os.getcwd(), CONFIG_BASENAME),
                         help='Path to config file')
+    parser.add_argument('--clobber', action='store_true',
+                        help='Whether to overwrite existing files')
     return parser
 
 
@@ -312,7 +395,8 @@ def main():
         write_config(config, args.config_path)
         return 0
     if args.action == 'build':
-        pass
+        for track, config in tracks.items():
+            build_one(track, config, settings, args.clobber)
         return 0
     else:
         raise RuntimeError(

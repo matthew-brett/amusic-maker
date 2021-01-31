@@ -1,12 +1,15 @@
 """ Tests for amusic module / script
 """
 
+import os
 import os.path as op
 import shutil
 from datetime import date as Date
+from glob import glob
 
 from amusic import (get_mb_release, MBInfo, strip_nones, read_config,
-                    proc_config, build_one)
+                    proc_config, build_one, clear_hashes)
+
 
 import pytest
 
@@ -151,6 +154,11 @@ def test_mbinfo():
     assert mbi.year == 1985
 
 
+def glob_rm(glob_str):
+    for fn in glob(glob_str, recursive=True):
+        os.unlink(fn)
+
+
 def test_build_one():
     config_fname = op.join(HERE, 'amusic_config.yml')
     config = read_config(config_fname)
@@ -158,10 +166,44 @@ def test_build_one():
     assert len(tracks) == 1
     fbase, config = list(tracks.items())[0]
     out_path = op.join(HERE, 'amusic_tmp')
+    # Clear output path
     if op.isdir(out_path):
         shutil.rmtree(out_path)
+    # Clear input file hashes
+    clear_hashes('wavs')
+    clear_hashes('images')
+    # Do a build
     build_one(fbase, config, settings)
     assert op.isdir(out_path)
+    # Hashes match, no error.
+    build_one(fbase, config, settings, True)
+    # Change album details, hashes don't match, error
+    config['album'] = 'Eldorado'
     with pytest.raises(RuntimeError):
         build_one(fbase, config, settings)
     build_one(fbase, config, settings, True)
+    # Hashes match, no error.
+    build_one(fbase, config, settings)
+    # Delete input hashes, error again
+    clear_hashes('wavs')
+    with pytest.raises(RuntimeError):
+        build_one(fbase, config, settings)
+    build_one(fbase, config, settings, True)
+    # Delete output hashes, error again
+    glob_rm(op.join(out_path, '**', '*.mp3.md5'))
+    with pytest.raises(RuntimeError):
+        build_one(fbase, config, settings)
+    build_one(fbase, config, settings, True)
+    # Delete image input hashes, error again
+    clear_hashes('images')
+    with pytest.raises(RuntimeError):
+        build_one(fbase, config, settings)
+    build_one(fbase, config, settings, True)
+    # Delete output hashes, error again
+    glob_rm(op.join(out_path, '**', '*.jpg.md5'))
+    with pytest.raises(RuntimeError):
+        build_one(fbase, config, settings)
+    build_one(fbase, config, settings, True)
+    # Clear input file hashes
+    clear_hashes('wavs')
+    clear_hashes('images')
