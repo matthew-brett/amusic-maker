@@ -1,9 +1,16 @@
 """ Tests for amusic module / script
 """
 
+import os.path as op
+import shutil
 from datetime import date as Date
 
-from amusic import get_mb_release, MBInfo, strip_nones
+from amusic import (get_mb_release, MBInfo, strip_nones, read_config,
+                    proc_config, build_one)
+
+import pytest
+
+HERE = op.dirname(__file__)
 
 FUNEBRE_ID = '77441f5e-fb98-42e6-b73d-ed7e8507f855'
 
@@ -142,3 +149,19 @@ def test_mbinfo():
     assert mbi.choir == choirs[0]
     assert mbi.date == Date(1985, 12, 3)
     assert mbi.year == 1985
+
+
+def test_build_one():
+    config_fname = op.join(HERE, 'amusic_config.yml')
+    config = read_config(config_fname)
+    settings, tracks = proc_config(config, HERE)
+    assert len(tracks) == 1
+    fbase, config = list(tracks.items())[0]
+    out_path = op.join(HERE, 'amusic_tmp')
+    if op.isdir(out_path):
+        shutil.rmtree(out_path)
+    build_one(fbase, config, settings)
+    assert op.isdir(out_path)
+    with pytest.raises(RuntimeError):
+        build_one(fbase, config, settings)
+    build_one(fbase, config, settings, True)

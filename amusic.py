@@ -4,10 +4,10 @@
 
 import os
 import os.path as op
-import shutil
 from datetime import date as Date, datetime as DTM
 from copy import deepcopy
 import json
+from subprocess import check_call
 from argparse import ArgumentParser, RawDescriptionHelpFormatter
 
 import requests
@@ -17,7 +17,7 @@ from PIL import Image
 import taglib
 
 HERE = op.dirname(__file__)
-CONFIG_FNAME = op.join(HERE, 'amusic_config.yml')
+CONFIG_BASENAME = 'amusic_config.yml'
 
 MBZ_URL_FMT = (
     'https://musicbrainz.org/ws/2/release/'
@@ -79,8 +79,8 @@ def read_config(config_fname):
     return res
 
 
-def proc_config(config, config_fname):
-    config_path = op.abspath(op.dirname(config_fname))
+def proc_config(config, config_path):
+    config_path = op.abspath(config_path)
     tracks = deepcopy(config)
     settings = tracks.pop('settings')
     for key, value in settings.items():
@@ -102,14 +102,30 @@ def resize_img(img, target_res=1024):
     return img.resize(new_size, Image.LANCZOS)
 
 
-def proc_config_entry(in_fname, entry, out_dir):
-    entry = entry.copy()
+def find_file(fbase, paths):
+    search_paths = ['.'] + paths
+    for dn in search_paths:
+        fname = op.join(dn, fbase)
+        if op.isfile(fname):
+            return fname
+    raise RuntimeError(f'Could not find {fname} in ' +
+                       op.pathsep.join(search_paths))
+
+
+def convert_file(in_fname, out_fname):
+    check_call(['sox', in_fname, '-C', '320', out_fname])
+
+
+def build_one(fbase, config, settings, clobber=False):
+    in_fname = find_file(fbase, settings['wav_paths'])
+    entry = config.copy()
     folder_name = entry.pop('folder_name')
-    full_out_dir = op.join(out_dir, folder_name)
+    full_out_dir = op.join(settings['out_path'], folder_name)
     if not op.isdir(full_out_dir):
         os.makedirs(full_out_dir)
     fname = folder_name
-    img_fname = entry.pop('img_fname')
+    in_img_fname = entry.pop('img_fname')
+    img_fname = find_file(in_img_fname, settings['img_paths'])
     assert op.exists(img_fname)
     full = def_track_config.copy()
     full.update(entry)
@@ -122,11 +138,11 @@ def proc_config_entry(in_fname, entry, out_dir):
     if 'tracktotal' in full:
         full['totaltracks'] = full['tracktotal']
     track_no = full['tracknumber']
-    fname = f'{fname}_side{track_no:02d}.flac'
+    fname = f'{fname}_side{track_no:02d}.mp3'
     full_out_fname = op.join(full_out_dir, fname)
-    if op.exists(full_out_fname):
+    if op.exists(full_out_fname) and not clobber:
         raise RuntimeError(f'File {full_out_fname} exists')
-    shutil.copy2(in_fname, full_out_fname)
+    convert_file(in_fname, full_out_fname)
     song = taglib.File(full_out_fname)
     # All the rest are tags
     for key, value in entry.items():
@@ -135,14 +151,15 @@ def proc_config_entry(in_fname, entry, out_dir):
         song.tags[key.upper()] = value
     song.save()
     out_img_fname = op.join(full_out_dir, 'Folder.jpg')
-    if not op.exists(out_img_fname):
-        img = Image.open(img_fname)
-        img = resize_img(img, 1024)
-        img.save(out_img_fname)
+    if op.exists(out_img_fname) and not clobber:
+        raise RuntimeError(f'File {out_img_fname} exists')
+    img = Image.open(img_fname)
+    img = resize_img(img, 1024)
+    img.save(out_img_fname)
 
 
-def write_config(config, config_fname=CONFIG_FNAME):
-    with open(CONFIG_FNAME, 'wt') as fobj:
+def write_config(config, config_fname):
+    with open(config_fname, 'wt') as fobj:
         yaml.dump(config, fobj,
                   indent=4,
                   allow_unicode=True,
@@ -265,19 +282,24 @@ def get_parser():
                         help='Argument, meaning depends on "action"')
     parser.add_argument('second_arg', nargs='?',
                         help='Argument, meaning depends on "action"')
+    parser.add_argument('--config-path',
+                        default=op.join(os.getcwd(), CONFIG_BASENAME),
+                        help='Path to config file')
     return parser
 
 
 def main():
     parser = get_parser()
     args = parser.parse_args()
-    config = read_config(CONFIG_FNAME)
-    settings, tracks = proc_config(config, CONFIG_FNAME)
+    config = read_config(args.config_path)
+    settings, tracks = proc_config(
+        config,
+        op.dirname(args.config_path))
     if args.action == 'default-config':
         if args.first_arg is None:
             raise RuntimeError('Need track filename')
         config[args.first_arg] = DEFAULT_TRACK_CONFIG
-        write_config(config, CONFIG_FNAME)
+        write_config(config, args.config_path)
         return 0
     if args.action == 'mb-config':
         if args.first_arg is None:
@@ -287,7 +309,10 @@ def main():
         info = get_mb_release(args.second_arg)
         mbi = MBInfo(info)
         config[args.first_arg].update(mbi.as_config())
-        write_config(config, CONFIG_FNAME)
+        write_config(config, args.config_path)
+        return 0
+    if args.action == 'build':
+        pass
         return 0
     else:
         raise RuntimeError(
