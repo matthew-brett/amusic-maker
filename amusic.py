@@ -4,6 +4,7 @@
 
 import os
 import os.path as op
+import re
 from datetime import date as Date, datetime as DTM
 from copy import deepcopy
 import json
@@ -22,6 +23,8 @@ HERE = op.dirname(__file__)
 
 CONFIG_BASENAME = 'amusic_config.yml'
 HASH_EXT = '.md5'
+FBASE2FOLDER = re.compile(r'([A-Za-z_]+)[\d]')
+DATE_FMT = '%Y-%m-%d'
 
 
 MBZ_URL_FMT = (
@@ -143,12 +146,23 @@ def clear_hashes(path):
                 os.unlink(op.join(dirpath, fn))
 
 
-def stored_hash_for(fname):
+def stored_hash_for(fname, tdelta=0):
     hash_fname = hash_fname_for(fname)
     if not op.isfile(hash_fname):
         return None
+    # Check hash is more recent than file hashed.
+    if op.getmtime(hash_fname) < (op.getmtime(fname) + tdelta):
+        return None
     with open(hash_fname, 'rt') as fobj:
         return fobj.read().strip()
+
+
+def _obj2jobj(obj):
+    return obj.strftime(DATE_FMT)
+
+
+def dict2json(d):
+    return json.dumps(d, default=_obj2jobj)
 
 
 def calc_hash(s):
@@ -158,7 +172,7 @@ def calc_hash(s):
 def exp_hash_for(in_fname, entry):
     if (in_hash:= stored_hash_for(in_fname)) is None:
         return None
-    exp_src = in_hash + calc_hash(json.dumps(entry))
+    exp_src = in_hash + calc_hash(dict2json(entry))
     return calc_hash(exp_src)
 
 
@@ -196,8 +210,6 @@ def write_song(in_fname, full_out_fname, entry,
     if op.exists(full_out_fname) and not clobber:
         raise RuntimeError(f'File {full_out_fname} exists')
     convert_file(in_fname, full_out_fname)
-    exp_hash = exp_hash_for(in_fname, entry)
-    write_hash_for(exp_hash, full_out_fname)
     song = taglib.File(full_out_fname)
     # All the rest are tags
     for key, value in entry.items():
@@ -205,6 +217,8 @@ def write_song(in_fname, full_out_fname, entry,
             value = [str(value)]
         song.tags[key.upper()] = value
     song.save()
+    exp_hash = exp_hash_for(in_fname, entry)
+    write_hash_for(exp_hash, full_out_fname)
 
 
 def write_image(img_fname, full_out_dir,
@@ -223,19 +237,31 @@ def write_image(img_fname, full_out_dir,
     write_hash_for(img_hash, out_img_fname)
 
 
+def guess_folder(fbase):
+    if (match := FBASE2FOLDER.match(fbase)) is None:
+        return None
+    return match.groups()[0].strip('_')
+
+
 def build_one(fbase, config, settings, clobber=False):
     in_fname = find_file(fbase, settings['wav_paths'])
     entry = config.copy()
+    # Remove folder and image entries.
     folder_name = entry.pop('folder_name')
+    in_img_fname = entry.pop('img_fname')
+    if folder_name is None:
+        folder_name = guess_folder(fbase)
     full_out_dir = op.join(settings['out_path'], folder_name)
     if not op.isdir(full_out_dir):
         os.makedirs(full_out_dir)
-    in_img_fname = entry.pop('img_fname')
-    img_fname = find_file(in_img_fname, settings['img_paths'])
-    assert op.exists(img_fname)
     out_fbase = out_fbase_for(folder_name, entry)
     full_out_fname = op.join(full_out_dir, out_fbase)
     write_song(in_fname, full_out_fname, entry, clobber)
+    if in_img_fname is None:
+        print(f'No folder image specified for {fbase}')
+        return
+    img_fname = find_file(in_img_fname, settings['img_paths'])
+    assert op.exists(img_fname)
     write_image(img_fname, full_out_dir, clobber)
 
 
@@ -290,7 +316,7 @@ class MBInfo:
         d = self._in_dict.get('date')
         if d in (None, ''):
             return d
-        return DTM.strptime(d, '%Y-%m-%d').date()
+        return DTM.strptime(d, DATE_FMT).date()
 
     @property
     def year(self):
@@ -396,6 +422,7 @@ def main():
         return 0
     if args.action == 'build':
         for track, config in tracks.items():
+            print('Building', track)
             build_one(track, config, settings, args.clobber)
         return 0
     else:
