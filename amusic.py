@@ -250,7 +250,9 @@ def write_song(in_fname, full_out_fname, entry,
 
 
 def write_image(img_fname, full_out_dir,
-               clobber=False):
+                clobber=False,
+                min_width=500,
+                min_height=400):
     out_img_fname = op.join(full_out_dir, 'Folder.jpg')
     if (img_hash := stored_hash_for(img_fname)) == None:
         img_hash = write_hash_for_fname(img_fname)
@@ -260,6 +262,8 @@ def write_image(img_fname, full_out_dir,
     if op.exists(out_img_fname) and not clobber:
         raise RuntimeError(f'File {out_img_fname} exists')
     img = Image.open(img_fname)
+    if img.width < min_width or img.height < min_height:
+        raise ValueError(f'Low resolution image {img_fname}')
     img = resize_img(img, 1024)
     img.save(out_img_fname)
     write_hash_for(img_hash, out_img_fname)
