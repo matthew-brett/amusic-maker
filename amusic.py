@@ -5,6 +5,7 @@
 import os
 import os.path as op
 import re
+import shutil
 from datetime import date as Date, datetime as DTM
 from copy import deepcopy
 import json
@@ -120,7 +121,7 @@ def find_file(fbase, paths):
                        op.pathsep.join(search_paths))
 
 
-def out_fbase_for(fname, entry):
+def out_fbaseroot_for(fname, entry):
     full = DEF_TRACK_CONFIG.copy()
     full.update(entry)
     disc_total = full.get('disctotal')
@@ -132,7 +133,7 @@ def out_fbase_for(fname, entry):
     if 'tracktotal' in full:
         full['totaltracks'] = full['tracktotal']
     track_no = full['tracknumber']
-    return f'{fname}_side{track_no:02d}.mp3'
+    return f'{fname}_side{track_no:02d}'
 
 
 def hash_fname_for(fname):
@@ -165,15 +166,20 @@ def dict2json(d):
     return json.dumps(d, default=_obj2jobj)
 
 
-def calc_hash(s):
+def str2hash(s):
     return md5(s.encode('latin1')).hexdigest()
+
+
+def dict2hash(d):
+    return str2hash(dict2json(d))
 
 
 def exp_hash_for(in_fname, entry):
     if (in_hash:= stored_hash_for(in_fname)) is None:
         return None
-    exp_src = in_hash + calc_hash(dict2json(entry))
-    return calc_hash(exp_src)
+    exp_params = dict(in_hash=in_hash,
+                      entry=entry)
+    return dict2hash(exp_params)
 
 
 def write_hash_for_fname(in_fname):
@@ -192,10 +198,28 @@ def write_hash_for(hash_str, out_fname, tdelta=1):
     os.utime(hash_fname, (mtime, mtime))
 
 
-def convert_file(in_fname, out_fname):
-    if stored_hash_for(in_fname) is None:
-        write_hash_for_fname(in_fname)
-    check_call(['sox', in_fname, '-C', '320', out_fname])
+def convert_file(in_fname, out_fname, sox_params):
+    if (in_hash := stored_hash_for(in_fname)) == None:
+        in_hash = write_hash_for_fname(in_fname)
+    params = dict(in_hash=in_hash, sox_params=sox_params)
+    out_hash = dict2hash(params)
+    if stored_hash_for(out_fname) == out_hash:
+        return out_hash
+    check_call(['sox', in_fname] + sox_params + [out_fname])
+    write_hash_for(out_hash, out_fname)
+    return out_hash
+
+
+def write_converted_file(in_fname,
+                         full_out_fname,
+                         settings,
+                         clobber=False):
+    froot, ext = op.splitext(in_fname)
+    ensure_dir(settings['conv_path'])
+    conv_fname = op.join(settings['conv_path'],
+                         op.basename(froot) + settings['conv_ext'])
+    convert_file(in_fname, conv_fname, settings['sox_params'])
+    shutil.copyfile(conv_fname, full_out_fname)
 
 
 def same_hash_for(in_fname, out_fname, entry):
@@ -207,12 +231,13 @@ def same_hash_for(in_fname, out_fname, entry):
 
 
 def write_song(in_fname, full_out_fname, entry,
-               clobber=False):
+               settings, clobber=False):
     if same_hash_for(in_fname, full_out_fname, entry):
         return
     if op.exists(full_out_fname) and not clobber:
         raise RuntimeError(f'File {full_out_fname} exists')
-    convert_file(in_fname, full_out_fname)
+    write_converted_file(in_fname, full_out_fname,
+                         settings, clobber=clobber)
     song = taglib.File(full_out_fname)
     # All the rest are tags
     for key, value in entry.items():
@@ -246,6 +271,11 @@ def guess_folder(fbase):
     return match.groups()[0].strip('_')
 
 
+def ensure_dir(path):
+    if not op.isdir(path):
+        os.makedirs(path)
+
+
 def build_one(fbase, config, settings, clobber=False):
     in_fname = find_file(fbase, settings['wav_paths'])
     entry = config.copy()
@@ -255,11 +285,12 @@ def build_one(fbase, config, settings, clobber=False):
     if folder_name is None:
         folder_name = guess_folder(fbase)
     full_out_dir = op.join(settings['out_path'], folder_name)
-    if not op.isdir(full_out_dir):
-        os.makedirs(full_out_dir)
-    out_fbase = out_fbase_for(folder_name, entry)
-    full_out_fname = op.join(full_out_dir, out_fbase)
-    write_song(in_fname, full_out_fname, entry, clobber)
+    ensure_dir(full_out_dir)
+    out_fbase = out_fbaseroot_for(folder_name, entry)
+    full_out_fname = op.join(full_out_dir,
+                             out_fbase + settings['conv_ext'])
+    write_song(in_fname, full_out_fname, entry,
+               settings, clobber=clobber)
     if in_img_fname is None:
         print(f'No folder image specified for {fbase}')
         return

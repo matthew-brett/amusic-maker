@@ -4,6 +4,9 @@ settings:
     img_paths:
     - jpegs
     out_path: amusic
+    conv_path: mp3s
+    sox_params: ["-C", "320"]
+    conv_ext: .mp3
 berliozfunebre1-cr.wav:
     folder_name: berlioz_funebre
     img_fname: berlioz_funebre.jpg
@@ -677,7 +680,7 @@ mouss_pictures_2-cr.wav:
     - Catherine Dubosc
     discnumber: 1
     disctotal: 1
-    tracknumber: 1
+    tracknumber: 2
     tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
@@ -721,7 +724,7 @@ mozsuk2-cr.wav:
     - Catherine Dubosc
     discnumber: 1
     disctotal: 1
-    tracknumber: 1
+    tracknumber: 2
     tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
@@ -765,7 +768,7 @@ orfeo2-cr.wav:
     - Catherine Dubosc
     discnumber: 1
     disctotal: 1
-    tracknumber: 1
+    tracknumber: 2
     tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
@@ -809,7 +812,7 @@ palestrine_mont_2-cr.wav:
     - Catherine Dubosc
     discnumber: 1
     disctotal: 1
-    tracknumber: 1
+    tracknumber: 2
     tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
@@ -853,7 +856,7 @@ rachp3_v3_2-cr.wav:
     - Catherine Dubosc
     discnumber: 1
     disctotal: 1
-    tracknumber: 1
+    tracknumber: 2
     tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
@@ -897,7 +900,7 @@ shutz_motets_2-cr.wav:
     - Catherine Dubosc
     discnumber: 1
     disctotal: 1
-    tracknumber: 1
+    tracknumber: 2
     tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
@@ -941,7 +944,7 @@ telemann_vorclassik_2-cr.wav:
     - Catherine Dubosc
     discnumber: 1
     disctotal: 1
-    tracknumber: 1
+    tracknumber: 2
     tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
@@ -985,7 +988,7 @@ toscwag2-cr.wav:
     - Catherine Dubosc
     discnumber: 1
     disctotal: 1
-    tracknumber: 1
+    tracknumber: 2
     tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
@@ -1029,7 +1032,7 @@ walton_belsh2-cr.wav:
     - Catherine Dubosc
     discnumber: 1
     disctotal: 1
-    tracknumber: 1
+    tracknumber: 2
     tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
