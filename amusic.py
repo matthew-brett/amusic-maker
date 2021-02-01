@@ -150,8 +150,8 @@ def stored_hash_for(fname, tdelta=0):
     hash_fname = hash_fname_for(fname)
     if not op.isfile(hash_fname):
         return None
-    # Check hash is more recent than file hashed.
-    if op.getmtime(hash_fname) < (op.getmtime(fname) + tdelta):
+    earliest_hash_time = op.getmtime(fname) + tdelta
+    if op.getmtime(hash_fname) < earliest_hash_time:
         return None
     with open(hash_fname, 'rt') as fobj:
         return fobj.read().strip()
@@ -183,10 +183,13 @@ def write_hash_for_fname(in_fname):
     return md5sum
 
 
-def write_hash_for(hash_str, out_fname):
+def write_hash_for(hash_str, out_fname, tdelta=1):
     hash_fname = hash_fname_for(out_fname)
     with open(hash_fname, 'wt') as fobj:
         fobj.write(hash_str)
+    # Make sure hash modification time later than original
+    mtime = op.getmtime(out_fname) + tdelta
+    os.utime(hash_fname, (mtime, mtime))
 
 
 def convert_file(in_fname, out_fname):
