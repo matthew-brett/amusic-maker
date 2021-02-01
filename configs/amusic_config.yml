@@ -1,10 +1,12 @@
 settings:
     wav_paths:
-    - wavs
+    - processed
+    img_paths:
+    - jpegs
     out_path: amusic
 berliozfunebre1-cr.wav:
     folder_name: berlioz_funebre
-    img_fname: jpegs/berlioz_funebre.jpg
+    img_fname: berlioz_funebre.jpg
     album: Symphonie Funèbre et Triomphale Op 15
     albumartist: Hector Berlioz
     albumartistsort: Berlioz, Hector
@@ -25,7 +27,7 @@ berliozfunebre1-cr.wav:
     style: Symphony
 berliozfunebre2-cr.wav:
     folder_name: berlioz_funebre
-    img_fname: jpegs/berlioz_funebre.jpg
+    img_fname: berlioz_funebre.jpg
     album: Symphonie Funèbre et Triomphale Op 15
     albumartist: Hector Berlioz
     albumartistsort: Berlioz, Hector
@@ -46,7 +48,7 @@ berliozfunebre2-cr.wav:
     style: Symphony
 brahmvc1-cr.wav:
     folder_name: brahms_violin_concerto
-    img_fname: jpegs/brahmsvc.jpg
+    img_fname: brahmsvc.jpg
     album: Brahms Violin Concerto
     albumartist: Johannes Brahms
     albumartistsort: Brahms, Johannes
@@ -67,7 +69,7 @@ brahmvc1-cr.wav:
     style: Concerto
 brahmvc2-cr.wav:
     folder_name: brahms_violin_concerto
-    img_fname: jpegs/brahmsvc.jpg
+    img_fname: brahmsvc.jpg
     album: Brahms Violin Concerto
     albumartist: Johannes Brahms
     albumartistsort: Brahms, Johannes
@@ -88,7 +90,7 @@ brahmvc2-cr.wav:
     style: Concerto
 bruksy9_1-cr.wav:
     folder_name: bruckner_symphony_9
-    img_fname: jpegs/bruckner_sy9.jpg
+    img_fname: bruckner_sy9.jpg
     album: Symphony 9 (original version)
     albumartist: Anton Bruckner
     albumartistsort: Bruckner, Anton
@@ -109,7 +111,7 @@ bruksy9_1-cr.wav:
     style: Symphony
 bruksy9_2-cr.wav:
     folder_name: bruckner_symphony_9
-    img_fname: jpegs/bruckner_sy9.jpg
+    img_fname: bruckner_sy9.jpg
     album: Symphony 9 (original version)
     albumartist: Anton Bruckner
     albumartistsort: Bruckner, Anton
@@ -130,7 +132,7 @@ bruksy9_2-cr.wav:
     style: Symphony
 chopin_fortep1-cr.wav:
     folder_name: chopin_fortepiano
-    img_fname: jpegs/chopin_forte.jpg
+    img_fname: chopin_forte.jpg
     album: Ernst Gröschel plays original fortepianos
     albumartist: Frederic Chopin
     albumartistsort: Chopin, Frederic
@@ -154,7 +156,7 @@ chopin_fortep1-cr.wav:
     style: Solo keyboard
 chopin_fortep2-cr.wav:
     folder_name: chopin_fortepiano
-    img_fname: jpegs/chopin_forte.jpg
+    img_fname: chopin_forte.jpg
     album: Ernst Gröschel plays original fortepianos
     albumartist: Frederic Chopin
     albumartistsort: Chopin, Frederic
@@ -177,7 +179,7 @@ chopin_fortep2-cr.wav:
     style: Solo keyboard
 debussyp1-cr.wav:
     folder_name: debussy_piano_works
-    img_fname: jpegs/debussy_piano.jpg
+    img_fname: debussy_piano.jpg
     album: Piano Works
     albumartist: Claude Debussy
     albumartistsort: Debussy, Claude
@@ -198,7 +200,7 @@ debussyp1-cr.wav:
     style: Solo keyboard
 debussyp2-cr.wav:
     folder_name: debussy_piano_works
-    img_fname: jpegs/debussy_piano.jpg
+    img_fname: debussy_piano.jpg
     album: Piano Works
     albumartist: Claude Debussy
     albumartistsort: Debussy, Claude
@@ -220,7 +222,7 @@ debussyp2-cr.wav:
     style: Solo keyboard
 dido_older_1-cr.wav:
     folder_name: dido_aeneas_1962
-    img_fname: jpegs/dido_older.jpg
+    img_fname: dido_older.jpg
     album: Dido & Aeneas
     albumartist: Henry Purcell
     albumartistsort: Purcell, Henry
@@ -242,7 +244,7 @@ dido_older_1-cr.wav:
     style: Choral
 dido_older_2-cr.wav:
     folder_name: dido_aeneas_1962
-    img_fname: jpegs/dido_older.jpg
+    img_fname: dido_older.jpg
     album: Dido & Aeneas
     albumartist: Henry Purcell
     albumartistsort: Purcell, Henry
@@ -264,7 +266,7 @@ dido_older_2-cr.wav:
     style: Choral
 early_english_keybord_1_2-cr.wav:
     folder_name: early_english_keyboard
-    img_fname: jpegs/early_english_keyboard.jpg
+    img_fname: early_english_keyboard.jpg
     album: Early English Keyboard Music
     albumartist: Byrd, Gibbons, Farnaby, Bull
     albumartistsort: Byrd, Gibbons, Farnaby, Bull
@@ -291,7 +293,7 @@ early_english_keybord_1_2-cr.wav:
     style: Solo keyboard
 early_english_keyboard_2-cr.wav:
     folder_name: early_english_keyboard
-    img_fname: jpegs/early_english_keyboard.jpg
+    img_fname: early_english_keyboard.jpg
     album: Early English Keyboard Music
     albumartist: Byrd, Gibbons, Farnaby, Bull
     albumartistsort: Byrd, Gibbons, Farnaby, Bull
@@ -321,7 +323,7 @@ early_english_keyboard_2-cr.wav:
     style: Solo keyboard
 elgar_sy1_1-cr.wav:
     folder_name: elgar_symphony_1
-    img_fname: jpegs/elgar_sy1.jpg
+    img_fname: elgar_sy1.jpg
     album: Symphony No 1 in A flat major
     albumartist: Edward Elgar
     albumartistsort: Elgar, Edward
@@ -342,7 +344,7 @@ elgar_sy1_1-cr.wav:
     style: Choral
 elgar_sy1_2-cr.wav:
     folder_name: elgar_symphony_1
-    img_fname: jpegs/elgar_sy1.jpg
+    img_fname: elgar_sy1.jpg
     album: Symphony No 1 in A flat major
     albumartist: Edward Elgar
     albumartistsort: Elgar, Edward
@@ -363,7 +365,7 @@ elgar_sy1_2-cr.wav:
     style: Choral
 haydn_solemnis_1-cr.wav:
     folder_name: haydn_solemnis
-    img_fname: jpegs/haydn_solemnis.jpg
+    img_fname: haydn_solemnis.jpg
     album: Missa Solemnis
     albumartist: Joseph Haydn
     albumartistsort: Haydn, Joseph
@@ -389,7 +391,7 @@ haydn_solemnis_1-cr.wav:
     style: Choral
 haydn_solemnis_2-cr.wav:
     folder_name: haydn_solemnis
-    img_fname: jpegs/haydn_solemnis.jpg
+    img_fname: haydn_solemnis.jpg
     album: Missa Solemnis
     albumartist: Joseph Haydn
     albumartistsort: Haydn, Joseph
@@ -415,7 +417,7 @@ haydn_solemnis_2-cr.wav:
     style: Choral
 haydnq71_1-cr.wav:
     folder_name: haydn_quartets_71_74
-    img_fname: jpegs/haydn_quartets_71_74.jpg
+    img_fname: haydn_quartets_71_74.jpg
     album: String Quartets op. 71 & 74
     albumartist: Joseph Haydn
     albumartistsort: Haydn, Joseph
@@ -435,7 +437,7 @@ haydnq71_1-cr.wav:
     style: Chamber
 haydnq71_2-cr.wav:
     folder_name: haydn_quartets_71_74
-    img_fname: jpegs/haydn_quartets_71_74.jpg
+    img_fname: haydn_quartets_71_74.jpg
     album: String Quartets op. 71 & 74
     albumartist: Joseph Haydn
     albumartistsort: Haydn, Joseph
@@ -455,7 +457,7 @@ haydnq71_2-cr.wav:
     style: Chamber
 haydnq7174_71_3-cr.wav:
     folder_name: haydn_quartets_71_74
-    img_fname: jpegs/haydn_quartets_71_74.jpg
+    img_fname: haydn_quartets_71_74.jpg
     album: String Quartets op. 71 & 74
     albumartist: Joseph Haydn
     albumartistsort: Haydn, Joseph
@@ -475,7 +477,7 @@ haydnq7174_71_3-cr.wav:
     style: Chamber
 haydnq7174_74_1-cr.wav:
     folder_name: haydn_quartets_71_74
-    img_fname: jpegs/haydn_quartets_71_74.jpg
+    img_fname: haydn_quartets_71_74.jpg
     album: String Quartets op. 71 & 74
     albumartist: Joseph Haydn
     albumartistsort: Haydn, Joseph
@@ -495,7 +497,7 @@ haydnq7174_74_1-cr.wav:
     style: Chamber
 haydnq74_23_1-cr.wav:
     folder_name: haydn_quartets_71_74
-    img_fname: jpegs/haydn_quartets_71_74.jpg
+    img_fname: haydn_quartets_71_74.jpg
     album: String Quartets op. 71 & 74
     albumartist: Joseph Haydn
     albumartistsort: Haydn, Joseph
@@ -515,7 +517,7 @@ haydnq74_23_1-cr.wav:
     style: Chamber
 haydnq74_23_2-cr.wav:
     folder_name: haydn_quartets_71_74
-    img_fname: jpegs/haydn_quartets_71_74.jpg
+    img_fname: haydn_quartets_71_74.jpg
     album: String Quartets op. 71 & 74
     albumartist: Joseph Haydn
     albumartistsort: Haydn, Joseph
@@ -535,7 +537,7 @@ haydnq74_23_2-cr.wav:
     style: Chamber
 lvbmissa1-cr.wav:
     folder_name: beethoven_missa_solemnis
-    img_fname: jpegs/beethoven_missa_solemnis.jpg
+    img_fname: beethoven_missa_solemnis.jpg
     album: Beethoven Missa Solemnis
     albumartist: Ludwig van Beethoven
     albumartistsort: Beethoven, Ludwig van
@@ -561,7 +563,7 @@ lvbmissa1-cr.wav:
     style: Choral
 lvbmissa2-cr.wav:
     folder_name: beethoven_missa_solemnis
-    img_fname: jpegs/beethoven_missa_solemnis.jpg
+    img_fname: beethoven_missa_solemnis.jpg
     album: Beethoven Missa Solemnis
     albumartist: Ludwig van Beethoven
     albumartistsort: Beethoven, Ludwig van
@@ -587,7 +589,7 @@ lvbmissa2-cr.wav:
     style: Choral
 lvbmissa3-cr.wav:
     folder_name: beethoven_missa_solemnis
-    img_fname: jpegs/beethoven_missa_solemnis.jpg
+    img_fname: beethoven_missa_solemnis.jpg
     album: Beethoven Missa Solemnis
     albumartist: Ludwig van Beethoven
     albumartistsort: Beethoven, Ludwig van
@@ -613,7 +615,7 @@ lvbmissa3-cr.wav:
     style: Choral
 lvbmissa4-cr.wav:
     folder_name: beethoven_missa_solemnis
-    img_fname: jpegs/beethoven_missa_solemnis.jpg
+    img_fname: beethoven_missa_solemnis.jpg
     album: Beethoven Missa Solemnis
     albumartist: Ludwig van Beethoven
     albumartistsort: Beethoven, Ludwig van
