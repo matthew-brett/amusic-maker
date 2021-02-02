@@ -5,6 +5,7 @@
 import os
 import os.path as op
 import re
+from io import BytesIO
 import shutil
 from datetime import date as Date, datetime as DTM
 from copy import deepcopy
@@ -17,7 +18,15 @@ import requests
 import yaml
 from PIL import Image
 
-import taglib
+from mutagen.id3 import ID3, APIC
+from mutagen.easyid3 import EasyID3
+
+# Extra ID3 keys
+EasyID3.RegisterTextKey('originalyear', 'TORY')
+EasyID3.RegisterTextKey('style', 'TIT1')
+# period becomes synonym for genre
+EasyID3.RegisterTextKey('period', 'TCON')
+
 
 HERE = op.dirname(__file__)
 
@@ -165,7 +174,8 @@ def _obj2jobj(obj):
 
 
 def dict2json(d):
-    return json.dumps(d, default=_obj2jobj)
+    return json.dumps(d, default=_obj2jobj,
+                      sort_keys=True)
 
 
 def str2hash(s):
@@ -174,14 +184,6 @@ def str2hash(s):
 
 def dict2hash(d):
     return str2hash(dict2json(d))
-
-
-def exp_hash_for(in_fname, entry):
-    if (in_hash:= stored_hash_for(in_fname)) is None:
-        return None
-    exp_params = dict(in_hash=in_hash,
-                      entry=entry)
-    return dict2hash(exp_params)
 
 
 def write_hash_for_fname(in_fname):
@@ -220,54 +222,79 @@ def write_converted_file(in_fname,
     ensure_dir(settings['conv_path'])
     conv_fname = op.join(settings['conv_path'],
                          op.basename(froot) + settings['conv_ext'])
-    convert_file(in_fname, conv_fname, settings['sox_params'])
+    out_hash = convert_file(in_fname, conv_fname, settings['sox_params'])
     shutil.copyfile(conv_fname, full_out_fname)
+    return out_hash
 
 
-def same_hash_for(in_fname, out_fname, entry):
-    if (exp_hash:= exp_hash_for(in_fname, entry)) is None:
+def same_hash_for(exp_hash, out_fname):
+    if exp_hash is None:
         return False
     if (out_hash:= stored_hash_for(out_fname)) is None:
         return False
     return out_hash == exp_hash
 
 
-def write_song(in_fname, full_out_fname, entry,
-               settings, clobber=False):
-    if same_hash_for(in_fname, full_out_fname, entry):
+def write_song(music_fname,
+               img_fname,
+               full_out_fname,
+               entry,
+               settings,
+               clobber=False):
+    exp_params = dict(
+        music_hash=stored_hash_for(music_fname),
+        img_hash=stored_hash_for(img_fname),
+        entry=entry)
+    if same_hash_for(dict2hash(exp_params), full_out_fname):
         return
     if op.exists(full_out_fname) and not clobber:
         raise RuntimeError(f'File {full_out_fname} exists')
-    write_converted_file(in_fname, full_out_fname,
-                         settings, clobber=clobber)
-    song = taglib.File(full_out_fname)
-    # All the rest are tags
+    write_converted_file(music_fname, full_out_fname, settings,
+                         clobber=clobber)
+    exp_params['music_hash'] = stored_hash_for(music_fname)
+    # Add tags and image
+    exp_params['img_hash'], img_data = write_proc_image(
+        img_fname,
+        settings['min_img_size'],
+        settings['out_dim'],
+    )
+    write_tags(full_out_fname, entry, img_data)
+    write_hash_for(dict2hash(exp_params), full_out_fname)
+
+
+def write_tags(full_out_fname, entry, img_data):
+    tags = ID3()
+    tags.add(
+        APIC(
+            encoding=3, # 3 is for utf-8
+            mime='image/jpeg', # image/jpeg or image/png
+            type=3, # 3 is for the cover image
+            desc=u'Cover',
+            data=img_data,
+        )
+    )
+    mem_tags = BytesIO()
+    tags.save(mem_tags)
+    mem_tags.seek(0)
+    etags = EasyID3(mem_tags)
     for key, value in entry.items():
         if not isinstance(value, list):
             value = [str(value)]
-        song.tags[key.upper()] = value
-    song.save()
-    exp_hash = exp_hash_for(in_fname, entry)
-    write_hash_for(exp_hash, full_out_fname)
+        etags[key.upper()] = value
+    etags.save(full_out_fname)
 
 
-def write_image(img_fname, full_out_dir,
-                clobber=False,
-                min_img_size=(640, 480)):
-    out_img_fname = op.join(full_out_dir, 'Folder.jpg')
+def write_proc_image(img_fname, min_img_size=(640, 480),
+                     out_dim=1024):
     if (img_hash := stored_hash_for(img_fname)) == None:
         img_hash = write_hash_for_fname(img_fname)
-    out_hash = stored_hash_for(out_img_fname)
-    if img_hash == out_hash:
-        return
-    if op.exists(out_img_fname) and not clobber:
-        raise RuntimeError(f'File {out_img_fname} exists')
     img = Image.open(img_fname)
     if img.size < tuple(min_img_size):
         raise ValueError(f'Low resolution image {img_fname}')
-    img = resize_img(img, 1024)
-    img.save(out_img_fname)
-    write_hash_for(img_hash, out_img_fname)
+    img = resize_img(img, out_dim)
+    fobj = BytesIO()
+    img.save(fobj, format="jpeg")
+    return img_hash, fobj.getvalue()
 
 
 def guess_folder(fbase):
@@ -282,11 +309,13 @@ def ensure_dir(path):
 
 
 def build_one(fbase, config, settings, clobber=False):
-    in_fname = find_file(fbase, settings['wav_paths'])
+    music_fname = find_file(fbase, settings['wav_paths'])
     entry = config.copy()
     # Remove folder and image entries.
     folder_name = entry.pop('folder_name')
     in_img_fname = entry.pop('img_fname')
+    img_fname = find_file(in_img_fname,
+                          settings['img_paths'])
     if folder_name is None:
         folder_name = guess_folder(fbase)
     full_out_dir = op.join(settings['out_path'], folder_name)
@@ -294,14 +323,10 @@ def build_one(fbase, config, settings, clobber=False):
     out_fbase = out_fbaseroot_for(folder_name, entry)
     full_out_fname = op.join(full_out_dir,
                              out_fbase + settings['conv_ext'])
-    write_song(in_fname, full_out_fname, entry,
+    write_song(music_fname,
+               img_fname,
+               full_out_fname, entry,
                settings, clobber=clobber)
-    if in_img_fname is None:
-        print(f'No folder image specified for {fbase}')
-        return
-    img_fname = find_file(in_img_fname, settings['img_paths'])
-    assert op.exists(img_fname)
-    write_image(img_fname, full_out_dir, clobber, settings['min_img_size'])
 
 
 def write_config(config, config_fname):

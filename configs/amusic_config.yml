@@ -1,3 +1,68 @@
+# All possible (easy) entries
+# from mutagen.easyid3 import EasyID3
+# print('\n'.join(EasyID3.valid_keys.keys()))
+#
+# album
+# bpm
+# compilation
+# composer
+# copyright
+# encodedby
+# lyricist
+# length
+# media
+# mood
+# title
+# version
+# artist
+# albumartist
+# conductor
+# arranger
+# discnumber
+# organization
+# tracknumber
+# author
+# albumartistsort
+# albumsort
+# composersort
+# artistsort
+# titlesort
+# isrc
+# discsubtitle
+# language
+# genre
+# date
+# originaldate
+# performer:*
+# musicbrainz_trackid
+# website
+# replaygain_*_gain
+# replaygain_*_peak
+# musicbrainz_artistid
+# musicbrainz_albumid
+# musicbrainz_albumartistid
+# musicbrainz_trmid
+# musicip_puid
+# musicip_fingerprint
+# musicbrainz_albumstatus
+# musicbrainz_albumtype
+# releasecountry
+# musicbrainz_discid
+# asin
+# performer
+# barcode
+# catalognumber
+# musicbrainz_releasetrackid
+# musicbrainz_releasegroupid
+# musicbrainz_workid
+# acoustid_fingerprint
+# acoustid_id
+#
+# I added
+#
+# originalyear
+# style (TIT1)
+# period (synonym for genre)
 settings:
     wav_paths:
     - processed
@@ -20,13 +85,11 @@ berliozfunebre1-cr.wav:
     composer: Hector Berlioz
     conductor: Fritz Straub
     title: 'Symphonie Funèbre et Triomphale Op 15: Marche funèbre'
-    soloists:
+    performer:
     - Helmut Schmitt
     originalyear: 1953
     discnumber: 1
-    disctotal: 1
     tracknumber: 1
-    tracktotal: 2
     period: Romantic
     style: Symphony
 berliozfunebre2-cr.wav:
@@ -41,13 +104,11 @@ berliozfunebre2-cr.wav:
     composer: Hector Berlioz
     conductor: Fritz Straub
     title: 'Symphonie Funèbre et Triomphale Op 15: Oraison funèbre, Apothéose'
-    soloists:
+    performer:
     - Helmut Schmitt
     originalyear: 1953
     discnumber: 1
-    disctotal: 1
     tracknumber: 2
-    tracktotal: 2
     period: Romantic
     style: Symphony
 brahmvc1-cr.wav:
@@ -62,12 +123,10 @@ brahmvc1-cr.wav:
     composer: Johannes Brahms
     conductor: Otto Klemperer
     title: 'Brahms Violin Concerto: Allegro non troppo'
-    soloists:
+    performer:
     - David Oïstrakh
     discnumber: 1
-    disctotal: 1
     tracknumber: 1
-    tracktotal: 2
     originalyear: 1961
     period: Romantic
     style: Concerto
@@ -83,12 +142,10 @@ brahmvc2-cr.wav:
     composer: Johannes Brahms
     conductor: Otto Klemperer
     title: 'Brahms Violin Concerto: Adagio; Allegro giocoso'
-    soloists:
+    performer:
     - David Oïstrakh
     discnumber: 1
-    disctotal: 1
     tracknumber: 2
-    tracktotal: 2
     originalyear: 1961
     period: Romantic
     style: Concerto
@@ -104,12 +161,10 @@ bruksy9_1-cr.wav:
     composer: Anton Bruckner
     conductor: Jascha Horenstein
     title: 'Bruckner 9th Symphony: Feierlich, misterioso'
-    soloists:
+    performer:
     - Pro Music Symphony, Vienna
     discnumber: 1
-    disctotal: 1
     tracknumber: 1
-    tracktotal: 2
     originalyear: 1971
     period: Romantic
     style: Symphony
@@ -125,12 +180,10 @@ bruksy9_2-cr.wav:
     composer: Anton Bruckner
     conductor: Jascha Horenstein
     title: 'Bruckner 9th Symphony: Scherzo; Adagio'
-    soloists:
+    performer:
     - Pro Music Symphony, Vienna
     discnumber: 1
-    disctotal: 1
     tracknumber: 2
-    tracktotal: 2
     originalyear: 1971
     period: Romantic
     style: Symphony
@@ -149,12 +202,10 @@ chopin_fortep1-cr.wav:
     title: 'Ernst Gröschel fortepianos: Chopin Impromptu 66; Etudes Op 10/1,4,5; Op
         26/6; Waltzes op 70/1-3; Ecossaises op 72/3,4,5; Ballada op 38; Prelude in
         A posth; Ecossaises op 72/3,4,5; Ballada op 38; Prelude in A posth.'
-    soloists:
+    performer:
     - Ernst Gröschel
     discnumber: 1
-    disctotal: 1
     tracknumber: 1
-    tracktotal: 2
     originalyear: 1968
     period: Classical
     style: Solo keyboard
@@ -172,12 +223,10 @@ chopin_fortep2-cr.wav:
     composer: Frederic Chopin
     title: 'Ernst Gröschel fortepianos: Schubert Sonata A minor op 143; Impromptu
         op 142/4'
-    soloists:
+    performer:
     - Ernst Gröschel
     discnumber: 1
-    disctotal: 1
     tracknumber: 2
-    tracktotal: 2
     originalyear: 1968
     period: Classical
     style: Solo keyboard
@@ -193,12 +242,10 @@ debussyp1-cr.wav:
     composer: Claude Debussy
     title: 'Debussy Piano Works: Jardins Sous La Pluie; Deux Arabesques/1,2; La Plus
         Que Lente; L''Isle Joyeuse'
-    soloists:
+    performer:
     - Peter Frankl
     discnumber: 1
-    disctotal: 1
     tracknumber: 1
-    tracktotal: 2
     originalyear: 1969
     period: Impressionist
     style: Solo keyboard
@@ -215,12 +262,10 @@ debussyp2-cr.wav:
     title: 'Debussy Piano Works: Claire de Lune; CHILDRENS CORNER SUITE: Dr Gradus
         ad Parnassum; Jumbo''s Lullaby; Serenade of the Doll; The Snow is Dancing;
         The Little Shepherd; Golliwog''s Cake-walk'
-    soloists:
+    performer:
     - Peter Frankl
     discnumber: 1
-    disctotal: 1
     tracknumber: 2
-    tracktotal: 2
     originalyear: 1969
     period: Impressionist
     style: Solo keyboard
@@ -236,13 +281,11 @@ dido_older_1-cr.wav:
     composer: Henry Purcell
     conductor: Anthony Lewis
     title: 'Dido & Aeneas: Overture; Act I; Act II/scene 1'
-    soloists:
+    performer:
     - The St Anthony Singers
     - English Chamber Orchestra
     discnumber: 1
-    disctotal: 1
     tracknumber: 1
-    tracktotal: 2
     originalyear: 1962
     period: Baroque
     style: Choral
@@ -258,13 +301,11 @@ dido_older_2-cr.wav:
     composer: Henry Purcell
     conductor: Anthony Lewis
     title: 'Dido & Aeneas: Act II/scene 2; Act III'
-    soloists:
+    performer:
     - The St Anthony Singers
     - English Chamber Orchestra
     discnumber: 1
-    disctotal: 1
     tracknumber: 2
-    tracktotal: 2
     originalyear: 1962
     period: Baroque
     style: Choral
@@ -286,12 +327,10 @@ early_english_keybord_1_2-cr.wav:
     conductor: Robert Donnington
     title: 'Early English Keyboard Music: Byrd/Pavana Bray, Gilliarda Bray; Gibbons/Fantasy;
         Farnaby/Woodycock variations'
-    soloists:
+    performer:
     - Elizabeth Goble
     discnumber: 1
-    disctotal: 1
     tracknumber: 1
-    tracktotal: 2
     originalyear: 1953
     period: Early
     style: Solo keyboard
@@ -314,14 +353,12 @@ early_english_keyboard_2-cr.wav:
     title: 'Early English Keyboard Music: Anon/The Lords Masque, New Noddy; Bull/The
         King''s Hunt; Gibbons/Lord Salisbury''s Pavane, Lord Salisbury''s Galliard;
         Farnaby/Masque; Bull/Queen Elizabeth''s Pavane'
-    soloists:
+    performer:
     - Thurston Dart
     - Robert Donington
     - Elizabeth Goble
     discnumber: 1
-    disctotal: 1
     tracknumber: 2
-    tracktotal: 2
     originalyear: 1953
     period: Early
     style: Solo keyboard
@@ -337,12 +374,10 @@ elgar_sy1_1-cr.wav:
     composer: Edward Elgar
     conductor: Sir John Barbirolli
     title: 'Elgar Symphony No 1: Andante Nobilmente e Semplice - Allegro; Allegro'
-    soloists:
+    performer:
     - The Hallé Orchestra
     discnumber: 1
-    disctotal: 1
     tracknumber: 1
-    tracktotal: 2
     originalyear: 1966
     period: Romantic
     style: Choral
@@ -358,12 +393,10 @@ elgar_sy1_2-cr.wav:
     composer: Edward Elgar
     conductor: Sir John Barbirolli
     title: 'Elgar Symphony No 1: Lento; Allegro Molto'
-    soloists:
+    performer:
     - The Hallé Orchestra
     discnumber: 1
-    disctotal: 1
     tracknumber: 2
-    tracktotal: 2
     originalyear: 1966
     period: Romantic
     style: Choral
@@ -379,7 +412,7 @@ haydn_solemnis_1-cr.wav:
     composer: Joseph Haydn
     conductor: Hans Gillesberger
     title: 'Missa Solemnis: Kyrie; Gloria'
-    soloists:
+    performer:
     - Vienna Chamber Choir
     - Orchestra of the Vienna Volksoper
     - Elisabeth Thomann
@@ -387,9 +420,7 @@ haydn_solemnis_1-cr.wav:
     - Rudolf Resch
     - Alois Buchbauer
     discnumber: 1
-    disctotal: 1
     tracknumber: 1
-    tracktotal: 2
     originalyear: 1969
     period: Classical
     style: Choral
@@ -405,7 +436,7 @@ haydn_solemnis_2-cr.wav:
     composer: Joseph Haydn
     conductor: Hans Gillesberger
     title: 'Missa Solemnis: Kyrie; Gloria'
-    soloists:
+    performer:
     - Vienna Chamber Choir
     - Orchestra of the Vienna Volksoper
     - Elisabeth Thomann
@@ -413,9 +444,7 @@ haydn_solemnis_2-cr.wav:
     - Rudolf Resch
     - Alois Buchbauer
     discnumber: 1
-    disctotal: 1
     tracknumber: 2
-    tracktotal: 2
     originalyear: 1969
     period: Classical
     style: Choral
@@ -430,12 +459,10 @@ haydnq71_1-cr.wav:
     artistsort: Haydn, Joseph
     composer: Joseph Haydn
     title: 'String Quartets op. 71 & 74: op. 71/1'
-    soloists:
+    performer:
     - Aeolian String Quartet
     discnumber: 1
-    disctotal: 3
     tracknumber: 1
-    tracktotal: 2
     originalyear: 1973
     period: Classical
     style: Chamber
@@ -450,12 +477,10 @@ haydnq71_2-cr.wav:
     artistsort: Haydn, Joseph
     composer: Joseph Haydn
     title: 'String Quartets op. 71 & 74: op. 71/2'
-    soloists:
+    performer:
     - Aeolian String Quartet
     discnumber: 1
-    disctotal: 3
     tracknumber: 2
-    tracktotal: 2
     originalyear: 1973
     period: Classical
     style: Chamber
@@ -470,12 +495,10 @@ haydnq7174_71_3-cr.wav:
     artistsort: Haydn, Joseph
     composer: Joseph Haydn
     title: 'String Quartets op. 71 & 74: op. 71/3'
-    soloists:
+    performer:
     - Aeolian String Quartet
     discnumber: 2
-    disctotal: 3
     tracknumber: 1
-    tracktotal: 2
     originalyear: 1973
     period: Classical
     style: Chamber
@@ -490,12 +513,10 @@ haydnq7174_74_1-cr.wav:
     artistsort: Haydn, Joseph
     composer: Joseph Haydn
     title: 'String Quartets op. 71 & 74: op. 74/1'
-    soloists:
+    performer:
     - Aeolian String Quartet
     discnumber: 2
-    disctotal: 3
     tracknumber: 2
-    tracktotal: 2
     originalyear: 1973
     period: Classical
     style: Chamber
@@ -510,12 +531,10 @@ haydnq74_23_1-cr.wav:
     artistsort: Haydn, Joseph
     composer: Joseph Haydn
     title: 'String Quartets op. 71 & 74: op. 74/2'
-    soloists:
+    performer:
     - Aeolian String Quartet
     discnumber: 3
-    disctotal: 3
     tracknumber: 1
-    tracktotal: 2
     originalyear: 1973
     period: Classical
     style: Chamber
@@ -530,12 +549,10 @@ haydnq74_23_2-cr.wav:
     artistsort: Haydn, Joseph
     composer: Joseph Haydn
     title: 'String Quartets op. 71 & 74: op. 74/3'
-    soloists:
+    performer:
     - Aeolian String Quartet
     discnumber: 3
-    disctotal: 3
     tracknumber: 2
-    tracktotal: 2
     originalyear: 1973
     period: Classical
     style: Chamber
@@ -551,7 +568,7 @@ lvbmissa1-cr.wav:
     composer: Ludwig van Beethoven
     conductor: Herbert von Karajan
     title: 'Beethoven Missa Solemnis: Kyrie; Gloria'
-    soloists:
+    performer:
     - Vienna Singverein
     - Berlin Philharmonic Orchestra
     - Gundula Janowitz
@@ -559,9 +576,7 @@ lvbmissa1-cr.wav:
     - Peter Schreier
     - José van Dam
     discnumber: 1
-    disctotal: 2
     tracknumber: 1
-    tracktotal: 2
     originalyear: 1988
     period: Classical
     style: Choral
@@ -577,7 +592,7 @@ lvbmissa2-cr.wav:
     composer: Ludwig van Beethoven
     conductor: Herbert von Karajan
     title: 'Beethoven Missa Solemnis: Credo'
-    soloists:
+    performer:
     - Vienna Singverein
     - Berlin Philharmonic Orchestra
     - Gundula Janowitz
@@ -585,9 +600,7 @@ lvbmissa2-cr.wav:
     - Peter Schreier
     - José van Dam
     discnumber: 1
-    disctotal: 2
     tracknumber: 2
-    tracktotal: 2
     originalyear: 1988
     period: Classical
     style: Choral
@@ -603,7 +616,7 @@ lvbmissa3-cr.wav:
     composer: Ludwig van Beethoven
     conductor: Herbert von Karajan
     title: 'Beethoven Missa Solemnis: Sanctus - Benedictus'
-    soloists:
+    performer:
     - Vienna Singverein
     - Berlin Philharmonic Orchestra
     - Gundula Janowitz
@@ -611,9 +624,7 @@ lvbmissa3-cr.wav:
     - Peter Schreier
     - José van Dam
     discnumber: 2
-    disctotal: 2
     tracknumber: 1
-    tracktotal: 2
     originalyear: 1988
     period: Classical
     style: Choral
@@ -629,7 +640,7 @@ lvbmissa4-cr.wav:
     composer: Ludwig van Beethoven
     conductor: Herbert von Karajan
     title: 'Beethoven Missa Solemnis: Agnus Dei'
-    soloists:
+    performer:
     - Vienna Singverein
     - Berlin Philharmonic Orchestra
     - Gundula Janowitz
@@ -637,9 +648,7 @@ lvbmissa4-cr.wav:
     - Peter Schreier
     - José van Dam
     discnumber: 2
-    disctotal: 2
     tracknumber: 2
-    tracktotal: 2
     originalyear: 1988
     period: Classical
     style: Choral
@@ -655,12 +664,10 @@ mouss_pictures_1-cr.wav:
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
     title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    soloists:
+    performer:
     - Catherine Dubosc
     discnumber: 1
-    disctotal: 1
     tracknumber: 1
-    tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
     period: Baroque
@@ -677,19 +684,17 @@ mouss_pictures_2-cr.wav:
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
     title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    soloists:
+    performer:
     - Catherine Dubosc
     discnumber: 1
-    disctotal: 1
     tracknumber: 2
-    tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
     period: Baroque
     style: Choral
 mozsuk1-cr.wav:
     folder_name: null
-    img_fname: null
+    img_fname: brown_team.jpg
     album: Mass in B Minor
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
@@ -699,19 +704,17 @@ mozsuk1-cr.wav:
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
     title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    soloists:
+    performer:
     - Catherine Dubosc
     discnumber: 1
-    disctotal: 1
     tracknumber: 1
-    tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
     period: Baroque
     style: Choral
 mozsuk2-cr.wav:
     folder_name: null
-    img_fname: null
+    img_fname: brown_team.jpg
     album: Mass in B Minor
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
@@ -721,19 +724,17 @@ mozsuk2-cr.wav:
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
     title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    soloists:
+    performer:
     - Catherine Dubosc
     discnumber: 1
-    disctotal: 1
     tracknumber: 2
-    tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
     period: Baroque
     style: Choral
 orfeo1-cr.wav:
     folder_name: null
-    img_fname: null
+    img_fname: brown_team.jpg
     album: Mass in B Minor
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
@@ -743,19 +744,17 @@ orfeo1-cr.wav:
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
     title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    soloists:
+    performer:
     - Catherine Dubosc
     discnumber: 1
-    disctotal: 1
     tracknumber: 1
-    tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
     period: Baroque
     style: Choral
 orfeo2-cr.wav:
     folder_name: null
-    img_fname: null
+    img_fname: brown_team.jpg
     album: Mass in B Minor
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
@@ -765,19 +764,17 @@ orfeo2-cr.wav:
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
     title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    soloists:
+    performer:
     - Catherine Dubosc
     discnumber: 1
-    disctotal: 1
     tracknumber: 2
-    tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
     period: Baroque
     style: Choral
 palestrine_mont_11-cr.wav:
     folder_name: null
-    img_fname: null
+    img_fname: brown_team.jpg
     album: Mass in B Minor
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
@@ -787,19 +784,17 @@ palestrine_mont_11-cr.wav:
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
     title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    soloists:
+    performer:
     - Catherine Dubosc
     discnumber: 1
-    disctotal: 1
     tracknumber: 1
-    tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
     period: Baroque
     style: Choral
 palestrine_mont_2-cr.wav:
     folder_name: null
-    img_fname: null
+    img_fname: brown_team.jpg
     album: Mass in B Minor
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
@@ -809,19 +804,17 @@ palestrine_mont_2-cr.wav:
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
     title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    soloists:
+    performer:
     - Catherine Dubosc
     discnumber: 1
-    disctotal: 1
     tracknumber: 2
-    tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
     period: Baroque
     style: Choral
 rachp3_v2_1-cr.wav:
     folder_name: null
-    img_fname: null
+    img_fname: brown_team.jpg
     album: Mass in B Minor
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
@@ -831,19 +824,17 @@ rachp3_v2_1-cr.wav:
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
     title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    soloists:
+    performer:
     - Catherine Dubosc
     discnumber: 1
-    disctotal: 1
     tracknumber: 1
-    tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
     period: Baroque
     style: Choral
 rachp3_v3_2-cr.wav:
     folder_name: null
-    img_fname: null
+    img_fname: brown_team.jpg
     album: Mass in B Minor
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
@@ -853,19 +844,17 @@ rachp3_v3_2-cr.wav:
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
     title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    soloists:
+    performer:
     - Catherine Dubosc
     discnumber: 1
-    disctotal: 1
     tracknumber: 2
-    tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
     period: Baroque
     style: Choral
 shutz_motets_1-cr.wav:
     folder_name: null
-    img_fname: null
+    img_fname: brown_team.jpg
     album: Mass in B Minor
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
@@ -875,19 +864,17 @@ shutz_motets_1-cr.wav:
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
     title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    soloists:
+    performer:
     - Catherine Dubosc
     discnumber: 1
-    disctotal: 1
     tracknumber: 1
-    tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
     period: Baroque
     style: Choral
 shutz_motets_2-cr.wav:
     folder_name: null
-    img_fname: null
+    img_fname: brown_team.jpg
     album: Mass in B Minor
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
@@ -897,19 +884,17 @@ shutz_motets_2-cr.wav:
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
     title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    soloists:
+    performer:
     - Catherine Dubosc
     discnumber: 1
-    disctotal: 1
     tracknumber: 2
-    tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
     period: Baroque
     style: Choral
 telemann_vorclassik_1-cr.wav:
     folder_name: null
-    img_fname: null
+    img_fname: brown_team.jpg
     album: Mass in B Minor
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
@@ -919,19 +904,17 @@ telemann_vorclassik_1-cr.wav:
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
     title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    soloists:
+    performer:
     - Catherine Dubosc
     discnumber: 1
-    disctotal: 1
     tracknumber: 1
-    tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
     period: Baroque
     style: Choral
 telemann_vorclassik_2-cr.wav:
     folder_name: null
-    img_fname: null
+    img_fname: brown_team.jpg
     album: Mass in B Minor
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
@@ -941,19 +924,17 @@ telemann_vorclassik_2-cr.wav:
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
     title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    soloists:
+    performer:
     - Catherine Dubosc
     discnumber: 1
-    disctotal: 1
     tracknumber: 2
-    tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
     period: Baroque
     style: Choral
 toscwag1-cr.wav:
     folder_name: null
-    img_fname: null
+    img_fname: brown_team.jpg
     album: Mass in B Minor
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
@@ -963,19 +944,17 @@ toscwag1-cr.wav:
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
     title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    soloists:
+    performer:
     - Catherine Dubosc
     discnumber: 1
-    disctotal: 1
     tracknumber: 1
-    tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
     period: Baroque
     style: Choral
 toscwag2-cr.wav:
     folder_name: null
-    img_fname: null
+    img_fname: brown_team.jpg
     album: Mass in B Minor
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
@@ -985,19 +964,17 @@ toscwag2-cr.wav:
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
     title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    soloists:
+    performer:
     - Catherine Dubosc
     discnumber: 1
-    disctotal: 1
     tracknumber: 2
-    tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
     period: Baroque
     style: Choral
 walton_belsh1-cr.wav:
     folder_name: null
-    img_fname: null
+    img_fname: brown_team.jpg
     album: Mass in B Minor
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
@@ -1007,19 +984,17 @@ walton_belsh1-cr.wav:
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
     title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    soloists:
+    performer:
     - Catherine Dubosc
     discnumber: 1
-    disctotal: 1
     tracknumber: 1
-    tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
     period: Baroque
     style: Choral
 walton_belsh2-cr.wav:
     folder_name: null
-    img_fname: null
+    img_fname: brown_team.jpg
     album: Mass in B Minor
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
@@ -1029,19 +1004,17 @@ walton_belsh2-cr.wav:
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
     title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    soloists:
+    performer:
     - Catherine Dubosc
     discnumber: 1
-    disctotal: 1
     tracknumber: 2
-    tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
     period: Baroque
     style: Choral
 young3-cr.wav:
     folder_name: null
-    img_fname: null
+    img_fname: brown_team.jpg
     album: Mass in B Minor
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
@@ -1051,19 +1024,17 @@ young3-cr.wav:
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
     title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    soloists:
+    performer:
     - Catherine Dubosc
     discnumber: 1
-    disctotal: 1
     tracknumber: 1
-    tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
     period: Baroque
     style: Choral
 ypg_again2_1-cr.wav:
     folder_name: null
-    img_fname: null
+    img_fname: brown_team.jpg
     album: Mass in B Minor
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
@@ -1073,12 +1044,10 @@ ypg_again2_1-cr.wav:
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
     title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    soloists:
+    performer:
     - Catherine Dubosc
     discnumber: 1
-    disctotal: 1
     tracknumber: 1
-    tracktotal: 2
     originaldate: 1994-04-01
     originalyear: 1994
     period: Baroque
