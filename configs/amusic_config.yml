@@ -3,7 +3,7 @@ settings:
     - processed
     img_paths:
     - jpegs
-    out_path: amusic
+    out_path: Music
     conv_path: mp3s
     sox_params: ["-C", "320"]
     conv_ext: .mp3
@@ -644,8 +644,8 @@ lvbmissa4-cr.wav:
     period: Classical
     style: Choral
 mouss_pictures_1-cr.wav:
-    folder_name: null
-    img_fname: null
+    folder_name: mouss_pictures
+    img_fname: mouss_brendel.jpg
     album: Mass in B Minor
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
@@ -666,8 +666,8 @@ mouss_pictures_1-cr.wav:
     period: Baroque
     style: Choral
 mouss_pictures_2-cr.wav:
-    folder_name: null
-    img_fname: null
+    folder_name: mouss_pictures
+    img_fname: mouss_brendel.jpg
     album: Mass in B Minor
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
