@@ -100,6 +100,8 @@ def proc_config(config, config_path):
         if not op.isabs(value):
             value = op.join(config_path, value)
         settings[key] = value
+    if 'min_img_size' not in settings:
+        settings['min_img_size'] = (640, 480)
     return settings, tracks
 
 
@@ -251,8 +253,7 @@ def write_song(in_fname, full_out_fname, entry,
 
 def write_image(img_fname, full_out_dir,
                 clobber=False,
-                min_width=500,
-                min_height=400):
+                min_img_size=(640, 480)):
     out_img_fname = op.join(full_out_dir, 'Folder.jpg')
     if (img_hash := stored_hash_for(img_fname)) == None:
         img_hash = write_hash_for_fname(img_fname)
@@ -262,7 +263,7 @@ def write_image(img_fname, full_out_dir,
     if op.exists(out_img_fname) and not clobber:
         raise RuntimeError(f'File {out_img_fname} exists')
     img = Image.open(img_fname)
-    if img.width < min_width or img.height < min_height:
+    if img.size < tuple(min_img_size):
         raise ValueError(f'Low resolution image {img_fname}')
     img = resize_img(img, 1024)
     img.save(out_img_fname)
@@ -300,7 +301,7 @@ def build_one(fbase, config, settings, clobber=False):
         return
     img_fname = find_file(in_img_fname, settings['img_paths'])
     assert op.exists(img_fname)
-    write_image(img_fname, full_out_dir, clobber)
+    write_image(img_fname, full_out_dir, clobber, settings['min_img_size'])
 
 
 def write_config(config, config_fname):

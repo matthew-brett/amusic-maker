@@ -7,6 +7,7 @@ settings:
     conv_path: mp3s
     sox_params: ["-C", "320"]
     conv_ext: .mp3
+    min_img_size: [640, 480]
 berliozfunebre1-cr.wav:
     folder_name: berlioz_funebre
     img_fname: berlioz_funebre.jpg
