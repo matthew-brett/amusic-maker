@@ -1,68 +1,3 @@
-# All possible (easy) entries
-# from mutagen.easyid3 import EasyID3
-# print('\n'.join(EasyID3.valid_keys.keys()))
-#
-# album
-# bpm
-# compilation
-# composer
-# copyright
-# encodedby
-# lyricist
-# length
-# media
-# mood
-# title
-# version
-# artist
-# albumartist
-# conductor
-# arranger
-# discnumber
-# organization
-# tracknumber
-# author
-# albumartistsort
-# albumsort
-# composersort
-# artistsort
-# titlesort
-# isrc
-# discsubtitle
-# language
-# genre
-# date
-# originaldate
-# performer:*
-# musicbrainz_trackid
-# website
-# replaygain_*_gain
-# replaygain_*_peak
-# musicbrainz_artistid
-# musicbrainz_albumid
-# musicbrainz_albumartistid
-# musicbrainz_trmid
-# musicip_puid
-# musicip_fingerprint
-# musicbrainz_albumstatus
-# musicbrainz_albumtype
-# releasecountry
-# musicbrainz_discid
-# asin
-# performer
-# barcode
-# catalognumber
-# musicbrainz_releasetrackid
-# musicbrainz_releasegroupid
-# musicbrainz_workid
-# acoustid_fingerprint
-# acoustid_id
-#
-# I added
-#
-# originalyear
-# style (TIT1)
-# period (synonym for genre)
 settings:
     wav_paths:
     - processed
@@ -70,9 +5,13 @@ settings:
     - jpegs
     out_path: Music
     conv_path: mp3s
-    sox_params: ["-C", "320"]
+    sox_params:
+    - -C
+    - '320'
     conv_ext: .mp3
-    min_img_size: [600, 400]
+    min_img_size:
+    - 600
+    - 400
     out_dim: 1024
 berliozfunebre1-cr.wav:
     folder_name: berlioz_funebre
@@ -89,7 +28,6 @@ berliozfunebre1-cr.wav:
     - Helmut Schmitt
     originalyear: 1953
     discnumber: 1
-    disctotal: 1
     tracknumber: 1
     period: Romantic
     style: Symphony
@@ -108,7 +46,6 @@ berliozfunebre2-cr.wav:
     - Helmut Schmitt
     originalyear: 1953
     discnumber: 1
-    disctotal: 1
     tracknumber: 2
     period: Romantic
     style: Symphony
@@ -452,6 +389,7 @@ haydnq71_1-cr.wav:
     performer:
     - Aeolian String Quartet
     discnumber: 1
+    disctotal: 3
     tracknumber: 1
     originalyear: 1973
     period: Classical
@@ -469,6 +407,7 @@ haydnq71_2-cr.wav:
     performer:
     - Aeolian String Quartet
     discnumber: 1
+    disctotal: 3
     tracknumber: 2
     originalyear: 1973
     period: Classical
@@ -486,6 +425,7 @@ haydnq7174_71_3-cr.wav:
     performer:
     - Aeolian String Quartet
     discnumber: 2
+    disctotal: 3
     tracknumber: 1
     originalyear: 1973
     period: Classical
@@ -503,6 +443,7 @@ haydnq7174_74_1-cr.wav:
     performer:
     - Aeolian String Quartet
     discnumber: 2
+    disctotal: 3
     tracknumber: 2
     originalyear: 1973
     period: Classical
@@ -520,6 +461,7 @@ haydnq74_23_1-cr.wav:
     performer:
     - Aeolian String Quartet
     discnumber: 3
+    disctotal: 3
     tracknumber: 1
     originalyear: 1973
     period: Classical
@@ -537,6 +479,7 @@ haydnq74_23_2-cr.wav:
     performer:
     - Aeolian String Quartet
     discnumber: 3
+    disctotal: 3
     tracknumber: 2
     originalyear: 1973
     period: Classical
@@ -560,6 +503,7 @@ lvbmissa1-cr.wav:
     - Peter Schreier
     - José van Dam
     discnumber: 1
+    disctotal: 2
     tracknumber: 1
     originalyear: 1988
     period: Classical
@@ -583,6 +527,7 @@ lvbmissa2-cr.wav:
     - Peter Schreier
     - José van Dam
     discnumber: 1
+    disctotal: 2
     tracknumber: 2
     originalyear: 1988
     period: Classical
@@ -606,6 +551,7 @@ lvbmissa3-cr.wav:
     - Peter Schreier
     - José van Dam
     discnumber: 2
+    disctotal: 2
     tracknumber: 1
     originalyear: 1988
     period: Classical
@@ -629,124 +575,132 @@ lvbmissa4-cr.wav:
     - Peter Schreier
     - José van Dam
     discnumber: 2
+    disctotal: 2
     tracknumber: 2
     originalyear: 1988
     period: Classical
     style: Choral
 mouss_pictures_1-cr.wav:
-    folder_name: mouss_pictures
+    folder_name: pictures_at_an_exhibition
     img_fname: mouss_brendel.jpg
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
+    album: Pictures At An Exhibition / Petrouchka Suite / Islamey
+    albumartist: Modest Mussorgsky
+    albumartistsort: Mussorgsky, Modest
+    artist:
+    - Modest Moussorksky
+    - Igor Stravinsky
+    - Mily Balakirev
+    composer: Modest Mussorgsky
+    title: Pictures at an Exhibition
     performer:
-    - Catherine Dubosc
+    - Alfred Brendel
     discnumber: 1
     tracknumber: 1
-    originaldate: 1994-04-01
-    originalyear: 1994
-    period: Baroque
-    style: Choral
+    originalyear: 1969
+    period: Romantic
+    style: Solo piano
 mouss_pictures_2-cr.wav:
-    folder_name: mouss_pictures
+    folder_name: pictures_at_an_exhibition
     img_fname: mouss_brendel.jpg
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
+    album: Pictures At An Exhibition / Petrouchka Suite / Islamey
+    albumartist: Modest Mussorgsky
+    albumartistsort: Mussorgsky, Modest
+    artist:
+    - Modest Moussorksky
+    - Igor Stravinsky
+    - Mily Balakirev
+    composer: Igor Stravinsky
+    title: Petrouchka Suite, Islamey (Oriental Fantasy)
     performer:
-    - Catherine Dubosc
-    discnumber: 1
+    - Alfred Brendel
     tracknumber: 2
-    originaldate: 1994-04-01
-    originalyear: 1994
-    period: Baroque
-    style: Choral
+    originalyear: 1969
+    period: Romantic
+    style: Solo piano
 mozsuk1-cr.wav:
-    folder_name: null
-    img_fname: brown_team.jpg
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
+    folder_name: mozart_suk_quintets
+    img_fname: mozsuk.jpg
+    album: Quintets In C Minor, KV406 (516b) & In E-Flat Major, KV614
+    albumartist: Wolfgang Amadeus Mozart
+    albumartistsort: Mozart, Wolfgang Amadeus
+    artist: Wolfgang Amadeus Mozart
+    artistsort: Mozart, Wolfgang Amadeus
+    composer: Wolfgang Amadeus Mozart
+    title: Quintet In In C Minor, KV406 (516b)
     performer:
-    - Catherine Dubosc
+    - Josef Suk
+    - Smetana Quartet
     discnumber: 1
     tracknumber: 1
-    originaldate: 1994-04-01
-    originalyear: 1994
-    period: Baroque
-    style: Choral
+    originalyear: 1981
+    period: Classical
+    style: Chamber
 mozsuk2-cr.wav:
-    folder_name: null
-    img_fname: brown_team.jpg
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
+    folder_name: mozart_suk_quintets
+    img_fname: mozsuk.jpg
+    album: Quintets In C Minor, KV406 (516b) & In E-Flat Major, KV614
+    albumartist: Wolfgang Amadeus Mozart
+    albumartistsort: Mozart, Wolfgang Amadeus
+    artist: Wolfgang Amadeus Mozart
+    artistsort: Mozart, Wolfgang Amadeus
+    composer: Wolfgang Amadeus Mozart
+    title: Quintet In E-Flat Major, KV614
     performer:
-    - Catherine Dubosc
+    - Josef Suk
+    - Smetana Quartet
     discnumber: 1
     tracknumber: 2
-    originaldate: 1994-04-01
-    originalyear: 1994
-    period: Baroque
-    style: Choral
+    originalyear: 1981
+    period: Classical
+    style: Chamber
 orfeo1-cr.wav:
-    folder_name: null
-    img_fname: brown_team.jpg
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
+    folder_name: orfeo_euridice
+    img_fname: orfeo_gluck.jpg
+    album: Orfeo Ed Euridice
+    albumartist: Christoph Willibald Gluck
+    albumartistsort: Gluck, Christoph Willibald
+    artist: Christoph Willibald Gluck
+    artistsort: Gluck, Christoph Willibald
+    composer: Christoph Willibald Gluck
+    conductor: Fritz Stiedry
+    title: Orfeo Ed Euridice, acts 1 and 2
     performer:
-    - Catherine Dubosc
+    - Kathleen Ferrier
+    - Zoë Vlachopoulos
+    - Ann Ayars
+    - Glyndebourne Festival Chorus
+    - Southern Philharmonic Orchestra
+    orchestra: Southern Philharmonic Orchestra
     discnumber: 1
     tracknumber: 1
-    originaldate: 1994-04-01
-    originalyear: 1994
-    period: Baroque
-    style: Choral
+    originalyear: '1954'
+    period: Classical
+    style: Opera
+    originaldate: 1954-12-01 00:00:00
 orfeo2-cr.wav:
-    folder_name: null
-    img_fname: brown_team.jpg
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
+    folder_name: orfeo_euridice
+    img_fname: orfeo_gluck.jpg
+    album: Orfeo Ed Euridice
+    albumartist: Christoph Willibald Gluck
+    albumartistsort: Gluck, Christoph Willibald
+    artist: Christoph Willibald Gluck
+    artistsort: Gluck, Christoph Willibald
+    composer: Christoph Willibald Gluck
+    conductor: Fritz Stiedry
+    title: "Orfeo Ed Euridice Act 3"
     performer:
-    - Catherine Dubosc
+    - Kathleen Ferrier
+    - Zoë Vlachopoulos
+    - Ann Ayars
+    - Glyndebourne Festival Chorus
+    - Southern Philharmonic Orchestra
+    orchestra: Southern Philharmonic Orchestra
     discnumber: 1
     tracknumber: 2
-    originaldate: 1994-04-01
-    originalyear: 1994
-    period: Baroque
-    style: Choral
+    originalyear: '1954'
+    period: Classical
+    style: Opera
+    originaldate: 1954-12-01 00:00:00
 palestrine_mont_11-cr.wav:
     folder_name: null
     img_fname: brown_team.jpg

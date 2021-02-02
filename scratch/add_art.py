@@ -1,14 +1,29 @@
+import os.path as op
 import shutil
 
 from io import BytesIO
 
-from mutagen.mp3 import MP3
-from mutagen.id3 import ID3, APIC, error
+from mutagen.id3 import ID3, APIC, USLT
 from mutagen.easyid3 import EasyID3
 
+# Discard disctotal quietly
+EasyID3.RegisterTextKey('period', 'TCON')
+EasyID3.RegisterKey('disctotal', setter=lambda s, k, v: None)
+# Details go into the lyrics field.
+
+def get_lyrics(tags, key):
+    return tags["USLT::'eng'"]
+
+def set_lyrics(tags, key, text):
+    tags["USLT::'eng'"] = USLT(encoding=3, lang='eng', desc='desc',
+                               text='\n'.join(text))
+
+EasyID3.RegisterKey('details', get_lyrics, set_lyrics)
+
+
+HERE = op.dirname(__file__)
 MP3_FNAME = 'mp3s_tmp/aclip.mp3'
-IMG_FNAME = 'images/brown_team.jpg'
-OUT_FNAME = 'foo.mp3'
+IMG_FNAME = op.join(HERE, '..', 'images', 'brown_team.jpg')
 
 tags = ID3()
 tags.add(
@@ -26,11 +41,14 @@ mem_tags.seek(0)
 etags = EasyID3(mem_tags)
 etags['artist'] = 'Beyonce'
 etags['title'] = 'my title'
-etags['genre'] = 'my genre'
+etags['period'] = 'my genre'
 etags['performer'] = ['foo', 'bar', 'baz']
-# audio.save()
+etags['disctotal'] = '3'
+etags['details'] = 'foo bar'
 
-shutil.copyfile(MP3_FNAME, OUT_FNAME)
-etags.save(OUT_FNAME)
-tags_in = ID3(OUT_FNAME)
-print(tags_in)
+etags.save(mem_tags)
+mem_tags.seek(0)
+
+all_tags = ID3(mem_tags)
+
+print(all_tags)

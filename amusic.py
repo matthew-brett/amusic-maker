@@ -18,7 +18,7 @@ import requests
 import yaml
 from PIL import Image
 
-from mutagen.id3 import ID3, APIC
+from mutagen.id3 import APIC, USLT, Encoding, PictureType
 from mutagen.easyid3 import EasyID3
 
 # Extra ID3 keys
@@ -26,10 +26,31 @@ EasyID3.RegisterTextKey('originalyear', 'TORY')
 EasyID3.RegisterTextKey('style', 'TIT1')
 # period becomes synonym for genre
 EasyID3.RegisterTextKey('period', 'TCON')
+# Discard disctotal quietly
+EasyID3.RegisterKey('disctotal', setter=lambda s, k, v: None)
+# Details go into the lyrics field.
+LYRICS_KEY = "USLT::'eng'"
 
+def set_lyrics(tags, key, text):
+    tags[LYRICS_KEY] = USLT(encoding=Encoding.UTF8, lang='eng', desc='desc',
+                            text='\n'.join(text))
 
-HERE = op.dirname(__file__)
+EasyID3.RegisterKey('details', lambda t, k: t[LYRICS_KEY], set_lyrics)
 
+# Set picture
+def set_picture(tags, key, img_data):
+    apic_type = getattr(PictureType, key.upper())
+    tags.add(
+        APIC(
+            encoding=Encoding.UTF8,
+            mime='image/jpeg', # image/jpeg or image/png
+            type=apic_type,
+            desc=key,
+            data=img_data,
+        )
+    )
+
+EasyID3.RegisterKey('COVER_FRONT', setter=set_picture)
 
 CONFIG_BASENAME = 'amusic_config.yml'
 HASH_EXT = '.md5'
@@ -70,9 +91,7 @@ DEFAULT_TRACK_CONFIG = {
     'title': 'BWV 232 Kyrie / Chorus - Kyrie eleison',
     'soloists': ['Catherine Dubosc'],
     'discnumber': 1,
-    'disctotal': 1,
     'tracknumber': 1,
-    'tracktotal': 2,
     'originaldate': Date(1994, 4, 1),
     'originalyear': 1994,
     'period': 'Baroque',
@@ -139,7 +158,7 @@ def out_fbaseroot_for(fname, entry):
     if disc_total:
         if disc_total > 1:
             disc_no = full['discnumber']
-            fname = f'{fname}_d{disc_no}'
+            fname = f'{fname}_disc{disc_no}'
         full['totaldiscs'] = disc_total
     track_no = full['tracknumber']
     return f'{fname}_side{track_no:02d}'
@@ -261,24 +280,15 @@ def write_song(music_fname,
 
 
 def write_tags(full_out_fname, entry, img_data):
-    tags = ID3()
-    tags.add(
-        APIC(
-            encoding=3, # 3 is for utf-8
-            mime='image/jpeg', # image/jpeg or image/png
-            type=3, # 3 is for the cover image
-            desc=u'Cover',
-            data=img_data,
-        )
-    )
-    mem_tags = BytesIO()
-    tags.save(mem_tags)
-    mem_tags.seek(0)
-    etags = EasyID3(mem_tags)
+    etags = EasyID3()
+    etags['cover_front'] = img_data
     for key, value in entry.items():
         if not isinstance(value, list):
             value = [str(value)]
         etags[key.upper()] = value
+    # Give more space to the title, which can be long.
+    if not 'details' in entry:
+        etags['details'] = entry['title']
     etags.save(full_out_fname)
 
 
@@ -352,6 +362,11 @@ def strip_nones(val):
 
 class MBInfo:
 
+    role_key = 'type'
+    role_sub_key = 'disambiguation'
+    date_key = 'date'
+    composer_str = 'composer'
+
     def __init__(self, in_dict):
         self._in_dict = in_dict
         self._credits = self._in_dict.get(
@@ -359,26 +374,37 @@ class MBInfo:
         self._artists = [d['artist'] for d in self._credits
                          if 'artist' in d]
 
+
+    def _get_value(self, key):
+        res = self._in_dict.get(key)
+        if res is not None:
+            res = res.strip()
+        return res
+
     def as_config(self):
-        d = self._in_dict
         composer = self.composer
         return strip_nones({
-            'album': d.get('title'),
+            'album': self._get_value('title'),
             'albumartist': composer.get('name'),
             'albumartistsort': composer.get('sort-name'),
             'composer': composer.get('name'),
             'conductor': self.conductor.get('name'),
-            'title': d.get('title'),
+            'orchestra': self.orchestra.get('name'),
+            'performer': [p['name'] for p in self.performers],
+            'title': self._get_value('title'),
             'originaldate': self.date,
             'originalyear': self.year,
+            'period': self.period
         })
 
     @property
     def date(self):
-        d = self._in_dict.get('date')
+        d = self._in_dict.get(self.date_key)
         if d in (None, ''):
             return d
-        return DTM.strptime(d, DATE_FMT).date()
+        y, m, d = [int(v) for v in d.split('-')]
+        d = 1 if d == 0 else d
+        return DTM(y, m, d)
 
     @property
     def year(self):
@@ -393,12 +419,12 @@ class MBInfo:
 
     @property
     def persons(self):
-        return self.get_artists(type='Person')
+        return self.get_artists(**{self.role_key: 'Person'})
 
     @property
     def composers(self):
         return [p for p in self.persons
-                if 'composer' in p['disambiguation'].lower()]
+                if self.composer_str in p[self.role_sub_key].lower()]
 
     def _single(self, seq, default=None):
         if len(seq) == 0:
@@ -413,7 +439,7 @@ class MBInfo:
     @property
     def conductors(self):
         return [p for p in self.persons
-                if 'conductor' in p['disambiguation'].lower()]
+                if 'conductor' in p[self.role_sub_key].lower()]
 
     @property
     def conductor(self):
@@ -421,7 +447,7 @@ class MBInfo:
 
     @property
     def orchestras(self):
-        return self.get_artists(type='Orchestra')
+        return self.get_artists(**{self.role_key: 'Orchestra'})
 
     @property
     def orchestra(self):
@@ -429,16 +455,69 @@ class MBInfo:
 
     @property
     def choirs(self):
-        return self.get_artists(type='Choir')
+        c0 = self.get_artists(**{self.role_key: 'Choir'})
+        c1 = self.get_artists(**{self.role_key: 'Chorus'})
+        return c0 + c1
 
     @property
     def choir(self):
         return self._single(self.choirs, {})
 
+    @property
+    def performers(self):
+        not_performers = (self.composers + self.conductors + self.choirs +
+                          self.orchestras)
+        performers = [p for p in self.persons if p not in not_performers]
+        return performers + self.choirs + self.orchestras
 
-def get_mb_release(mb_release_id):
+    @property
+    def period(self):
+        return None
+
+
+def get_mb_release(mb_release_id, config):
     # https://musicbrainz.org/doc/MusicBrainz_API
     response = requests.get(MBZ_URL_FMT.format(release_id=mb_release_id))
+    return json.loads(response.text)
+
+
+class DOInfo(MBInfo):
+
+    role_key = 'role'
+    role_sub_key = 'role'
+    date_key = 'released'
+    composer_str = 'composed by'
+
+    def __init__(self, in_dict):
+        self._in_dict = in_dict
+        self._artists = self._in_dict.get(
+            'extraartists', [])
+
+    @property
+    def persons(self):
+        return self._artists
+
+    @property
+    def year(self):
+        res = self._in_dict.get('year')
+        if res is not None:
+            return str(res)
+        d = self.date
+        if d is None:
+            return None
+        return d.year
+
+    @property
+    def period(self):
+        return self._in_dict.get('styles', [])[-1]
+
+
+DO_URL_FMT = "https://api.discogs.com/releases/{release_id}"
+
+def get_do_release(do_release_id):
+    # https://www.discogs.com/developers
+    response = requests.get(DO_URL_FMT.format(release_id=do_release_id),
+                            headers = {'User-Agent': "FooBarApp/3.0"})
     return json.loads(response.text)
 
 
@@ -476,10 +555,20 @@ def main():
         if args.first_arg is None:
             raise RuntimeError('Need track filename')
         if args.second_arg is None:
-            raise RuntimeError('Need release id')
+            raise RuntimeError('Need MusicBrainz release id')
         info = get_mb_release(args.second_arg)
         mbi = MBInfo(info)
         config[args.first_arg].update(mbi.as_config())
+        write_config(config, args.config_path)
+        return 0
+    if args.action == 'do-config':
+        if args.first_arg is None:
+            raise RuntimeError('Need track filename')
+        if args.second_arg is None:
+            raise RuntimeError('Need Discogs release id')
+        info = get_do_release(args.second_arg)
+        doi = DOInfo(info)
+        config[args.first_arg].update(doi.as_config())
         write_config(config, args.config_path)
         return 0
     if args.action == 'build':
@@ -490,7 +579,7 @@ def main():
     else:
         raise RuntimeError(
             'Expecting one of'
-            'one of "default-config", "mb-config", "build"')
+            '"default-config", "mb-config", "do-config", "build"')
 
 
 if __name__ == '__main__':
