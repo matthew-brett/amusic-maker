@@ -141,8 +141,6 @@ def out_fbaseroot_for(fname, entry):
             disc_no = full['discnumber']
             fname = f'{fname}_d{disc_no}'
         full['totaldiscs'] = disc_total
-    if 'tracktotal' in full:
-        full['totaltracks'] = full['tracktotal']
     track_no = full['tracknumber']
     return f'{fname}_side{track_no:02d}'
 
