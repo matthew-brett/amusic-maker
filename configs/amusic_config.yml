@@ -72,7 +72,8 @@ settings:
     conv_path: mp3s
     sox_params: ["-C", "320"]
     conv_ext: .mp3
-    min_img_size: [640, 480]
+    min_img_size: [600, 400]
+    out_dim: 1024
 berliozfunebre1-cr.wav:
     folder_name: berlioz_funebre
     img_fname: berlioz_funebre.jpg
@@ -80,7 +81,6 @@ berliozfunebre1-cr.wav:
     albumartist: Hector Berlioz
     albumartistsort: Berlioz, Hector
     artist: Hector Berlioz
-    artists: Hector Berlioz
     artistsort: Berlioz, Hector
     composer: Hector Berlioz
     conductor: Fritz Straub
@@ -99,7 +99,6 @@ berliozfunebre2-cr.wav:
     albumartist: Hector Berlioz
     albumartistsort: Berlioz, Hector
     artist: Hector Berlioz
-    artists: Hector Berlioz
     artistsort: Berlioz, Hector
     composer: Hector Berlioz
     conductor: Fritz Straub
@@ -118,7 +117,6 @@ brahmvc1-cr.wav:
     albumartist: Johannes Brahms
     albumartistsort: Brahms, Johannes
     artist: Johannes Brahms
-    artists: Johannes Brahms
     artistsort: Brahms, Johannes
     composer: Johannes Brahms
     conductor: Otto Klemperer
@@ -137,7 +135,6 @@ brahmvc2-cr.wav:
     albumartist: Johannes Brahms
     albumartistsort: Brahms, Johannes
     artist: Johannes Brahms
-    artists: Johannes Brahms
     artistsort: Brahms, Johannes
     composer: Johannes Brahms
     conductor: Otto Klemperer
@@ -156,7 +153,6 @@ bruksy9_1-cr.wav:
     albumartist: Anton Bruckner
     albumartistsort: Bruckner, Anton
     artist: Anton Bruckner
-    artists: Anton Bruckner
     artistsort: Bruckner, Anton
     composer: Anton Bruckner
     conductor: Jascha Horenstein
@@ -175,7 +171,6 @@ bruksy9_2-cr.wav:
     albumartist: Anton Bruckner
     albumartistsort: Bruckner, Anton
     artist: Anton Bruckner
-    artists: Anton Bruckner
     artistsort: Bruckner, Anton
     composer: Anton Bruckner
     conductor: Jascha Horenstein
@@ -194,9 +189,6 @@ chopin_fortep1-cr.wav:
     albumartist: Frederic Chopin
     albumartistsort: Chopin, Frederic
     artist: Frederic Chopin
-    artists:
-    - Frederic Chopin
-    - Franz Schubert
     artistsort: Chopin, Frederic
     composer: Frederic Chopin
     title: 'Ernst Gröschel fortepianos: Chopin Impromptu 66; Etudes Op 10/1,4,5; Op
@@ -213,14 +205,11 @@ chopin_fortep2-cr.wav:
     folder_name: chopin_fortepiano
     img_fname: chopin_forte.jpg
     album: Ernst Gröschel plays original fortepianos
-    albumartist: Frederic Chopin
-    albumartistsort: Chopin, Frederic
-    artist: Frederic Chopin
-    artists:
-    - Frederic Chopin
-    - Franz Schubert
-    artistsort: Chopin, Frederic
-    composer: Frederic Chopin
+    albumartist: Franz Schubert
+    albumartistsort: Schubert, Franz
+    artist: Franz Schubert
+    artistsort: Schubert, Franz
+    composer: Franz Schubert
     title: 'Ernst Gröschel fortepianos: Schubert Sonata A minor op 143; Impromptu
         op 142/4'
     performer:
@@ -237,7 +226,6 @@ debussyp1-cr.wav:
     albumartist: Claude Debussy
     albumartistsort: Debussy, Claude
     artist: Claude Debussy
-    artists: Claude Debussy
     artistsort: Debussy, Claude
     composer: Claude Debussy
     title: 'Debussy Piano Works: Jardins Sous La Pluie; Deux Arabesques/1,2; La Plus
@@ -256,7 +244,6 @@ debussyp2-cr.wav:
     albumartist: Claude Debussy
     albumartistsort: Debussy, Claude
     artist: Claude Debussy
-    artists: Claude Debussy
     artistsort: Debussy, Claude
     composer: Claude Debussy
     title: 'Debussy Piano Works: Claire de Lune; CHILDRENS CORNER SUITE: Dr Gradus
@@ -276,7 +263,6 @@ dido_older_1-cr.wav:
     albumartist: Henry Purcell
     albumartistsort: Purcell, Henry
     artist: Henry Purcell
-    artists: Henry Purcell
     artistsort: Purcell, Henry
     composer: Henry Purcell
     conductor: Anthony Lewis
@@ -296,7 +282,6 @@ dido_older_2-cr.wav:
     albumartist: Henry Purcell
     albumartistsort: Purcell, Henry
     artist: Henry Purcell
-    artists: Henry Purcell
     artistsort: Purcell, Henry
     composer: Henry Purcell
     conductor: Anthony Lewis
@@ -315,15 +300,19 @@ early_english_keybord_1_2-cr.wav:
     album: Early English Keyboard Music
     albumartist: Byrd, Gibbons, Farnaby, Bull
     albumartistsort: Byrd, Gibbons, Farnaby, Bull
-    artist: Byrd, Gibbons, Farnaby, Bull
-    artists:
+    artist:
     - William Byrd
     - Giles Farnaby
     - Anon
     - Orlando Gibbons
     - John Bull
     artistsort: Byrd, Gibbons, Farnaby, Bull
-    composer: Byrd, Gibbons, Farnaby, Bull
+    composer:
+    - William Byrd
+    - Giles Farnaby
+    - Anon
+    - Orlando Gibbons
+    - John Bull
     conductor: Robert Donnington
     title: 'Early English Keyboard Music: Byrd/Pavana Bray, Gilliarda Bray; Gibbons/Fantasy;
         Farnaby/Woodycock variations'
@@ -340,15 +329,19 @@ early_english_keyboard_2-cr.wav:
     album: Early English Keyboard Music
     albumartist: Byrd, Gibbons, Farnaby, Bull
     albumartistsort: Byrd, Gibbons, Farnaby, Bull
-    artist: Byrd, Gibbons, Farnaby, Bull
-    artists:
+    artist:
     - William Byrd
     - Giles Farnaby
     - Anon
     - Orlando Gibbons
     - John Bull
     artistsort: Byrd, Gibbons, Farnaby, Bull
-    composer: Byrd, Gibbons, Farnaby, Bull
+    composer:
+    - William Byrd
+    - Giles Farnaby
+    - Anon
+    - Orlando Gibbons
+    - John Bull
     conductor: Robert Donnington
     title: 'Early English Keyboard Music: Anon/The Lords Masque, New Noddy; Bull/The
         King''s Hunt; Gibbons/Lord Salisbury''s Pavane, Lord Salisbury''s Galliard;
@@ -369,7 +362,6 @@ elgar_sy1_1-cr.wav:
     albumartist: Edward Elgar
     albumartistsort: Elgar, Edward
     artist: Edward Elgar
-    artists: Edward Elgar
     artistsort: Elgar, Edward
     composer: Edward Elgar
     conductor: Sir John Barbirolli
@@ -388,7 +380,6 @@ elgar_sy1_2-cr.wav:
     albumartist: Edward Elgar
     albumartistsort: Elgar, Edward
     artist: Edward Elgar
-    artists: Edward Elgar
     artistsort: Elgar, Edward
     composer: Edward Elgar
     conductor: Sir John Barbirolli
@@ -407,7 +398,6 @@ haydn_solemnis_1-cr.wav:
     albumartist: Joseph Haydn
     albumartistsort: Haydn, Joseph
     artist: Joseph Haydn
-    artists: Joseph Haydn
     artistsort: Haydn, Joseph
     composer: Joseph Haydn
     conductor: Hans Gillesberger
@@ -431,7 +421,6 @@ haydn_solemnis_2-cr.wav:
     albumartist: Joseph Haydn
     albumartistsort: Haydn, Joseph
     artist: Joseph Haydn
-    artists: Joseph Haydn
     artistsort: Haydn, Joseph
     composer: Joseph Haydn
     conductor: Hans Gillesberger
@@ -455,7 +444,6 @@ haydnq71_1-cr.wav:
     albumartist: Joseph Haydn
     albumartistsort: Haydn, Joseph
     artist: Joseph Haydn
-    artists: Joseph Haydn
     artistsort: Haydn, Joseph
     composer: Joseph Haydn
     title: 'String Quartets op. 71 & 74: op. 71/1'
@@ -473,7 +461,6 @@ haydnq71_2-cr.wav:
     albumartist: Joseph Haydn
     albumartistsort: Haydn, Joseph
     artist: Joseph Haydn
-    artists: Joseph Haydn
     artistsort: Haydn, Joseph
     composer: Joseph Haydn
     title: 'String Quartets op. 71 & 74: op. 71/2'
@@ -491,7 +478,6 @@ haydnq7174_71_3-cr.wav:
     albumartist: Joseph Haydn
     albumartistsort: Haydn, Joseph
     artist: Joseph Haydn
-    artists: Joseph Haydn
     artistsort: Haydn, Joseph
     composer: Joseph Haydn
     title: 'String Quartets op. 71 & 74: op. 71/3'
@@ -509,7 +495,6 @@ haydnq7174_74_1-cr.wav:
     albumartist: Joseph Haydn
     albumartistsort: Haydn, Joseph
     artist: Joseph Haydn
-    artists: Joseph Haydn
     artistsort: Haydn, Joseph
     composer: Joseph Haydn
     title: 'String Quartets op. 71 & 74: op. 74/1'
@@ -527,7 +512,6 @@ haydnq74_23_1-cr.wav:
     albumartist: Joseph Haydn
     albumartistsort: Haydn, Joseph
     artist: Joseph Haydn
-    artists: Joseph Haydn
     artistsort: Haydn, Joseph
     composer: Joseph Haydn
     title: 'String Quartets op. 71 & 74: op. 74/2'
@@ -545,7 +529,6 @@ haydnq74_23_2-cr.wav:
     albumartist: Joseph Haydn
     albumartistsort: Haydn, Joseph
     artist: Joseph Haydn
-    artists: Joseph Haydn
     artistsort: Haydn, Joseph
     composer: Joseph Haydn
     title: 'String Quartets op. 71 & 74: op. 74/3'
@@ -563,7 +546,6 @@ lvbmissa1-cr.wav:
     albumartist: Ludwig van Beethoven
     albumartistsort: Beethoven, Ludwig van
     artist: Ludwig van Beethoven
-    artists: Ludwig van Beethoven
     artistsort: Beethoven, Ludwig van
     composer: Ludwig van Beethoven
     conductor: Herbert von Karajan
@@ -587,7 +569,6 @@ lvbmissa2-cr.wav:
     albumartist: Ludwig van Beethoven
     albumartistsort: Beethoven, Ludwig van
     artist: Ludwig van Beethoven
-    artists: Ludwig van Beethoven
     artistsort: Beethoven, Ludwig van
     composer: Ludwig van Beethoven
     conductor: Herbert von Karajan
@@ -611,7 +592,6 @@ lvbmissa3-cr.wav:
     albumartist: Ludwig van Beethoven
     albumartistsort: Beethoven, Ludwig van
     artist: Ludwig van Beethoven
-    artists: Ludwig van Beethoven
     artistsort: Beethoven, Ludwig van
     composer: Ludwig van Beethoven
     conductor: Herbert von Karajan
@@ -635,7 +615,6 @@ lvbmissa4-cr.wav:
     albumartist: Ludwig van Beethoven
     albumartistsort: Beethoven, Ludwig van
     artist: Ludwig van Beethoven
-    artists: Ludwig van Beethoven
     artistsort: Beethoven, Ludwig van
     composer: Ludwig van Beethoven
     conductor: Herbert von Karajan
@@ -659,7 +638,6 @@ mouss_pictures_1-cr.wav:
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
     artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
     artistsort: Bach, Johann Sebastian
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
@@ -679,7 +657,6 @@ mouss_pictures_2-cr.wav:
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
     artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
     artistsort: Bach, Johann Sebastian
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
@@ -699,7 +676,6 @@ mozsuk1-cr.wav:
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
     artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
     artistsort: Bach, Johann Sebastian
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
@@ -719,7 +695,6 @@ mozsuk2-cr.wav:
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
     artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
     artistsort: Bach, Johann Sebastian
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
@@ -739,7 +714,6 @@ orfeo1-cr.wav:
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
     artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
     artistsort: Bach, Johann Sebastian
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
@@ -759,7 +733,6 @@ orfeo2-cr.wav:
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
     artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
     artistsort: Bach, Johann Sebastian
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
@@ -779,7 +752,6 @@ palestrine_mont_11-cr.wav:
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
     artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
     artistsort: Bach, Johann Sebastian
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
@@ -799,7 +771,6 @@ palestrine_mont_2-cr.wav:
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
     artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
     artistsort: Bach, Johann Sebastian
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
@@ -819,7 +790,6 @@ rachp3_v2_1-cr.wav:
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
     artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
     artistsort: Bach, Johann Sebastian
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
@@ -839,7 +809,6 @@ rachp3_v3_2-cr.wav:
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
     artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
     artistsort: Bach, Johann Sebastian
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
@@ -859,7 +828,6 @@ shutz_motets_1-cr.wav:
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
     artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
     artistsort: Bach, Johann Sebastian
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
@@ -879,7 +847,6 @@ shutz_motets_2-cr.wav:
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
     artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
     artistsort: Bach, Johann Sebastian
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
@@ -899,7 +866,6 @@ telemann_vorclassik_1-cr.wav:
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
     artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
     artistsort: Bach, Johann Sebastian
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
@@ -919,7 +885,6 @@ telemann_vorclassik_2-cr.wav:
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
     artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
     artistsort: Bach, Johann Sebastian
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
@@ -939,7 +904,6 @@ toscwag1-cr.wav:
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
     artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
     artistsort: Bach, Johann Sebastian
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
@@ -959,7 +923,6 @@ toscwag2-cr.wav:
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
     artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
     artistsort: Bach, Johann Sebastian
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
@@ -979,7 +942,6 @@ walton_belsh1-cr.wav:
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
     artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
     artistsort: Bach, Johann Sebastian
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
@@ -999,7 +961,6 @@ walton_belsh2-cr.wav:
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
     artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
     artistsort: Bach, Johann Sebastian
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
@@ -1019,7 +980,6 @@ young3-cr.wav:
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
     artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
     artistsort: Bach, Johann Sebastian
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
@@ -1039,7 +999,6 @@ ypg_again2_1-cr.wav:
     albumartist: The Sixteen
     albumartistsort: Sixteen, The
     artist: Johann Sebastian Bach
-    artists: Johann Sebastian Bach
     artistsort: Bach, Johann Sebastian
     composer: Johann Sebastian Bach
     conductor: Harry Christophers
