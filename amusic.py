@@ -7,7 +7,7 @@ import os.path as op
 import re
 from io import BytesIO
 import shutil
-from datetime import date as Date, datetime as DTM
+from datetime import date as Date
 from copy import deepcopy
 import json
 from hashlib import md5
@@ -18,41 +18,6 @@ import requests
 import yaml
 from PIL import Image
 
-from mutagen.id3 import APIC, USLT, Encoding, PictureType
-from mutagen.easyid3 import EasyID3
-
-# Extra ID3 keys
-# https://en.wikipedia.org/wiki/ID3#ID3v2_frame_specification
-EasyID3.RegisterTextKey('originalyear', 'TORY')
-EasyID3.RegisterTextKey('style', 'TIT1')
-# period becomes synonym for genre
-EasyID3.RegisterTextKey('period', 'TCON')
-# Discard disctotal and orchestra quietly
-EasyID3.RegisterKey('disctotal', setter=lambda s, k, v: None)
-EasyID3.RegisterKey('orchestra', setter=lambda s, k, v: None)
-# Details go into the lyrics field.
-LYRICS_KEY = "USLT::'eng'"
-
-def set_lyrics(tags, key, text):
-    tags[LYRICS_KEY] = USLT(encoding=Encoding.UTF8, lang='eng', desc='desc',
-                            text='\n'.join(text))
-
-EasyID3.RegisterKey('details', lambda t, k: t[LYRICS_KEY], set_lyrics)
-
-# Set picture
-def set_picture(tags, key, img_data):
-    apic_type = getattr(PictureType, key.upper())
-    tags.add(
-        APIC(
-            encoding=Encoding.UTF8,
-            mime='image/jpeg', # image/jpeg or image/png
-            type=apic_type,
-            desc=key,
-            data=img_data,
-        )
-    )
-
-EasyID3.RegisterKey('COVER_FRONT', setter=set_picture)
 
 CONFIG_BASENAME = 'amusic_config.yml'
 HASH_EXT = '.md5'
@@ -281,8 +246,47 @@ def write_song(music_fname,
     write_hash_for(dict2hash(exp_params), full_out_fname)
 
 
+def get_tag_maker():
+
+    from mutagen.id3 import APIC, USLT, Encoding, PictureType
+    from mutagen.easyid3 import EasyID3
+
+    # Extra ID3 keys
+    # https://en.wikipedia.org/wiki/ID3#ID3v2_frame_specification
+    EasyID3.RegisterTextKey('originalyear', 'TORY')
+    EasyID3.RegisterTextKey('style', 'TIT1')
+    # period becomes synonym for genre
+    EasyID3.RegisterTextKey('period', 'TCON')
+    # Details go into the lyrics field.
+    LYRICS_KEY = "USLT::'eng'"
+
+    def set_lyrics(tags, key, text):
+        tags[LYRICS_KEY] = USLT(encoding=Encoding.UTF8, lang='eng', desc='desc',
+                                text='\n'.join(text))
+
+    EasyID3.RegisterKey('details', lambda t, k : t[LYRICS_KEY], set_lyrics)
+
+    # Set picture
+    def set_picture(tags, key, img_data):
+        apic_type = getattr(PictureType, key.upper())
+        tags.add(
+            APIC(
+                encoding=Encoding.UTF8,
+                mime='image/jpeg', # image/jpeg or image/png
+                type=apic_type,
+                desc=key,
+                data=img_data,
+            )
+        )
+
+    EasyID3.RegisterKey('cover_front', setter=set_picture)
+
+    return EasyID3
+
+
+
 def write_tags(full_out_fname, entry, img_data):
-    etags = EasyID3()
+    etags = get_tag_maker()()
     etags['cover_front'] = img_data
     for key, value in entry.items():
         if not isinstance(value, list):
@@ -406,7 +410,7 @@ class MBInfo:
             return d
         y, m, d = [int(v) for v in d.split('-')]
         d = 1 if d == 0 else d
-        return DTM(y, m, d)
+        return Date(y, m, d)
 
     @property
     def year(self):
@@ -477,7 +481,7 @@ class MBInfo:
         return None
 
 
-def get_mb_release(mb_release_id, config):
+def get_mb_release(mb_release_id):
     # https://musicbrainz.org/doc/MusicBrainz_API
     response = requests.get(MBZ_URL_FMT.format(release_id=mb_release_id))
     return json.loads(response.text)
