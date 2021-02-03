@@ -285,7 +285,6 @@ def get_tag_maker():
     return EasyID3
 
 
-
 def write_tags(full_out_fname, entry, img_data):
     etags = get_tag_maker()()
     etags['cover_front'] = img_data
@@ -514,7 +513,7 @@ class DOInfo(MBInfo):
     @property
     def year(self):
         res = self._in_dict.get('year')
-        if res is not None:
+        if res not in (None, 0):
             return str(res)
         d = self.date
         if d is None:
@@ -525,8 +524,20 @@ class DOInfo(MBInfo):
     def period(self):
         return self._in_dict.get('styles', [])[-1]
 
+    @property
+    def details(self):
+        details = []
+        suffix = ''
+        for t in self._in_dict['tracklist']:
+            if t['type_'] == 'heading':
+                suffix = t['title'] + ' - '
+            elif t['type_'] == 'track':
+                details.append(f"{t['position']}: {suffix}{t['title']}")
+        return '\n'.join(details)
+
 
 DO_URL_FMT = "https://api.discogs.com/releases/{release_id}"
+
 
 def get_do_release(do_release_id):
     # https://www.discogs.com/developers

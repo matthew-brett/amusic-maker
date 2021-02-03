@@ -7,7 +7,9 @@ import shutil
 from datetime import date as Date
 from glob import glob
 
-from amusic import (get_mb_release, MBInfo, strip_nones, read_config,
+from amusic import (get_mb_release, MBInfo,
+                    get_do_release, DOInfo,
+                    strip_nones, read_config,
                     proc_config, build_one, clear_hashes)
 
 
@@ -152,6 +154,28 @@ def test_mbinfo():
     assert mbi.choir == choirs[0]
     assert mbi.date == Date(1985, 12, 3)
     assert mbi.year == 1985
+
+
+def test_doinfo():
+    # https://www.discogs.com/Palestrina-Monteverdi-Netherlands-Chamber-Choir-Felix-De-Nobel-Palestrina-Monteverdi/release/7793083
+    PAL_MON_INFO = get_do_release(7793083)
+    mbi = DOInfo(PAL_MON_INFO)
+    composers = mbi.composers
+    assert len(composers) == 2
+    assert composers[0]['name'] == 'Claudio Monteverdi'
+    assert composers[1]['name'] == 'Giovanni Pierluigi Da Palestrina'
+    conductors = mbi.conductors
+    assert len(conductors) == 1
+    assert conductors[0]['name'] == 'Felix De Nobel'
+    assert mbi.conductor == conductors[0]
+    orchestras = mbi.orchestras
+    assert len(orchestras) == 1
+    assert orchestras[0]['name'] == 'Nederlands Kamerkoor'
+    assert mbi.orchestra == orchestras[0]
+    choirs = mbi.choirs
+    assert len(choirs) == 0
+    assert mbi.date is None
+    assert mbi.year is None
 
 
 def glob_rm(glob_str):
