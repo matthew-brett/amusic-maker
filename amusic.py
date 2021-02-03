@@ -22,6 +22,7 @@ from mutagen.id3 import APIC, USLT, Encoding, PictureType
 from mutagen.easyid3 import EasyID3
 
 # Extra ID3 keys
+# https://en.wikipedia.org/wiki/ID3#ID3v2_frame_specification
 EasyID3.RegisterTextKey('originalyear', 'TORY')
 EasyID3.RegisterTextKey('style', 'TIT1')
 # period becomes synonym for genre
