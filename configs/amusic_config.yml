@@ -10,7 +10,7 @@ settings:
     - '320'
     conv_ext: .mp3
     min_img_size:
-    - 600
+    - 500
     - 400
     out_dim: 1024
 berliozfunebre1-cr.wav:

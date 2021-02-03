@@ -26,8 +26,9 @@ EasyID3.RegisterTextKey('originalyear', 'TORY')
 EasyID3.RegisterTextKey('style', 'TIT1')
 # period becomes synonym for genre
 EasyID3.RegisterTextKey('period', 'TCON')
-# Discard disctotal quietly
+# Discard disctotal and orchestra quietly
 EasyID3.RegisterKey('disctotal', setter=lambda s, k, v: None)
+EasyID3.RegisterKey('orchestra', setter=lambda s, k, v: None)
 # Details go into the lyrics field.
 LYRICS_KEY = "USLT::'eng'"
 
