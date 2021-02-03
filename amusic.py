@@ -373,6 +373,7 @@ class MBInfo:
     role_sub_key = 'disambiguation'
     date_key = 'date'
     composer_str = 'composer'
+    filled_flag_key = 'musicbrainz_filled'
 
     def __init__(self, in_dict):
         self._in_dict = in_dict
@@ -380,7 +381,6 @@ class MBInfo:
             'artist-credit', [])
         self._artists = [d['artist'] for d in self._credits
                          if 'artist' in d]
-
 
     def _get_value(self, key):
         res = self._in_dict.get(key)
@@ -401,7 +401,9 @@ class MBInfo:
             'title': self._get_value('title'),
             'originaldate': self.date,
             'originalyear': self.year,
-            'period': self.period
+            'period': self.period,
+            'details': self.details,
+            self.filled_flag_key: True
         })
 
     @property
@@ -481,6 +483,10 @@ class MBInfo:
     def period(self):
         return None
 
+    @property
+    def details(self):
+        return None
+
 
 def get_mb_release(mb_release_id):
     # https://musicbrainz.org/doc/MusicBrainz_API
@@ -494,6 +500,7 @@ class DOInfo(MBInfo):
     role_sub_key = 'role'
     date_key = 'released'
     composer_str = 'composed by'
+    filled_flag_key = 'discogs_filled'
 
     def __init__(self, in_dict):
         self._in_dict = in_dict
