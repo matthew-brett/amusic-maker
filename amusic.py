@@ -193,7 +193,8 @@ def convert_file(in_fname, out_fname, sox_params):
     out_hash = dict2hash(params)
     if stored_hash_for(out_fname) == out_hash:
         return out_hash
-    check_call(['sox', in_fname] + sox_params + [out_fname])
+    extra_params = [str(p) for p in sox_params]
+    check_call(['sox', in_fname] + extra_params + [out_fname])
     write_hash_for(out_hash, out_fname)
     return out_hash
 

@@ -7,7 +7,7 @@ settings:
     conv_path: mp3s
     sox_params:
     - -C
-    - '320'
+    - 320
     conv_ext: .mp3
     min_img_size:
     - 500
