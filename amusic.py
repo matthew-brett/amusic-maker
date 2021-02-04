@@ -417,7 +417,7 @@ class MBInfo:
 
     def as_config(self):
         composers = self.composers
-        composer = composers[0]
+        composer = composers[0] if len(composers) else {}
         composer_name = composer.get('name')
         return strip_nones({
             'album': self._get_value('title'),
@@ -611,6 +611,7 @@ def fill_config(wrapper,
             fill_obj = wrapper.from_release(rel_id)
         else:
             rel_id = release_spec
+        print(f'Filling {key} from {rel_id}')
         new_info = fill_obj.as_config()
         new_info[rel_id_key] = rel_id
         new_info[done_key] = True
