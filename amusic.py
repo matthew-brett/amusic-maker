@@ -18,6 +18,7 @@ from argparse import ArgumentParser, RawDescriptionHelpFormatter
 import requests
 import yaml
 from PIL import Image
+from nameparser import HumanName
 
 
 CONFIG_BASENAME = 'amusic_config.yml'
@@ -357,6 +358,31 @@ def strip_nones(val):
     return out if len(out) else None
 
 
+# Dictionary to fix any incorrect sortnames below.
+SORT_NAMES = {}
+
+
+def pn2last_prefixes(pn):
+    lasts = []
+    prefixes = []
+    for p in pn.last.split():
+        if pn.is_prefix(p):
+            prefixes.append(p)
+        else:
+            lasts.append(p)
+    return ' '.join(lasts), prefixes
+
+
+def get_sort_name(name):
+    if name is None:
+        return None
+    pn = HumanName(name)
+    last, prefixes = pn2last_prefixes(pn)
+    if (key := last.lower()) in SORT_NAMES:
+        return SORT_NAMES[key]
+    return last + ', ' + ' '.join(pn.first_list + pn.middle_list + prefixes)
+
+
 class MBInfo:
 
     role_key = 'type'
@@ -398,9 +424,12 @@ class MBInfo:
     def as_config(self):
         composers = self.composers
         composer = composers[0]
+        composer_name = composer.get('name')
         return strip_nones({
             'album': self._get_value('title'),
-            'albumartist': composer.get('name'),
+            'artist': composer_name,
+            'artistsort': composer.get('sort-name'),
+            'albumartist': composer_name,
             'albumartistsort': composer.get('sort-name'),
             'composer': [c.get('name') for c in composers],
             'conductor': self.conductor.get('name'),
@@ -510,6 +539,9 @@ class DOInfo(MBInfo):
         self._in_dict = in_dict
         self._artists = self._in_dict.get(
             'extraartists', [])
+        # Add sort versions
+        for a in self._artists:
+            a['sort-name'] = get_sort_name(a.get('name'))
 
     @property
     def persons(self):
