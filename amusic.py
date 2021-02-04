@@ -193,7 +193,7 @@ def convert_file(in_fname, out_fname, sox_params):
 def write_converted_file(in_fname,
                          full_out_fname,
                          settings,
-                         clobber=False):
+                         force=False):
     froot, ext = op.splitext(in_fname)
     ensure_dir(settings['conv_path'])
     conv_fname = op.join(settings['conv_path'],
@@ -216,17 +216,17 @@ def write_song(music_fname,
                full_out_fname,
                entry,
                settings,
-               clobber=False):
+               force=False):
     exp_params = dict(
         music_hash=stored_hash_for(music_fname),
         img_hash=stored_hash_for(img_fname),
         entry=entry)
     if same_hash_for(dict2hash(exp_params), full_out_fname):
         return
-    if op.exists(full_out_fname) and not clobber:
+    if op.exists(full_out_fname) and not force:
         raise RuntimeError(f'File {full_out_fname} exists')
     write_converted_file(music_fname, full_out_fname, settings,
-                         clobber=clobber)
+                         force=force)
     exp_params['music_hash'] = stored_hash_for(music_fname)
     # Add tags and image
     exp_params['img_hash'], img_data = write_proc_image(
@@ -313,7 +313,7 @@ def ensure_dir(path):
         os.makedirs(path)
 
 
-def build_one(fbase, config, settings, clobber=False):
+def build_one(fbase, config, settings, force=False):
     music_fname = find_file(fbase, settings['wav_paths'])
     entry = config.copy()
     # Remove folder and image entries.
@@ -331,7 +331,7 @@ def build_one(fbase, config, settings, clobber=False):
     write_song(music_fname,
                img_fname,
                full_out_fname, entry,
-               settings, clobber=clobber)
+               settings, force=force)
 
 
 def write_config(config, config_fname):
@@ -580,8 +580,8 @@ def get_parser():
     parser.add_argument('--config-path',
                         default=op.join(os.getcwd(), CONFIG_BASENAME),
                         help='Path to config file')
-    parser.add_argument('--clobber', action='store_true',
-                        help='Whether to overwrite existing files')
+    parser.add_argument('--force', action='store_true',
+                        help='Whether to overwrite existing files/parameters')
     return parser
 
 
@@ -605,13 +605,14 @@ def main():
         config = fill_config(wrapper,
                              config,
                              args.first_arg,
-                             args.second_arg)
+                             args.second_arg,
+                             force=args.force)
         write_config(config, args.config_path)
         return 0
     if args.action == 'build':
         for track, config in tracks.items():
             print('Building', track)
-            build_one(track, config, settings, args.clobber)
+            build_one(track, config, settings, args.force)
         return 0
     else:
         raise RuntimeError(
