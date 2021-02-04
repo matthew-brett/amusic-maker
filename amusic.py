@@ -576,7 +576,9 @@ class DOInfo(MBInfo):
 def fill_config(wrapper,
                 config,
                 track_spec,
-                release_spec=None):
+                release_spec=None,
+                force=False,
+               ):
     new_config = deepcopy(config)
     fill_obj = (None if release_spec is None
                 else wrapper.from_release(release_spec))
@@ -585,7 +587,7 @@ def fill_config(wrapper,
     for key, track_info in new_config.items():
         if not fnmatch(key, track_spec):
             continue
-        if track_info.get(done_key):
+        if not force and track_info.get(done_key):
             continue
         if release_spec is None:
             if not (rel_id := track_info.get(rel_id_key)):
