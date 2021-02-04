@@ -703,7 +703,7 @@ orfeo2-cr.wav:
     originaldate: 1954-12-01 00:00:00
 palestrine_mont_11-cr.wav:
     folder_name: palestrina_monteverdi
-    img_fname: palestrina_monteverdi.jpg
+    img_fname: pal_monte.jpg
     discogs_release: '7793083'
     album: Palestrina – Monteverdi
     albumartist: Claudio Monteverdi
@@ -742,7 +742,7 @@ palestrine_mont_11-cr.wav:
     discogs_filled: true
 palestrine_mont_2-cr.wav:
     folder_name: palestrina_monteverdi
-    img_name: palestrina_monteverdi.jpg
+    img_fname: pal_monte.jpg
     album: Palestrina – Monteverdi
     albumartist: Claudio Monteverdi
     albumartistsort: Monteverdi, Claudio
@@ -832,7 +832,8 @@ rachp3_v3_2-cr.wav:
     discogs_filled: true
 telemann_vorclassik_1-cr.wav:
     folder_name: telemann_vorklassic
-    img_fname: telemann_vorklassic.jpg
+    img_fname: telemann_vorklassik.jpg
+    tracknumber: 1
     albumartist: Georg Philipp Telemann
     albumartistsort: Telemann, Georg Philipp
     artist: Georg Philipp Telemann
@@ -873,7 +874,8 @@ telemann_vorclassik_1-cr.wav:
     discogs_filled: true
 telemann_vorclassik_2-cr.wav:
     folder_name: telemann_vorklassic
-    img_fname: telemann_vorklassic.jpg
+    img_fname: telemann_vorklassik.jpg
+    tracknumber: 2
     albumartist: Georg Philipp Telemann
     albumartistsort: Telemann, Georg Philipp
     artist: Georg Philipp Telemann
@@ -914,7 +916,8 @@ telemann_vorclassik_2-cr.wav:
     discogs_filled: true
 walton_belsh1-cr.wav:
     folder_name: walton_belshazzar
-    img_fname: walt_belsh.jpg
+    img_fname: walton_belsh.jpg
+    tracknumber: 1
     discogs_release: 5764515
     style: Choral
     album: Belshazzar's Feast
@@ -938,7 +941,8 @@ walton_belsh1-cr.wav:
     discogs_filled: true
 walton_belsh2-cr.wav:
     folder_name: walton_belshazzar
-    img_fname: walt_belsh.jpg
+    img_fname: walton_belsh.jpg
+    tracknumber: 2
     discogs_release: 5764515
     style: Choral
     album: Belshazzar's Feast
@@ -962,7 +966,8 @@ walton_belsh2-cr.wav:
     discogs_filled: true
 young3-cr.wav:
     folder_name: britten_ypg
-    img_fname: britten_jpg.jpg
+    img_fname: britten_ypg.jpg
+    tracknumber: 1
     discogs_release: 9093891
     album: Young Person's Guide to the Orchestra
     artist: Benjamin Britten
@@ -984,7 +989,8 @@ young3-cr.wav:
     discogs_filled: true
 ypg_again2_1-cr.wav:
     folder_name: britten_ypg
-    img_fname: britten_jpg.jpg
+    img_fname: britten_ypg.jpg
+    tracknumber: 2
     discogs_release: 9093891
     album: Young Person's Guide to the Orchestra
     artist: Benjamin Britten
@@ -1005,14 +1011,133 @@ ypg_again2_1-cr.wav:
     details: 'B1: Variations On A Nursery Tune, Op. 25'
     discogs_filled: true
 toscwag1-cr.wav:
-    folder_name: null
-    img_fname: brown_team.jpg
+    folder_name: toscanini_conducting_philharmonic
+    img_fname: tosc_wag_side1.jpg
+    tracknumber: 1
+    discogs_release: 7755878
+    style: orchestral
+    album: Toscanini conducting the Philharmonic Symphony Orchestra of New York
+    artist: Joseph Haydn
+    artistsort: Haydn, Joseph
+    albumartist: Joseph Haydn
+    albumartistsort: Haydn, Joseph
+    composer:
+    - Joseph Haydn
+    conductor: Arturo Toscanini
+    orchestra: The Philharmonic Symphony Orchestra of New York
+    performer:
+    - The Philharmonic Symphony Orchestra of New York
+    title: Symphony No. 101 In D ("The Clock")
+    originalyear: '1970'
+    details: 'A1: Symphony No. 101, In D ("The Clock") - First Movement: Adagio, Presto
+
+        A2: Symphony No. 101, In D ("The Clock") - Second Movement: Andante
+
+        A3: Symphony No. 101, In D ("The Clock") - Third Movement: Menuetto, Allegretto
+
+        A4: Symphony No. 101, In D ("The Clock") - Fourth Movement: Finale, Vivace'
+    discogs_filled: true
 toscwag2-cr.wav:
-    folder_name: null
-    img_fname: brown_team.jpg
+    folder_name: toscanini_conducting_philharmonic
+    img_fname: tosc_wag_side2.jpg
+    tracknumber: 2
+    discogs_release: 7755878
+    style: orchestral
+    album: Toscanini conducting the Philharmonic Symphony Orchestra of New York
+    artist: Richard Wagner
+    artistsort: Wagner, Richard
+    albumartist: Richard Wagner
+    albumartistsort: Wagner, Richard
+    composer:
+    - Richard Wagner
+    conductor: Arturo Toscanini
+    orchestra: The Philharmonic Symphony Orchestra of New York
+    performer:
+    - The Philharmonic Symphony Orchestra of New York
+    title: "Prelude To Acts 1 & 3 Of Lohengrin; Dawn And Siegfried's Rhine
+      Journey (From Götterdammerung)"
+    originalyear: '1970'
+    details: 'B1: Lohengrin: Prelude To Act 1
+
+        B2: Lohengrin: Prelude To Act 3
+
+        B3: Gotterdammerung: Dawn And Rhine Journey'
+    discogs_filled: true
 shutz_motets_1-cr.wav:
     folder_name: schutz_motets
-    img_fname: brown_team.jpg
+    img_fname: schutz_motets.jpg
+    tracknumber: 1
+    discogs_release: 4784437
+    style: choral
+    album: 14 Motetten aus "Geistliche Chormusik"
+    artist: Heinrich Schütz
+    artistsort: Schütz, Heinrich
+    albumartist: Heinrich Schütz
+    albumartistsort: Schütz, Heinrich
+    composer:
+    - Heinrich Schütz
+    performer:
+    - Gottfried Wolters
+    - Ursula Von Rauchhaupt
+    - Heinz Wildhagen
+    - Norddeutscher Singkreis
+    title: 14 Motetten aus "Geistliche Chormusik"
+    originaldate: 1958-11-09
+    originalyear: '1958'
+    period: Baroque
+    details: "A1: Geistliche Chormusik (Dresden, 1648) - O Lieber Herre Gott (Nr.\
+        \ 13)\nA2: Geistliche Chormusik (Dresden, 1648) - Tröstet Mein Volk (Nr. 14)\n\
+        A3: Geistliche Chormusik (Dresden, 1648) - Also Hat Gott Die Welt Geliebt\
+        \ (Nr. 12) \nA4: Geistliche Chormusik (Dresden, 1648) - Ein Kind Ist Uns Geboren\
+        \ (Nr. 16)\nA5: Geistliche Chormusik (Dresden, 1648) - Verleih Uns Frieden\
+        \ Genädiglich (Nr. 4) - Zweiter Teil : Gib Unsern Fürsten (Nr. 5) \nA6: Geistliche\
+        \ Chormusik (Dresden, 1648) - Sammelt Zuvor Das Unkraut (Nr. 8)\nA7: Geistliche\
+        \ Chormusik (Dresden, 1648) - Das Ist Je Gewisslich Wahr (Nr. 20)\nB1: Geistliche\
+        \ Chormusik (Dresden, 1648) - Die Himmel Erzählen Die Ehre Gottes (Nr. 18)\n\
+        B2: Geistliche Chormusik (Dresden, 1648) - Ich Bin Ein Rechter Weinstock (Nr.\
+        \ 21)\nB3: Geistliche Chormusik (Dresden, 1648) - Herr, Auf Dich Traue Ich\
+        \ (Nr 1)\nB4: Geistliche Chormusik (Dresden, 1648) - Die Mit Tränen Säen (Nr.\
+        \ 10)\nB5: Geistliche Chormusik (Dresden, 1648) - Selig Sind Die Toten (Nr.\
+        \ 23)\nB6: Geistliche Chormusik (Dresden, 1648) - So Fahr Ich Hin Zu Jesu\
+        \ Christ (Nr. 11)\nB7: Geistliche Chormusik (Dresden, 1648) - Ich Weiss, Dass\
+        \ Mein Erlöser Lebt (Nr. 25)"
+    discogs_filled: true
 shutz_motets_2-cr.wav:
     folder_name: schutz_motets
-    img_fname: brown_team.jpg
+    img_fname: schutz_motets.jpg
+    tracknumber: 2
+    discogs_release: 4784437
+    style: choral
+    album: 14 Motetten aus "Geistliche Chormusik"
+    artist: Heinrich Schütz
+    artistsort: Schütz, Heinrich
+    albumartist: Heinrich Schütz
+    albumartistsort: Schütz, Heinrich
+    composer:
+    - Heinrich Schütz
+    performer:
+    - Gottfried Wolters
+    - Ursula Von Rauchhaupt
+    - Heinz Wildhagen
+    - Norddeutscher Singkreis
+    title: 14 Motetten aus "Geistliche Chormusik"
+    originaldate: 1958-11-09
+    originalyear: '1958'
+    period: Baroque
+    details: "A1: Geistliche Chormusik (Dresden, 1648) - O Lieber Herre Gott (Nr.\
+        \ 13)\nA2: Geistliche Chormusik (Dresden, 1648) - Tröstet Mein Volk (Nr. 14)\n\
+        A3: Geistliche Chormusik (Dresden, 1648) - Also Hat Gott Die Welt Geliebt\
+        \ (Nr. 12) \nA4: Geistliche Chormusik (Dresden, 1648) - Ein Kind Ist Uns Geboren\
+        \ (Nr. 16)\nA5: Geistliche Chormusik (Dresden, 1648) - Verleih Uns Frieden\
+        \ Genädiglich (Nr. 4) - Zweiter Teil : Gib Unsern Fürsten (Nr. 5) \nA6: Geistliche\
+        \ Chormusik (Dresden, 1648) - Sammelt Zuvor Das Unkraut (Nr. 8)\nA7: Geistliche\
+        \ Chormusik (Dresden, 1648) - Das Ist Je Gewisslich Wahr (Nr. 20)\nB1: Geistliche\
+        \ Chormusik (Dresden, 1648) - Die Himmel Erzählen Die Ehre Gottes (Nr. 18)\n\
+        B2: Geistliche Chormusik (Dresden, 1648) - Ich Bin Ein Rechter Weinstock (Nr.\
+        \ 21)\nB3: Geistliche Chormusik (Dresden, 1648) - Herr, Auf Dich Traue Ich\
+        \ (Nr 1)\nB4: Geistliche Chormusik (Dresden, 1648) - Die Mit Tränen Säen (Nr.\
+        \ 10)\nB5: Geistliche Chormusik (Dresden, 1648) - Selig Sind Die Toten (Nr.\
+        \ 23)\nB6: Geistliche Chormusik (Dresden, 1648) - So Fahr Ich Hin Zu Jesu\
+        \ Christ (Nr. 11)\nB7: Geistliche Chormusik (Dresden, 1648) - Ich Weiss, Dass\
+        \ Mein Erlöser Lebt (Nr. 25)"
+    discogs_filled: true
