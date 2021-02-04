@@ -830,12 +830,6 @@ rachp3_v3_2-cr.wav:
 
         B2: Concerto No.3 In D Minor, Op. 30 - Third Movement  – Finale, Alla Breve'
     discogs_filled: true
-shutz_motets_1-cr.wav:
-    folder_name: schutz_motets
-    img_fname: brown_team.jpg
-shutz_motets_2-cr.wav:
-    folder_name: schutz_motets
-    img_fname: brown_team.jpg
 telemann_vorclassik_1-cr.wav:
     folder_name: telemann_vorklassic
     img_fname: telemann_vorklassic.jpg
@@ -918,12 +912,6 @@ telemann_vorclassik_2-cr.wav:
 
         B2: Konzert Für Blockflötte, Querflöte, Streicher Und Continuo E-moll'
     discogs_filled: true
-toscwag1-cr.wav:
-    folder_name: null
-    img_fname: brown_team.jpg
-toscwag2-cr.wav:
-    folder_name: null
-    img_fname: brown_team.jpg
 walton_belsh1-cr.wav:
     folder_name: walton_belshazzar
     img_fname: walt_belsh.jpg
@@ -1016,3 +1004,15 @@ ypg_again2_1-cr.wav:
     originalyear: '1966'
     details: 'B1: Variations On A Nursery Tune, Op. 25'
     discogs_filled: true
+toscwag1-cr.wav:
+    folder_name: null
+    img_fname: brown_team.jpg
+toscwag2-cr.wav:
+    folder_name: null
+    img_fname: brown_team.jpg
+shutz_motets_1-cr.wav:
+    folder_name: schutz_motets
+    img_fname: brown_team.jpg
+shutz_motets_2-cr.wav:
+    folder_name: schutz_motets
+    img_fname: brown_team.jpg
