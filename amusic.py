@@ -12,6 +12,7 @@ from copy import deepcopy
 import json
 from hashlib import md5
 from subprocess import check_call, check_output
+from fnmatch import fnmatch
 from argparse import ArgumentParser, RawDescriptionHelpFormatter
 
 import requests
@@ -362,6 +363,7 @@ class MBInfo:
     role_sub_key = 'disambiguation'
     date_key = 'date'
     composer_str = 'composer'
+    release_id_key = 'musicbrainz_release'
     filled_flag_key = 'musicbrainz_filled'
     url_fmt = (
         'https://musicbrainz.org/ws/2/release/'
@@ -394,12 +396,13 @@ class MBInfo:
         return res
 
     def as_config(self):
-        composer = self.composer
+        composers = self.composers
+        composer = composers[0]
         return strip_nones({
             'album': self._get_value('title'),
             'albumartist': composer.get('name'),
             'albumartistsort': composer.get('sort-name'),
-            'composer': composer.get('name'),
+            'composer': [c.get('name') for c in composers],
             'conductor': self.conductor.get('name'),
             'orchestra': self.orchestra.get('name'),
             'performer': [p['name'] for p in self.performers],
@@ -408,7 +411,6 @@ class MBInfo:
             'originalyear': self.year,
             'period': self.period,
             'details': self.details,
-            self.filled_flag_key: True
         })
 
     @property
@@ -499,6 +501,7 @@ class DOInfo(MBInfo):
     role_sub_key = 'role'
     date_key = 'released'
     composer_str = 'composed by'
+    release_id_key = 'discogs_release'
     filled_flag_key = 'discogs_filled'
     url_fmt = "https://api.discogs.com/releases/{release_id}"
     url_get_kwargs = {'headers': {'User-Agent': "FooBarApp/3.0"}}
@@ -543,10 +546,25 @@ def fill_config(wrapper,
                 track_spec,
                 release_spec=None):
     new_config = deepcopy(config)
-    if release_spec is None:
-        raise RuntimeError('Need release id')
-    fill_obj = wrapper.from_release(release_spec)
-    new_config[track_spec].update(fill_obj.as_config())
+    fill_obj = (None if release_spec is None
+                else wrapper.from_release(release_spec))
+    rel_id_key = wrapper.release_id_key
+    done_key = wrapper.filled_flag_key
+    for key, track_info in new_config.items():
+        if not fnmatch(key, track_spec):
+            continue
+        if track_info.get(done_key):
+            continue
+        if release_spec is None:
+            if not (rel_id := track_info.get(rel_id_key)):
+                continue
+            fill_obj = wrapper.from_release(rel_id)
+        else:
+            rel_id = release_spec
+        new_info = fill_obj.as_config()
+        new_info[rel_id_key] = rel_id
+        new_info[done_key] = True
+        new_config[key].update(new_info)
     return new_config
 
 
