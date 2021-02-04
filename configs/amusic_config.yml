@@ -782,230 +782,237 @@ palestrine_mont_2-cr.wav:
 rachp3_v2_1-cr.wav:
     folder_name: rachmaninoff_3rd_piano
     img_fname: rach_piano_3.jpg
-    discogs_release: 3970577
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
+    discogs_release: '3970577'
+    album: Piano Concerto No.3 In D Minor
+    albumartist: Sergei Vasilyevich Rachmaninoff
+    albumartistsort: Rachmaninoff, Sergei Vasilyevich
+    artist: Sergei Vasilyevich Rachmaninoff
+    artistsort: Rachmaninoff, Sergei Vasilyevich
+    composer:
+    - Sergei Vasilyevich Rachmaninoff
+    conductor: Witold Rowicki
+    title: Piano Concerto No.3 In D Minor
     performer:
-    - Catherine Dubosc
+    - Witold Malcuzynsky
+    - The National Warsaw Philharmonic Orchestra
     discnumber: 1
     tracknumber: 1
-    originaldate: 1994-04-01
-    originalyear: 1994
-    period: Baroque
-    style: Choral
+    originalyear: '1968'
+    period: Romantic
+    style: Concerto
+    orchestra: The National Warsaw Philharmonic Orchestra
+    details: 'A: Concerto No.3 In D Minor, Op. 30 - First Movement – Allegro Ma Non
+        Troppo'
+    discogs_filled: true
 rachp3_v3_2-cr.wav:
     folder_name: rachmaninoff_3rd_piano
     img_fname: rach_piano_3.jpg
     discogs_release: 3970577
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
+    album: Piano Concerto No.3 In D Minor
+    albumartist: Sergei Vasilyevich Rachmaninoff
+    albumartistsort: Rachmaninoff, Sergei Vasilyevich
+    artist: Sergei Vasilyevich Rachmaninoff
+    artistsort: Rachmaninoff, Sergei Vasilyevich
+    composer:
+    - Sergei Vasilyevich Rachmaninoff
+    conductor: Witold Rowicki
+    title: Piano Concerto No.3 In D Minor
     performer:
-    - Catherine Dubosc
+    - Witold Malcuzynsky
+    - The National Warsaw Philharmonic Orchestra
     discnumber: 1
     tracknumber: 2
-    originaldate: 1994-04-01
-    originalyear: 1994
-    period: Baroque
-    style: Choral
+    originalyear: '1968'
+    period: Romantic
+    style: Concerto
+    orchestra: The National Warsaw Philharmonic Orchestra
+    details: 'B1: Concerto No.3 In D Minor, Op. 30 - Second Movement  – Intermezzo
+
+        B2: Concerto No.3 In D Minor, Op. 30 - Third Movement  – Finale, Alla Breve'
+    discogs_filled: true
 shutz_motets_1-cr.wav:
-    folder_name: null
+    folder_name: schutz_motets
     img_fname: brown_team.jpg
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    performer:
-    - Catherine Dubosc
-    discnumber: 1
-    tracknumber: 1
-    originaldate: 1994-04-01
-    originalyear: 1994
-    period: Baroque
-    style: Choral
 shutz_motets_2-cr.wav:
-    folder_name: null
+    folder_name: schutz_motets
     img_fname: brown_team.jpg
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    performer:
-    - Catherine Dubosc
-    discnumber: 1
-    tracknumber: 2
-    originaldate: 1994-04-01
-    originalyear: 1994
-    period: Baroque
-    style: Choral
 telemann_vorclassik_1-cr.wav:
-    folder_name: null
-    img_fname: brown_team.jpg
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
+    folder_name: telemann_vorklassic
+    img_fname: telemann_vorklassic.jpg
+    albumartist: Georg Philipp Telemann
+    albumartistsort: Telemann, Georg Philipp
+    artist: Georg Philipp Telemann
+    artistsort: Telemann, Georg Philipp
+    discogs_release: 13031194
+    album: 4 Konzerte
     performer:
-    - Catherine Dubosc
-    discnumber: 1
-    tracknumber: 1
-    originaldate: 1994-04-01
-    originalyear: 1994
+    - Kammermusikkreis Emil Seiler
+    - Harald Baudis
+    - Karl-Heinz Westphal
+    - Giorgio Silzer
+    - Hanns-Joachim Westphal
+    - Rudolf Schulz
+    - Willi Kirch
+    - Hans-Peter Schmitz
+    - Carl Gorvin
+    - Hermann Töttcher
+    - Emil Seiler
+    - Friedrich Wagner
+    - Frithjof Fest
+    - Hermann Töttcher
+    - Emil Seiler
+    - Giorgio Silzer
+    - Rudolf Schulz
+    - Thea Von Sparr
+    - Burghard Schaeffer
+    title: 4 Konzerte
+    originalyear: '1964'
     period: Baroque
-    style: Choral
+    details: 'A1: Konzert Für 4 Violinen D-dur
+
+        A2: Konzert Für  Flöte, Oboe D''Amore, Viola D''Amore, Streicher Und Continuo
+        E-dur
+
+        B1: Konzert Für Oboen, 3 Violinen Und Continuo B-dur
+
+        B2: Konzert Für Blockflötte, Querflöte, Streicher Und Continuo E-moll'
+    discogs_filled: true
 telemann_vorclassik_2-cr.wav:
-    folder_name: null
-    img_fname: brown_team.jpg
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
+    folder_name: telemann_vorklassic
+    img_fname: telemann_vorklassic.jpg
+    albumartist: Georg Philipp Telemann
+    albumartistsort: Telemann, Georg Philipp
+    artist: Georg Philipp Telemann
+    artistsort: Telemann, Georg Philipp
+    discogs_release: 13031194
+    album: 4 Konzerte
     performer:
-    - Catherine Dubosc
-    discnumber: 1
-    tracknumber: 2
-    originaldate: 1994-04-01
-    originalyear: 1994
+    - Kammermusikkreis Emil Seiler
+    - Harald Baudis
+    - Karl-Heinz Westphal
+    - Giorgio Silzer
+    - Hanns-Joachim Westphal
+    - Rudolf Schulz
+    - Willi Kirch
+    - Hans-Peter Schmitz
+    - Carl Gorvin
+    - Hermann Töttcher
+    - Emil Seiler
+    - Friedrich Wagner
+    - Frithjof Fest
+    - Hermann Töttcher
+    - Emil Seiler
+    - Giorgio Silzer
+    - Rudolf Schulz
+    - Thea Von Sparr
+    - Burghard Schaeffer
+    title: 4 Konzerte
+    originalyear: '1964'
     period: Baroque
-    style: Choral
+    details: 'A1: Konzert Für 4 Violinen D-dur
+
+        A2: Konzert Für  Flöte, Oboe D''Amore, Viola D''Amore, Streicher Und Continuo
+        E-dur
+
+        B1: Konzert Für Oboen, 3 Violinen Und Continuo B-dur
+
+        B2: Konzert Für Blockflötte, Querflöte, Streicher Und Continuo E-moll'
+    discogs_filled: true
 toscwag1-cr.wav:
     folder_name: null
     img_fname: brown_team.jpg
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    performer:
-    - Catherine Dubosc
-    discnumber: 1
-    tracknumber: 1
-    originaldate: 1994-04-01
-    originalyear: 1994
-    period: Baroque
-    style: Choral
 toscwag2-cr.wav:
     folder_name: null
     img_fname: brown_team.jpg
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    performer:
-    - Catherine Dubosc
-    discnumber: 1
-    tracknumber: 2
-    originaldate: 1994-04-01
-    originalyear: 1994
-    period: Baroque
-    style: Choral
 walton_belsh1-cr.wav:
-    folder_name: null
-    img_fname: brown_team.jpg
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    performer:
-    - Catherine Dubosc
-    discnumber: 1
-    tracknumber: 1
-    originaldate: 1994-04-01
-    originalyear: 1994
-    period: Baroque
+    folder_name: walton_belshazzar
+    img_fname: walt_belsh.jpg
+    discogs_release: 5764515
     style: Choral
+    album: Belshazzar's Feast
+    artist: Sir William Walton
+    artistsort: Walton, William
+    albumartist: Sir William Walton
+    albumartistsort: Walton, William
+    composer:
+    - Sir William Walton
+    conductor: Sir Adrian Boult
+    orchestra: The Philharmonic Promenade Orchestra Of London
+    performer:
+    - Dennis Noble
+    - Frederick Jackson
+    - The London Philharmonic Choir
+    - The Philharmonic Promenade Orchestra Of London
+    title: Belshazzar's Feast
+    details: 'A: Belshazzar''s Feast
+
+        B: Belshazzar''s Feast'
+    discogs_filled: true
 walton_belsh2-cr.wav:
-    folder_name: null
-    img_fname: brown_team.jpg
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
-    performer:
-    - Catherine Dubosc
-    discnumber: 1
-    tracknumber: 2
-    originaldate: 1994-04-01
-    originalyear: 1994
-    period: Baroque
+    folder_name: walton_belshazzar
+    img_fname: walt_belsh.jpg
+    discogs_release: 5764515
     style: Choral
+    album: Belshazzar's Feast
+    artist: Sir William Walton
+    artistsort: Walton, William
+    albumartist: Sir William Walton
+    albumartistsort: Walton, William
+    composer:
+    - Sir William Walton
+    conductor: Sir Adrian Boult
+    orchestra: The Philharmonic Promenade Orchestra Of London
+    performer:
+    - Dennis Noble
+    - Frederick Jackson
+    - The London Philharmonic Choir
+    - The Philharmonic Promenade Orchestra Of London
+    title: Belshazzar's Feast
+    details: 'A: Belshazzar''s Feast
+
+        B: Belshazzar''s Feast'
+    discogs_filled: true
 young3-cr.wav:
-    folder_name: null
-    img_fname: brown_team.jpg
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
+    folder_name: britten_ypg
+    img_fname: britten_jpg.jpg
+    discogs_release: 9093891
+    album: Young Person's Guide to the Orchestra
+    artist: Benjamin Britten
+    artistsort: Britten, Benjamin
+    albumartist: Benjamin Britten
+    albumartistsort: Britten, Benjamin
+    composer:
+    - Benjamin Britten
+    - Ernst von Dohnányi
+    conductor: Felix Slatkin
+    orchestra: The Concert Arts Orchestra
     performer:
-    - Catherine Dubosc
-    discnumber: 1
-    tracknumber: 1
-    originaldate: 1994-04-01
-    originalyear: 1994
-    period: Baroque
-    style: Choral
+    - Victor Aller
+    - The Concert Arts Orchestra
+    title: Young Person's Guide to the Orchestra
+    originaldate: 1966-12-01
+    originalyear: '1966'
+    details: 'A1: Variations And Fugue On A Theme Of Purcell, Op. 34'
+    discogs_filled: true
 ypg_again2_1-cr.wav:
-    folder_name: null
-    img_fname: brown_team.jpg
-    album: Mass in B Minor
-    albumartist: The Sixteen
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
-    composer: Johann Sebastian Bach
-    conductor: Harry Christophers
-    title: BWV 232 Kyrie / Chorus - Kyrie eleison
+    folder_name: britten_ypg
+    img_fname: britten_jpg.jpg
+    discogs_release: 9093891
+    album: Young Person's Guide to the Orchestra
+    artist: Benjamin Britten
+    artistsort: Britten, Benjamin
+    albumartist: Benjamin Britten
+    albumartistsort: Britten, Benjamin
+    composer:
+    - Benjamin Britten
+    - Ernst von Dohnányi
+    conductor: Felix Slatkin
+    orchestra: The Concert Arts Orchestra
     performer:
-    - Catherine Dubosc
-    discnumber: 1
-    tracknumber: 1
-    originaldate: 1994-04-01
-    originalyear: 1994
-    period: Baroque
-    style: Choral
+    - Victor Aller
+    - The Concert Arts Orchestra
+    title: Young Person's Guide to the Orchestra
+    originaldate: 1966-12-01
+    originalyear: '1966'
+    details: 'B1: Variations On A Nursery Tune, Op. 25'
+    discogs_filled: true
