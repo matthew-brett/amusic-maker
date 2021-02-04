@@ -569,7 +569,8 @@ class DOInfo(MBInfo):
 
     @property
     def period(self):
-        return self._in_dict.get('styles', [])[-1]
+        styles = self._in_dict.get('styles', [])
+        return None if len(styles) == 0 else styles[-1]
 
     def _tracks_with_suffix(self, tracklist, suffix=''):
         track_names = []
