@@ -543,7 +543,19 @@ class DOInfo(MBInfo):
 
     @property
     def persons(self):
-        return self._artists
+        return [a for a in self._artists if self._ok_role(a.get('role'))]
+
+    def _ok_role(self, role):
+        lrole = role.lower()
+        if 'design' in lrole:
+            return False
+        if 'producer' in lrole:
+            return False
+        if 'engineer' in lrole:
+            return False
+        if 'notes' in lrole:
+            return False
+        return True
 
     @property
     def year(self):
