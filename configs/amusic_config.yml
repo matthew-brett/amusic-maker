@@ -707,9 +707,9 @@ palestrine_mont_11-cr.wav:
     discogs_release: '7793083'
     album: Palestrina – Monteverdi
     albumartist: Claudio Monteverdi
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
+    albumartistsort: Monteverdi, Claudio
+    artist: Claudio Monteverdi
+    artistsort: Monteverdi, Claudio
     composer:
     - Claudio Monteverdi
     - Giovanni Pierluigi Da Palestrina
@@ -747,9 +747,9 @@ palestrine_mont_2-cr.wav:
     img_fname: brown_team.jpg
     album: Palestrina – Monteverdi
     albumartist: Claudio Monteverdi
-    albumartistsort: Sixteen, The
-    artist: Johann Sebastian Bach
-    artistsort: Bach, Johann Sebastian
+    albumartistsort: Monteverdi, Claudio
+    artist: Claudio Monteverdi
+    artistsort: Monteverdi, Claudio
     composer:
     - Claudio Monteverdi
     - Giovanni Pierluigi Da Palestrina
