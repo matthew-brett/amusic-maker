@@ -273,6 +273,8 @@ def write_tags(full_out_fname, entry, img_data):
     etags = get_tag_maker()()
     etags['cover_front'] = img_data
     for key, value in entry.items():
+        if not key in etags.valid_keys:
+            continue
         if not isinstance(value, list):
             value = [str(value)]
         etags[key.upper()] = value
