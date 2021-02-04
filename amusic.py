@@ -535,8 +535,9 @@ class DOInfo(MBInfo):
 
     def __init__(self, in_dict):
         self._in_dict = in_dict
-        self._artists = self._in_dict.get(
-            'extraartists', [])
+        self._artists = self._in_dict.get('extraartists', [])
+        if (TL := self._in_dict.get('tracklist')):
+            self._artists += sum([t.get('extraartists', []) for t in TL], [])
         # Add sort versions
         for a in self._artists:
             a['sort-name'] = get_sort_name(a.get('name'))
