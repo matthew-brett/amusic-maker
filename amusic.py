@@ -79,14 +79,6 @@ def proc_config(config, config_path):
     config_path = op.abspath(config_path)
     tracks = deepcopy(config)
     settings = tracks.pop('settings')
-    for key, value in settings.items():
-        if not key.endswith('_path'):
-            continue
-        # Allow home directory expansion.
-        value = op.expanduser(value)
-        if not op.isabs(value):
-            value = op.join(config_path, value)
-        settings[key] = value
     if 'min_img_size' not in settings:
         settings['min_img_size'] = (640, 480)
     return settings, tracks
@@ -335,7 +327,9 @@ def build_one(fbase, config, settings, force=False):
                settings, force=force)
 
 
-def write_config(config, config_fname):
+def write_config(settings, tracks, config_fname):
+    config = {'settings': settings}
+    config.update(tracks)
     with open(config_fname, 'wt') as fobj:
         yaml.dump(config, fobj,
                   indent=4,
@@ -630,18 +624,18 @@ def main():
         if args.first_arg is None:
             raise RuntimeError('Need track filename')
         config[args.first_arg] = DEFAULT_TRACK_CONFIG
-        write_config(config, args.config_path)
+        write_config(settings, tracks, args.config_path)
         return 0
     if args.action in ('mb-config', 'do-config'):
         if args.first_arg is None:
             raise RuntimeError('Need track spec')
         wrapper = DOInfo if args.action == 'do-config' else MBInfo
-        config = fill_config(wrapper,
-                             config,
+        tracks = fill_config(wrapper,
+                             tracks,
                              args.first_arg,
                              args.second_arg,
                              force=args.force)
-        write_config(config, args.config_path)
+        write_config(settings, tracks, args.config_path)
         return 0
     if args.action == 'build':
         for track, config in tracks.items():
