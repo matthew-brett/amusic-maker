@@ -441,9 +441,13 @@ class MBInfo:
         d = self._in_dict.get(self.date_key)
         if d in (None, ''):
             return d
-        y, m, d = [int(v) for v in d.split('-')]
-        d = 1 if d == 0 else d
-        return Date(y, m, d)
+        parts = [int(v) for v in d.split('-')]
+        if len(parts) < 2:
+            return None
+        elif len(parts) == 2:
+            parts.append(1)
+        y, m, d = parts
+        return Date(y, m, 1 if d == 0 else d)
 
     @property
     def year(self):
