@@ -25,16 +25,6 @@ FBASE2FOLDER = re.compile(r'([A-Za-z_]+)[\d]')
 DATE_FMT = '%Y-%m-%d'
 
 
-MBZ_URL_FMT = (
-    'https://musicbrainz.org/ws/2/release/'
-    '{release_id}?inc='
-    # 'genres+'
-    'artist-credits+labels+discids'
-    # '+work-rels+work-level-rels'
-    '&fmt=json'
-)
-
-
 DEF_TRACK_CONFIG = {
     'media': 'Vinyl',
     'source': 'Vinyl (Lossless)',
@@ -373,6 +363,22 @@ class MBInfo:
     date_key = 'date'
     composer_str = 'composer'
     filled_flag_key = 'musicbrainz_filled'
+    url_fmt = (
+        'https://musicbrainz.org/ws/2/release/'
+        '{release_id}?inc='
+        # 'genres+'
+        'artist-credits+labels+discids'
+        # '+work-rels+work-level-rels'
+        '&fmt=json'
+    )
+    url_get_kwargs = {}
+
+    @classmethod
+    def from_release(cls, release_id):
+        # https://musicbrainz.org/doc/MusicBrainz_API
+        url = cls.url_fmt.format(release_id=release_id)
+        response = requests.get(url, **cls.url_get_kwargs)
+        return cls(json.loads(response.text))
 
     def __init__(self, in_dict):
         self._in_dict = in_dict
@@ -487,12 +493,6 @@ class MBInfo:
         return None
 
 
-def get_mb_release(mb_release_id):
-    # https://musicbrainz.org/doc/MusicBrainz_API
-    response = requests.get(MBZ_URL_FMT.format(release_id=mb_release_id))
-    return json.loads(response.text)
-
-
 class DOInfo(MBInfo):
 
     role_key = 'role'
@@ -500,6 +500,8 @@ class DOInfo(MBInfo):
     date_key = 'released'
     composer_str = 'composed by'
     filled_flag_key = 'discogs_filled'
+    url_fmt = "https://api.discogs.com/releases/{release_id}"
+    url_get_kwargs = {'headers': {'User-Agent': "FooBarApp/3.0"}}
 
     def __init__(self, in_dict):
         self._in_dict = in_dict
@@ -536,14 +538,16 @@ class DOInfo(MBInfo):
         return '\n'.join(details)
 
 
-DO_URL_FMT = "https://api.discogs.com/releases/{release_id}"
-
-
-def get_do_release(do_release_id):
-    # https://www.discogs.com/developers
-    response = requests.get(DO_URL_FMT.format(release_id=do_release_id),
-                            headers = {'User-Agent': "FooBarApp/3.0"})
-    return json.loads(response.text)
+def fill_config(wrapper,
+                config,
+                track_spec,
+                release_spec=None):
+    new_config = deepcopy(config)
+    if release_spec is None:
+        raise RuntimeError('Need release id')
+    fill_obj = wrapper.from_release(release_spec)
+    new_config[track_spec].update(fill_obj.as_config())
+    return new_config
 
 
 def get_parser():
@@ -576,24 +580,14 @@ def main():
         config[args.first_arg] = DEFAULT_TRACK_CONFIG
         write_config(config, args.config_path)
         return 0
-    if args.action == 'mb-config':
+    if args.action in ('mb-config', 'do-config'):
         if args.first_arg is None:
-            raise RuntimeError('Need track filename')
-        if args.second_arg is None:
-            raise RuntimeError('Need MusicBrainz release id')
-        info = get_mb_release(args.second_arg)
-        mbi = MBInfo(info)
-        config[args.first_arg].update(mbi.as_config())
-        write_config(config, args.config_path)
-        return 0
-    if args.action == 'do-config':
-        if args.first_arg is None:
-            raise RuntimeError('Need track filename')
-        if args.second_arg is None:
-            raise RuntimeError('Need Discogs release id')
-        info = get_do_release(args.second_arg)
-        doi = DOInfo(info)
-        config[args.first_arg].update(doi.as_config())
+            raise RuntimeError('Need track spec')
+        wrapper = DOInfo if args.action == 'do-config' else MBInfo
+        config = fill_config(wrapper,
+                             config,
+                             args.first_arg,
+                             args.second_arg)
         write_config(config, args.config_path)
         return 0
     if args.action == 'build':

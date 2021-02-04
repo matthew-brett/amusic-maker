@@ -7,8 +7,7 @@ import shutil
 from datetime import date as Date
 from glob import glob
 
-from amusic import (get_mb_release, MBInfo,
-                    get_do_release, DOInfo,
+from amusic import (MBInfo, DOInfo,
                     strip_nones, read_config,
                     proc_config, build_one, clear_hashes)
 
@@ -126,13 +125,6 @@ def test_strip_nones():
     assert strip_nones((1, (None, None))) == (1,)
 
 
-def test_mb_track_info():
-    # Check info hasn't changed.  If it has, we have to 
-    # change the tests
-    info = get_mb_release(FUNEBRE_ID)
-    assert info == FUNEBRE_INFO
-
-
 def test_mbinfo():
     mbi = MBInfo(FUNEBRE_INFO)
     composers = mbi.composers
@@ -156,10 +148,15 @@ def test_mbinfo():
     assert mbi.year == 1985
 
 
+def test_get_mbinfo():
+    mbi = MBInfo(FUNEBRE_INFO)
+    mbi2 = MBInfo.from_release(FUNEBRE_ID)
+    assert mbi.as_config() == mbi2.as_config()
+
+
 def test_doinfo():
     # https://www.discogs.com/Palestrina-Monteverdi-Netherlands-Chamber-Choir-Felix-De-Nobel-Palestrina-Monteverdi/release/7793083
-    PAL_MON_INFO = get_do_release(7793083)
-    mbi = DOInfo(PAL_MON_INFO)
+    mbi = DOInfo.from_release(7793083)
     composers = mbi.composers
     assert len(composers) == 2
     assert composers[0]['name'] == 'Claudio Monteverdi'
