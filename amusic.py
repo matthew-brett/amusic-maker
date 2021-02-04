@@ -571,16 +571,22 @@ class DOInfo(MBInfo):
     def period(self):
         return self._in_dict.get('styles', [])[-1]
 
-    @property
-    def details(self):
-        details = []
-        suffix = ''
-        for t in self._in_dict['tracklist']:
+    def _tracks_with_suffix(self, tracklist, suffix=''):
+        track_names = []
+        for t in tracklist:
             if t['type_'] == 'heading':
                 suffix = t['title'] + ' - '
+            elif t['type_'] == 'index':
+                track_names += self._tracks_with_suffix(
+                    t['sub_tracks'],
+                    t['title'] + ' - ')
             elif t['type_'] == 'track':
-                details.append(f"{t['position']}: {suffix}{t['title']}")
-        return '\n'.join(details)
+                track_names.append(f"{t['position']}: {suffix}{t['title']}")
+        return track_names
+
+    @property
+    def details(self):
+        return '\n'.join(self._tracks_with_suffix(self._in_dict['tracklist']))
 
 
 def fill_config(wrapper,
