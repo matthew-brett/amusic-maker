@@ -593,18 +593,18 @@ class DOInfo(MBInfo):
         return '\n'.join(self._tracks_with_suffix(self._in_dict['tracklist']))
 
 
-def fill_config(wrapper,
-                config,
+def fill_tracks(wrapper,
+                tracks,
                 track_spec,
                 release_spec=None,
                 force=False,
                ):
-    new_config = deepcopy(config)
+    new_tracks = deepcopy(tracks)
     fill_obj = (None if release_spec is None
                 else wrapper.from_release(release_spec))
     rel_id_key = wrapper.release_id_key
     done_key = wrapper.filled_flag_key
-    for key, track_info in new_config.items():
+    for key, track_info in new_tracks.items():
         if not fnmatch(key, track_spec):
             continue
         if not force and track_info.get(done_key):
@@ -619,8 +619,8 @@ def fill_config(wrapper,
         new_info = fill_obj.as_config()
         new_info[rel_id_key] = rel_id
         new_info[done_key] = True
-        new_config[key].update(new_info)
-    return new_config
+        new_tracks[key].update(new_info)
+    return new_tracks
 
 
 def get_parser():
@@ -657,7 +657,7 @@ def main():
         if args.first_arg is None:
             raise RuntimeError('Need track spec')
         wrapper = DOInfo if args.action == 'do-config' else MBInfo
-        tracks = fill_config(wrapper,
+        tracks = fill_tracks(wrapper,
                              tracks,
                              args.first_arg,
                              args.second_arg,
