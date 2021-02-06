@@ -1012,7 +1012,7 @@ ypg_again2_1-cr.wav:
     discogs_filled: true
 toscwag1-cr.wav:
     folder_name: toscanini_conducting_philharmonic
-    img_fname: tosc_wag_side1.jpg
+    img_fname: tosc_wag.jpg
     tracknumber: 1
     discogs_release: 7755878
     style: orchestral
@@ -1039,7 +1039,7 @@ toscwag1-cr.wav:
     discogs_filled: true
 toscwag2-cr.wav:
     folder_name: toscanini_conducting_philharmonic
-    img_fname: tosc_wag_side2.jpg
+    img_fname: tosc_wag.jpg
     tracknumber: 2
     discogs_release: 7755878
     style: orchestral
