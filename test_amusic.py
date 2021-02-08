@@ -8,8 +8,8 @@ from datetime import date as Date
 from glob import glob
 
 from amusic import (MBInfo, DOInfo,
-                    strip_nones, read_config,
-                    proc_config, build_one, clear_hashes)
+                    strip_nones, read_config, stored_params_for,
+                    proc_config, build_one, clear_params)
 
 
 import pytest
@@ -190,41 +190,45 @@ def test_build_one():
     # Clear output path
     if op.isdir(out_path):
         shutil.rmtree(out_path)
-    # Clear input file hashes
-    clear_hashes('wavs')
-    clear_hashes('images')
+    # Clear input file params
+    clear_params('wavs')
+    clear_params('images')
     # Do a build
     build_one(fbase, config, settings)
     assert op.isdir(out_path)
-    # Hashes match, no error.
+    # Params match, no error.
     build_one(fbase, config, settings, True)
-    # Change album details, hashes don't match, error
+    # Change album details, params don't match, error
     config['album'] = 'Eldorado'
     with pytest.raises(RuntimeError):
         build_one(fbase, config, settings)
     build_one(fbase, config, settings, True)
-    # Hashes match, no error.
+    # Params match, no error.
     build_one(fbase, config, settings)
-    # Delete input hashes, error again
-    clear_hashes('wavs')
+    # Delete input params, error again
+    clear_params('wavs')
     with pytest.raises(RuntimeError):
         build_one(fbase, config, settings)
     build_one(fbase, config, settings, True)
-    # Delete output hashes, error again
-    glob_rm(op.join(out_path, '**', '*.mp3.md5'))
+    # Delete output params, error again
+    glob_rm(op.join(out_path, '**', '*.mp3.json'))
     with pytest.raises(RuntimeError):
         build_one(fbase, config, settings)
     build_one(fbase, config, settings, True)
-    # Delete image input hashes, error again
-    clear_hashes('images')
+    # Delete image input params, error again
+    clear_params('images')
     with pytest.raises(RuntimeError):
         build_one(fbase, config, settings)
     build_one(fbase, config, settings, True)
-    # Delete output hashes, error again
-    glob_rm(op.join(out_path, '**', '*.jpg.md5'))
-    with pytest.raises(RuntimeError):
-        build_one(fbase, config, settings)
-    build_one(fbase, config, settings, True)
+    # Delete output params, but these will be reconstructed
+    globber = op.join(out_path, '**', '*.jpg.json')
+    jsons = [stored_params_for(f[:-5]) for f in glob(globber)]
+    glob_rm(globber)
+    # No error
+    new_jsons = [stored_params_for(f[:-5]) for f in glob(globber)]
+    # Identical params reconstructed.
+    assert all(p1 == p2 for p1, p2 in zip(jsons, new_jsons))
+    build_one(fbase, config, settings)
     # Clear input file hashes
-    clear_hashes('wavs')
-    clear_hashes('images')
+    clear_params('wavs')
+    clear_params('images')

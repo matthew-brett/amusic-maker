@@ -964,7 +964,7 @@ walton_belsh2-cr.wav:
 
         B: Belshazzar''s Feast'
     discogs_filled: true
-young3-cr.wav:
+ypg_1-cr.wav:
     folder_name: britten_ypg
     img_fname: britten_ypg.jpg
     tracknumber: 1
@@ -976,7 +976,6 @@ young3-cr.wav:
     albumartistsort: Britten, Benjamin
     composer:
     - Benjamin Britten
-    - Ernst von Dohnányi
     conductor: Felix Slatkin
     orchestra: The Concert Arts Orchestra
     performer:
@@ -987,25 +986,24 @@ young3-cr.wav:
     originalyear: '1966'
     details: 'A1: Variations And Fugue On A Theme Of Purcell, Op. 34'
     discogs_filled: true
-ypg_again2_1-cr.wav:
+ypg_2-cr.wav:
     folder_name: britten_ypg
     img_fname: britten_ypg.jpg
     tracknumber: 2
     discogs_release: 9093891
     album: Young Person's Guide to the Orchestra
-    artist: Benjamin Britten
-    artistsort: Britten, Benjamin
+    artist: Ernst von Dohnányi
+    artistsort: Dohnányi, Ernst von
     albumartist: Benjamin Britten
     albumartistsort: Britten, Benjamin
     composer:
-    - Benjamin Britten
     - Ernst von Dohnányi
     conductor: Felix Slatkin
     orchestra: The Concert Arts Orchestra
     performer:
     - Victor Aller
     - The Concert Arts Orchestra
-    title: Young Person's Guide to the Orchestra
+    title: Variations On A Nursery Tune, Op. 25
     originaldate: 1966-12-01
     originalyear: '1966'
     details: 'B1: Variations On A Nursery Tune, Op. 25'
@@ -1054,8 +1052,8 @@ toscwag2-cr.wav:
     orchestra: The Philharmonic Symphony Orchestra of New York
     performer:
     - The Philharmonic Symphony Orchestra of New York
-    title: "Prelude To Acts 1 & 3 Of Lohengrin; Dawn And Siegfried's Rhine
-      Journey (From Götterdammerung)"
+    title: Prelude To Acts 1 & 3 Of Lohengrin; Dawn And Siegfried's Rhine Journey
+        (From Götterdammerung)
     originalyear: '1970'
     details: 'B1: Lohengrin: Prelude To Act 1
 
@@ -1141,3 +1139,295 @@ shutz_motets_2-cr.wav:
         \ Christ (Nr. 11)\nB7: Geistliche Chormusik (Dresden, 1648) - Ich Weiss, Dass\
         \ Mein Erlöser Lebt (Nr. 25)"
     discogs_filled: true
+goons_1-cr.wav:
+    folder_name: goons_lurgi
+    img_fname: goons_lurgi.jpg
+    discogs_release: 1584448
+    tracknumber: 1
+    album: Goon Show Classics Vol. 3
+    conductor: Angela Morley
+    performer:
+    - Harry Secombe
+    - Peter Sellers
+    - Spike Milligan
+    - Wallace Greenslade
+    - Eric Sykes
+    title: Lurgi Strikes Britain
+    originalyear: '1976'
+    period: Comedy
+    details: 'A: Lurgi Strikes Britain
+
+        B: The International Christmas Pudding'
+    discogs_filled: true
+goons_2-cr.wav:
+    folder_name: goons_lurgi
+    img_fname: goons_lurgi.jpg
+    discogs_release: 1584448
+    tracknumber: 2
+    album: Goon Show Classics Vol. 3
+    conductor: Angela Morley
+    performer:
+    - Harry Secombe
+    - Peter Sellers
+    - Spike Milligan
+    - Wallace Greenslade
+    - Eric Sykes
+    title: The International Christmas Pudding
+    originalyear: '1976'
+    period: Comedy
+    details: 'A: Lurgi Strikes Britain
+
+        B: The International Christmas Pudding'
+    discogs_filled: true
+purcell_cerem1-cr.wav:
+    folder_name: purcell_ceremonial
+    img_fname: purcell_cerem.jpg
+    discogs_release: 3096597
+    tracknumber: 1
+    album: Ceremonial Theater Chamber Music
+    artist: Henry Purcell
+    artistsort: Purcell, Henry
+    albumartist: Henry Purcell
+    albumartistsort: Purcell, Henry
+    composer:
+    - Henry Purcell
+    conductor: Arthur Davison
+    title: Ceremonial Theater Chamber Music
+    originalyear: '1975'
+    period: Baroque
+    details: 'A1: Trumpet Overture From "The Indian Queen"
+
+        A2 (a): Suite From Abdelazer - Overture - Allegro
+
+        A2 (b): Suite From Abdelazer - Rondeau
+
+        A2 (c): Suite From Abdelazer - Air
+
+        A2 (d): Suite From Abdelazer - Air
+
+        A2 (e): Suite From Abdelazer - Minuet
+
+        A2 (f): Suite From Abdelazer - Air
+
+        A2 (g): Suite From Abdelazer - Jig
+
+        A2 (h): Suite From Abdelazer - Air
+
+        A2 (i): Suite From Abdelazer - Hornpipe
+
+        B1 : Overture To " Come Ye Sons Of Art "
+
+        B2 (a): The Golden Sonata - Sonata No.9 In F Major - 1st Movement : Largo
+
+        B2 (b): The Golden Sonata - Sonata No.9 In F Major - 2nd Movement : Largo
+
+        B2 (c): The Golden Sonata - Sonata No.9 In F Major - 3rd Movement : Canzona
+        - Allegro
+
+        B2 (d): The Golden Sonata - Sonata No.9 In F Major - 4th & 5th Movement :
+        Grave - Allegro
+
+        B3: Chacony In G Minor'
+    discogs_filled: true
+purcell_cerem2-cr.wav:
+    folder_name: purcell_ceremonial
+    img_fname: purcell_cerem.jpg
+    discogs_release: 3096597
+    tracknumber: 2
+    album: Ceremonial Theater Chamber Music
+    artist: Henry Purcell
+    artistsort: Purcell, Henry
+    albumartist: Henry Purcell
+    albumartistsort: Purcell, Henry
+    composer:
+    - Henry Purcell
+    conductor: Arthur Davison
+    title: Ceremonial Theater Chamber Music
+    originalyear: '1975'
+    period: Baroque
+    details: 'A1: Trumpet Overture From "The Indian Queen"
+
+        A2 (a): Suite From Abdelazer - Overture - Allegro
+
+        A2 (b): Suite From Abdelazer - Rondeau
+
+        A2 (c): Suite From Abdelazer - Air
+
+        A2 (d): Suite From Abdelazer - Air
+
+        A2 (e): Suite From Abdelazer - Minuet
+
+        A2 (f): Suite From Abdelazer - Air
+
+        A2 (g): Suite From Abdelazer - Jig
+
+        A2 (h): Suite From Abdelazer - Air
+
+        A2 (i): Suite From Abdelazer - Hornpipe
+
+        B1 : Overture To " Come Ye Sons Of Art "
+
+        B2 (a): The Golden Sonata - Sonata No.9 In F Major - 1st Movement : Largo
+
+        B2 (b): The Golden Sonata - Sonata No.9 In F Major - 2nd Movement : Largo
+
+        B2 (c): The Golden Sonata - Sonata No.9 In F Major - 3rd Movement : Canzona
+        - Allegro
+
+        B2 (d): The Golden Sonata - Sonata No.9 In F Major - 4th & 5th Movement :
+        Grave - Allegro
+
+        B3: Chacony In G Minor'
+    discogs_filled: true
+orff1-cr.wav:
+    folder_name: orff_carmina
+    img_fname: orff_cb.jpg
+    discogs_release: 4921719
+    tracknumber: 1
+    album: Carmina Burana
+    artist: Carl Orff
+    artistsort: Orff, Carl
+    albumartist: Carl Orff
+    albumartistsort: Orff, Carl
+    composer:
+    - Carl Orff
+    conductor: Herbert Kegel
+    orchestra: Rundfunk-Sinfonie-Orchester Leipzig
+    performer:
+    - Kurt Hübenthal
+    - Kurt Rehm
+    - Jutta Vulpius
+    - Hans-Joachim Rotzsch
+    - Rundfunk-Kinderchor Leipzig
+    - Rundfunk-Sinfonie-Orchester Leipzig
+    title: Carmina Burana
+    originalyear: '1965'
+    period: Modern
+    details: 'A1: Fortuna Imperatrix Mundi
+
+        A2: I. Primo Vere
+
+        A3: Uf Dem Anger
+
+        A4: II. In Taberna - Estuans Interius
+
+        B1: II. In Taberna - Olim Lacus Colueram
+
+        B2: II. In Taberna - Ego Sum Abbas
+
+        B3: II. In Taberna - In Taberna Quando Sumus
+
+        B4: III. Cour D''Amour
+
+        B5: Blanziflor Et Helena
+
+        B6: Fortuna Imperatrix Mundi'
+    discogs_filled: true
+orff2-cr.wav:
+    folder_name: orff_carmina
+    img_fname: orff_cb.jpg
+    discogs_release: 4921719
+    tracknumber: 2
+    album: Carmina Burana
+    artist: Carl Orff
+    artistsort: Orff, Carl
+    albumartist: Carl Orff
+    albumartistsort: Orff, Carl
+    composer:
+    - Carl Orff
+    conductor: Herbert Kegel
+    orchestra: Rundfunk-Sinfonie-Orchester Leipzig
+    performer:
+    - Kurt Hübenthal
+    - Kurt Rehm
+    - Jutta Vulpius
+    - Hans-Joachim Rotzsch
+    - Rundfunk-Kinderchor Leipzig
+    - Rundfunk-Sinfonie-Orchester Leipzig
+    title: Carmina Burana
+    originalyear: '1965'
+    period: Modern
+    details: 'A1: Fortuna Imperatrix Mundi
+
+        A2: I. Primo Vere
+
+        A3: Uf Dem Anger
+
+        A4: II. In Taberna - Estuans Interius
+
+        B1: II. In Taberna - Olim Lacus Colueram
+
+        B2: II. In Taberna - Ego Sum Abbas
+
+        B3: II. In Taberna - In Taberna Quando Sumus
+
+        B4: III. Cour D''Amour
+
+        B5: Blanziflor Et Helena
+
+        B6: Fortuna Imperatrix Mundi'
+    discogs_filled: true
+nielsen1_1-cr.wav:
+    folder_name: nielsen_1_symphony
+    img_fname: nielsen_sy1.jpg
+    discogs_release: 5133001
+    tracknumber: 1
+    album: Symphony No. 1, Symphony No. 5
+    artist: Carl Nielsen
+    artistsort: Nielsen, Carl
+    albumartist: Carl Nielsen
+    albumartistsort: Nielsen, Carl
+    composer:
+    - Carl Nielsen
+    conductor: Thomas Jensen
+    orchestra: Statsradiofoniens Symfoniorkester
+    performer:
+    - Statsradiofoniens Symfoniorkester
+    title: Symphony No. 1
+    originalyear: '1970'
+    period: Romantic
+    details: 'A1: Symphony No. 1 In G Minor Op. 7 - Allegro Orgoglioso
+
+        A2: Symphony No. 1 In G Minor Op. 7 - Andante
+
+        A3: Symphony No. 1 In G Minor Op. 7 - Allegro Comodo
+
+        A4: Symphony No. 1 In G Minor Op. 7 - Allegro Con Fuoco
+
+        B1: Symphony No. 5 Op. 50 - Tempo Guisto, Adagio
+
+        B2: Symphony No. 5 Op. 50 - Allegro, Presto, Andante Un Poco Traquillo, Allegro'
+    discogs_filled: true
+    style: Symphony
+nielsen1_2a-cr.wav:
+    folder_name: nielsen_1_symphony
+    img_fname: nielsen_sy1.jpg
+    discogs_release: 5133001
+    tracknumber: 2
+    album: Symphony No. 1, Symphony No. 5
+    artist: Carl Nielsen
+    artistsort: Nielsen, Carl
+    albumartist: Carl Nielsen
+    albumartistsort: Nielsen, Carl
+    composer:
+    - Carl Nielsen
+    conductor: Thomas Jensen
+    orchestra: Statsradiofoniens Symfoniorkester
+    performer:
+    - Statsradiofoniens Symfoniorkester
+    title: Symphony No. 5
+    originalyear: '1970'
+    period: Romantic
+    details: 'A1: Symphony No. 1 In G Minor Op. 7 - Allegro Orgoglioso
+
+        A2: Symphony No. 1 In G Minor Op. 7 - Andante
+
+        A3: Symphony No. 1 In G Minor Op. 7 - Allegro Comodo
+
+        A4: Symphony No. 1 In G Minor Op. 7 - Allegro Con Fuoco
+
+        B1: Symphony No. 5 Op. 50 - Tempo Guisto, Adagio
+
+        B2: Symphony No. 5 Op. 50 - Allegro, Presto, Andante Un Poco Traquillo, Allegro'
+    discogs_filled: true
+    style: Symphony

@@ -10,7 +10,6 @@ import shutil
 from datetime import date as Date
 from copy import deepcopy
 import json
-from hashlib import md5
 from subprocess import check_call, check_output
 from fnmatch import fnmatch
 from argparse import ArgumentParser, RawDescriptionHelpFormatter
@@ -22,7 +21,7 @@ from nameparser import HumanName
 
 
 CONFIG_BASENAME = 'amusic_config.yml'
-HASH_EXT = '.md5'
+PARAMS_EXT = '.json'
 FBASE2FOLDER = re.compile(r'([A-Za-z_]+)[\d]')
 DATE_FMT = '%Y-%m-%d'
 
@@ -115,30 +114,38 @@ def out_fbaseroot_for(fname, entry):
     return f'{fname}_side{track_no:02d}'
 
 
-def hash_fname_for(fname):
-    return fname + HASH_EXT
+def params_fname_for(fname):
+    return fname + PARAMS_EXT
 
 
-def clear_hashes(path):
+def clear_params(path):
     for dirpath, dirnames, filenames in os.walk(path):
         for fn in filenames:
-            if op.splitext(fn)[1] == HASH_EXT:
+            if op.splitext(fn)[1] == PARAMS_EXT:
                 os.unlink(op.join(dirpath, fn))
 
 
-def stored_hash_for(fname, tdelta=0):
-    hash_fname = hash_fname_for(fname)
-    if not op.isfile(hash_fname):
+def stored_params_for(fname, tdelta=-1):
+    params_fname = params_fname_for(fname)
+    if not op.isfile(params_fname):
         return None
-    earliest_hash_time = op.getmtime(fname) + tdelta
-    if op.getmtime(hash_fname) < earliest_hash_time:
+    earliest_params_time = op.getmtime(fname) + tdelta
+    if op.getmtime(params_fname) < earliest_params_time:
         return None
-    with open(hash_fname, 'rt') as fobj:
-        return fobj.read().strip()
+    with open(params_fname, 'rt') as fobj:
+        return json.loads(fobj.read())
 
 
 def _obj2jobj(obj):
     return obj.strftime(DATE_FMT)
+
+
+def write_hash_for_fname(in_fname):
+    md5sum = check_output(['md5', '-q', in_fname],
+                          text=True)
+    params = {'md5': md5sum}
+    write_params_for(params, in_fname)
+    return params
 
 
 def dict2json(d):
@@ -146,41 +153,25 @@ def dict2json(d):
                       sort_keys=True)
 
 
-def str2hash(s):
-    return md5(s.encode('latin1')).hexdigest()
-
-
-def dict2hash(d):
-    return str2hash(dict2json(d))
-
-
-def write_hash_for_fname(in_fname):
-    md5sum = check_output(['md5', '-q', in_fname],
-                          text=True)
-    write_hash_for(md5sum, in_fname)
-    return md5sum
-
-
-def write_hash_for(hash_str, out_fname, tdelta=1):
-    hash_fname = hash_fname_for(out_fname)
-    with open(hash_fname, 'wt') as fobj:
-        fobj.write(hash_str)
-    # Make sure hash modification time later than original
+def write_params_for(params, out_fname, tdelta=1):
+    params_fname = params_fname_for(out_fname)
+    with open(params_fname, 'wt') as fobj:
+        fobj.write(dict2json(params))
+    # Make sure params modification time later than original
     mtime = op.getmtime(out_fname) + tdelta
-    os.utime(hash_fname, (mtime, mtime))
+    os.utime(params_fname, (mtime, mtime))
 
 
 def convert_file(in_fname, out_fname, sox_params):
-    if (in_hash := stored_hash_for(in_fname)) == None:
-        in_hash = write_hash_for_fname(in_fname)
-    params = dict(in_hash=in_hash, sox_params=sox_params)
-    out_hash = dict2hash(params)
-    if stored_hash_for(out_fname) == out_hash:
-        return out_hash
+    if (in_params := stored_params_for(in_fname)) == None:
+        in_params = write_hash_for_fname(in_fname)
+    params = dict(in_params=in_params, sox_params=sox_params)
+    if stored_params_for(out_fname) == params:
+        return params
     extra_params = [str(p) for p in sox_params]
     check_call(['sox', in_fname] + extra_params + [out_fname])
-    write_hash_for(out_hash, out_fname)
-    return out_hash
+    write_params_for(params, out_fname)
+    return params
 
 
 def write_converted_file(in_fname,
@@ -191,17 +182,19 @@ def write_converted_file(in_fname,
     ensure_dir(settings['conv_path'])
     conv_fname = op.join(settings['conv_path'],
                          op.basename(froot) + settings['conv_ext'])
-    out_hash = convert_file(in_fname, conv_fname, settings['sox_params'])
+    out_params = convert_file(in_fname, conv_fname, settings['sox_params'])
     shutil.copyfile(conv_fname, full_out_fname)
-    return out_hash
+    return out_params
 
 
-def same_hash_for(exp_hash, out_fname):
-    if exp_hash is None:
+def same_params_for(exp_params, out_fname):
+    if exp_params is None:
         return False
-    if (out_hash:= stored_hash_for(out_fname)) is None:
+    # JSON roundtrip for input parameters
+    d2j2d = json.loads(dict2json(exp_params))
+    if (out_params:= stored_params_for(out_fname)) is None:
         return False
-    return out_hash == exp_hash
+    return out_params == d2j2d
 
 
 def write_song(music_fname,
@@ -211,24 +204,24 @@ def write_song(music_fname,
                settings,
                force=False):
     exp_params = dict(
-        music_hash=stored_hash_for(music_fname),
-        img_hash=stored_hash_for(img_fname),
+        music_params=stored_params_for(music_fname),
+        img_params=stored_params_for(img_fname),
         entry=entry)
-    if same_hash_for(dict2hash(exp_params), full_out_fname):
+    if same_params_for(exp_params, full_out_fname):
         return
     if op.exists(full_out_fname) and not force:
         raise RuntimeError(f'File {full_out_fname} exists')
     write_converted_file(music_fname, full_out_fname, settings,
                          force=force)
-    exp_params['music_hash'] = stored_hash_for(music_fname)
+    exp_params['music_params'] = stored_params_for(music_fname)
     # Add tags and image
-    exp_params['img_hash'], img_data = write_proc_image(
+    exp_params['img_params'], img_data = write_proc_image(
         img_fname,
         settings['min_img_size'],
         settings['out_dim'],
     )
     write_tags(full_out_fname, entry, img_data)
-    write_hash_for(dict2hash(exp_params), full_out_fname)
+    write_params_for(exp_params, full_out_fname)
 
 
 def get_tag_maker():
@@ -286,15 +279,15 @@ def write_tags(full_out_fname, entry, img_data):
 
 def write_proc_image(img_fname, min_img_size=(640, 480),
                      out_dim=1024):
-    if (img_hash := stored_hash_for(img_fname)) == None:
-        img_hash = write_hash_for_fname(img_fname)
+    if (img_params := stored_params_for(img_fname)) == None:
+        img_params = write_hash_for_fname(img_fname)
     img = Image.open(img_fname)
     if img.size < tuple(min_img_size):
         raise ValueError(f'Low resolution image {img_fname}')
     img = resize_img(img, out_dim)
     fobj = BytesIO()
     img.save(fobj, format="jpeg")
-    return img_hash, fobj.getvalue()
+    return img_params, fobj.getvalue()
 
 
 def guess_folder(fbase):
